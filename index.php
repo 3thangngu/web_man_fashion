@@ -17,31 +17,7 @@ include('inc/function.php');
 
 
     <style type="text/css">
-  /*      #gioi-thieu {margin-top: 0px}
-        #themes{transform: rotate(90deg);  -webkit-transform: rotate(90deg);-moz-transform: rotate(90deg);z-index: 9999999999;position: fixed;top: 172px;right: -24px;font-family: "Josefin Slab", serif;cursor: pointer;font-weight: 700;color: white;background: #d73814;padding:8px 10px;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px}
-        #themeContainer{position: fixed;top:150px;right: -200px;z-index: 999999999999999;width: 200px;padding-top: 2px;background: #1e1e1e;}
 
-         #themeContainer .wrapper-style .time #minutes,#themeContainer .wrapper-style .time #seconds{width: 40px}
-         #themeContainer .wrapper-style .time{padding: 15px}
-         #themeContainer .wrapper-style .time  #save-time{margin-left: 10px}
-        #themeContainer .wrapper-style .time #point{font-weight: bold;color: white;margin: 0 2px}
-        #themeContainer .wrapper-style >h4 {box-sizing: border-box;background: #1e1e1e;font-size: 16px;margin: 0;color: white;padding: 10px;width: 100%;border-top: 1px solid #444;border-bottom: 1px solid #444;}
-        #themeContainer .wrapper-style >h4 #close-themes{transition: color .5s;float: right;font-size: 20px;margin-top: -5px;margin-right: 10px;box-sizing: border-box}
-        #themeContainer .wrapper-style >h4 #close-themes:hover{color: #d73814}
-        #themeContainer .wrapper-style .oregional-skins{width: 100%;border-bottom: 1px solid #444}
-        #themeContainer .wrapper-style .oregional-skins  .item-oregional-skins{box-sizing: border-box;padding: 10px ;width: 100%}
-        #themeContainer .wrapper-style .oregional-skins  .item-oregional-skins .item-oregional-skins-x{width: 18px;height: 18px;border: 2px solid #666;display: inline-block;margin-right: 5px}*/
-      /*  #themeContainer .wrapper-style .oregional-skins  .item-oregional-skins  #default{background: #F1F1F1}
-        #themeContainer .wrapper-style .oregional-skins  .item-oregional-skins  #red{background: red}*/
-
-
-
-        /*.item-product-sp{width: 200px;padding: 0;position: absolute;text-align: left;top: 78px;display: none;background: white;z-index: 9999}*/
-        /*.item-product-sp li{margin: 0!important;display: block;border-bottom: 1px solid #ededed;width: 200px;font-size: 13px;font-weight: bold;}*/
-        /*.item-product-sp li:hover{background: #ededed;color:#bd0103}*/
-        /*.item-product-sp li:hover a{color:#bd0103 }*/
-        /*.item-product-sp li a{margin: 0;padding:0;color: #666;width: 100%;height: 100%;display: block;}*/
-        /*.menu-header > ul li:hover .item-product-sp{display: block;}*/
     </style>
 </head>
 
@@ -50,7 +26,6 @@ include('inc/function.php');
 session_start();
 include('include/header.php');
 ?>
-
 <div class="banner hidden-sm hidden-xs ">
     <div class="container-fluid">
         <div class="row">
@@ -79,6 +54,7 @@ include('include/header.php');
         </div>
     </div>
 </div>
+<div ></div>        
 <!-- <div class="bcrumbs" style="height: 48px;background-color: #f2f2f2;overflow: hidden;margin-top: -10px;line-height: 48px">
     <div class="container">
         <div class="row">
