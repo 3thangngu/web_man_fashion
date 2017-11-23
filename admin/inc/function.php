@@ -1,6 +1,6 @@
 <?php
-//kiếm tra xem kết quả trả về có đúng hay không.
 
+//kiếm tra xem kết quả trả về có đúng hay không.
 function stripUnicode($str){
     if(!$str) return false;
     $unicode = array(

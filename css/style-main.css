@@ -92,7 +92,7 @@
 .icon-header >span{display: inline-block;}
 .icon-header .cart{color: #333;background: #ccc;padding: 8px;border-radius: 4px;cursor: pointer;margin-left: 5px;position: relative;}
 .icon-header .cart a{text-decoration: none;color: #333}
-.icon-header .cart:hover a{color: white}
+.icon-header .cart:hover  .cart-cart{color: white}
 .icon-header .cart:hover{background: #bd0103;}
 .icon-header .cart:hover .item-icon-header{opacity: 1;top: 44px;visibility: visible;}
 .icon-header .search:hover .search-icon-header{opacity: 1;top: 44px;visibility: visible;}
