@@ -107,17 +107,14 @@
                             $thump = 'upload/resize/' . $temp[0] . '_thump' . '.' . $temp[1]; // đường dẫn
 
 
-//                            $imageThump = new Image("../".$link_img);
-//                            if ($imageThump->getWidth() > 460) {
-//                                $imageThump->resize(460, 'resize');
-//                            }
-//                            $imageThump->save($temp[0] . '_thump', '../upload/resize'); //ten voi duong dan luu anh
-//                             echo $link_img. "<br>".$thump;
+                           $imageThump = new Image("../".$link_img);
+                           if ($imageThump->getWidth() > 460) {
+                               $imageThump->resize(460, 613,"resize");
+                           }
+                           $imageThump->save($temp[0] . '_thump', '../upload/resize'); //ten voi duong dan luu anh
+                           $link_image .= $link_img ." ";
+                           $link_image_thump .= $thump ." ";
 
-                            $link_image .= $link_img . " ";
-                            $link_image_thump .= $thump . " ";
-//                             echo "<br>"."Link"."<br>".$link_image . "<br>".$link_image_thump;
-                            // //
                         }
 
                     }//ket thuc foreach

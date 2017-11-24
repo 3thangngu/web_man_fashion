@@ -54,15 +54,15 @@
                                 if(isset($value) && !empty($value)){
                                     ?>
 
-                                        <img  style="height: 100px;width: 500px;margin-bottom: 8px" src="<?php echo $value; ?>" class="img-responsive" style="margin: 0 auto">
+                                        <img  style="height: 100px;width: 500px;margin-bottom: 8px" src="../<?php echo $value; ?>" class="img-responsive" style="margin: 0 auto">
 
                                     <?php
                                     $stt++;
                                 }
                             }
                             ?></td>
-                        <td><?php echo number_format($product['price_product']) ; ?><br/><strong> VND</strong></td>
-                        <td><?php echo number_format($product['saleprice_product']) ; ?><br/><strong> VND</strong></td>
+                        <td><?php echo number_format($product['price_product']) ; ?><strong> đ</strong></td>
+                        <td><?php echo number_format($product['saleprice_product']) ; ?><strong> đ</strong></td>
                         <td><?php echo $product['describe_product']; ?></td>
                         <td><?php echo $product['view_product']; ?></td>
                         <td><?php echo date("d/m/Y",strtotime($product['date_product'])); ?></td>

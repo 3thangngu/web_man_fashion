@@ -20,13 +20,14 @@
                     <tr><th>STT</th>
                         <th>Tên Sản Phẩm</th>
                         <th style="padding-left: 55px">Số Lượng</th>
+                        <th>Giá</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!--  -->
                     <?php 
                         $code_order = $_GET['code_order'];
-                        $query = "SELECT tb_order.id_product, tb_order.size_product, tb_order.quantity_product, tb_product.name_product FROM tb_product, tb_order WHERE tb_product.id_product=tb_order.id_product && code_order=$code_order  GROUP BY tb_order.id_product ORDER BY tb_order.id_product ASC";
+                        $query = "SELECT tb_order.id_product, tb_order.size_product, tb_order.quantity_product, tb_product.name_product,tb_product.saleprice_product FROM tb_product, tb_order WHERE tb_product.id_product=tb_order.id_product && code_order=$code_order  GROUP BY tb_order.id_product ORDER BY tb_order.id_product ASC";
                         $result = mysqli_query($dbc, $query);
                         $stt =1;
                         while ($order = mysqli_fetch_array($result, MYSQLI_NUM)) {
@@ -38,13 +39,17 @@
                         <?php 
                             $query_quantity =  "SELECT size_product,quantity_product FROM  tb_order WHERE code_order=$code_order && id_product = $order[0]";
                             $result_quantity = mysqli_query($dbc, $query_quantity);
+                            $saleprice_product = $order[4];
+                            $quantity_product =0;
                         while ($order_quantity = mysqli_fetch_array($result_quantity, MYSQLI_NUM)) {
+                           $quantity_product += $order_quantity[1];
                         ?>                         
                        <div><?php echo "Size " . $order_quantity[0] . " : " . $order_quantity[1]; ?></div>
                         <?php 
                             } 
                         ?>
                         </td>
+                        <td><?php echo number_format($quantity_product*$saleprice_product, 0, ',', '.') . " đ" ; ?></td>
                    </tr>
                    <tr></tr>
                     <?php 

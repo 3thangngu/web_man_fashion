@@ -1,4 +1,4 @@
-<div class="body">
+<!-- <div class="body"> -->
     <div class="top-bar">
         <div class="container">
             <div class="row">
@@ -47,7 +47,7 @@
                 <img src="image/icon/menu.png">
             </div>
             <div class="col-xs-3 logo-header">
-                <!-- <a href="index.php"><img src="image/logo-top.png"></a> -->
+                <a href="index.php"><img src="image/logo-top.png"></a>
             </div>
             <div class="hidden-xs col-sm-7 menu-header">
                 <ul>
