@@ -52,19 +52,6 @@
         </li>
 
         <li>
-            <a href="javascript:;" data-toggle="collapse" data-target="#customer"><i class="fa fa-fw fa-male"></i> Khách hàng
-                <i class="fa fa-fw fa-angle-double-down"></i></a>
-            <ul id="customer" class="collapse">
-                <li>
-                    <a href="list_customer.php"><i class="fa fa-fw fa-info-circle"></i> Thông tin</a>
-                </li>
-                <li>
-                    <a href="list_product.php"><i class="fa fa-fw fa-list"></i> Tích lũy điểm</a>
-                </li>
-            </ul>
-        </li>
-
-        <li>
             <a href="javascript:;" data-toggle="collapse" data-target="#demo_qc"><i class="fa fa-fw fa-upload"></i>
                 Quảng cáo <i class="fa fa-fw fa-angle-double-down"></i></a>
             <ul id="demo_qc" class="collapse">
@@ -89,6 +76,19 @@
                 </li>
                 <li>
                     <a href="list_bill.php"><i class="fa fa-fw fa-list"></i> Xem hóa đơn</a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript:;" data-toggle="collapse" data-target="#customer"><i class="fa fa-fw fa-male"></i> Khách hàng
+                <i class="fa fa-fw fa-angle-double-down"></i></a>
+            <ul id="customer" class="collapse">
+                <li>
+                    <a href="list_customer.php"><i class="fa fa-fw fa-info-circle"></i> Thông tin</a>
+                </li>
+                <li>
+                    <a href="list_product.php"><i class="fa fa-fw fa-list"></i> Tích lũy điểm</a>
                 </li>
             </ul>
         </li>

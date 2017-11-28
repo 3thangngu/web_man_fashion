@@ -10,17 +10,17 @@ function category_name($category=array()){
             array_push($category,$product[0]."-+&" .$product[1]);
             if(count($category)<8){
                 category_name($category);
-            }else{
+            }
+            else{
                 return $category;
                 break;
             }
-
         }
     }
     return $category;
 }
 
-// tạo code_order ramdom 7 số 
+    // tạo code_order ramdom 7 số 
 function ramdom_code(){
     global $dbc;
     $rd = rand(0000000,9999999);
@@ -32,13 +32,14 @@ function ramdom_code(){
     }
     if (in_array($rd, $list_code_order)) {
         ramdom_code();
-    }else{
+    }
+    else{
         return $rd;
     }
 }
 
 
-//kiếm tra xem kết quả trả về có đúng hay không.
+    //kiếm tra xem kết quả trả về có đúng hay không.
 function stripUnicode($str){
     if(!$str) return false;
     $unicode = array(
@@ -51,7 +52,9 @@ function stripUnicode($str){
         'y'=>'ý|ỳ|ỷ|ỹ|ỵ',
 
     );
-    foreach($unicode as $nonUnicode=>$uni) $str = preg_replace("/($uni)/i",$nonUnicode,$str);
+    foreach($unicode as $nonUnicode=>$uni){
+    	$str = preg_replace("/($uni)/i",$nonUnicode,$str);
+    }
     return str_replace(" ","", $str);
 }
 function kt_query($result,$query)

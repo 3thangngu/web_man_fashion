@@ -95,28 +95,17 @@
                         } else {
                             $img = $_FILES['img']['name'][$key];
                             $link_img = 'upload/' . $img;
-//                             $link_image .= $link_img." ";
                             move_uploaded_file($_FILES['img']['tmp_name'][$key], "../upload/" . $img);
                             //xử lí resize, crop hinh anh
-
                             $temp = explode('.', $img);
                             if ($temp[1] == 'jpeg' or $temp[1] == 'JPEG') {
                                 $temp[1] = "jpg";
                             }
                             $temp[1] = strtolower($temp[1]);
                             $thump = 'upload/resize/' . $temp[0] . '_thump' . '.' . $temp[1]; // đường dẫn
-
-
-                           $imageThump = new Image("../".$link_img);
-                           if ($imageThump->getWidth() > 460) {
-                               $imageThump->resize(460, 613,"resize");
-                           }
-                           $imageThump->save($temp[0] . '_thump', '../upload/resize'); //ten voi duong dan luu anh
-                           $link_image .= $link_img ." ";
-                           $link_image_thump .= $thump ." ";
-
+                            $link_image .= $link_img . " ";
+                            $link_image_thump .= $thump . " ";
                         }
-
                     }//ket thuc foreach
 
                     $query_data = "INSERT INTO tb_product(code_product,
@@ -152,12 +141,16 @@
 
                     if ($result_data > 0) {
                         echo "<p class='results'>Thêm mới thành công</p>";
-                        // $_POST['code_label'] ="";
-                        // $_POST['name_label'] ="";
+                        $_POST['code_product'] ="";
+						$_POST['label_product'] ="";
+                        $_POST['name_product'] ="";
+						$_POST['link_image'] ="";
+						$_POST['price_product'] ="";
+						$_POST['saleprice_product'] ="";
+						$_POST['describe_product'] ="";
                     } else {
                         echo "<p class='results1'>Thêm mới không thành công</p>";
                     }
-
                 }
             } else {
                 $message = "<p class='results1'> Bạn hãy nhập đầy đủ thông tin </p>";

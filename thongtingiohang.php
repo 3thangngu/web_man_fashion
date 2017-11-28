@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -301,7 +300,6 @@ if(!isset($_SESSION['cart']) or empty($_SESSION['cart'])){
 <script type="text/javascript" src="js/jquery-main.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-
 		$("input[name='name']").focusout(function(){
 			if($(this).val()){
 				$(this).parent().removeClass("has-error has-feedback");

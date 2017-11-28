@@ -1,10 +1,8 @@
 <?PHP include('includes/header.php'); ?>
     <style>
         .results {
-
             color: #009966;
         }
-
         .results1 {
             color: #FF0000;
         }
@@ -110,12 +108,9 @@
                             $_POST['repass'] = "";
                         } else {
                             echo "<p class='results1'>Thêm mới không thành công</p>";
-
-
                         }
                     }
                 } else {
-
                     $message = "<p class='results1'> Bạn hãy nhập đầy đủ thông tin </p>";
                 }
             }

@@ -6,55 +6,66 @@
  * Time: 4:40 PM
  */
 ?>
-<?PHP 
-    include('includes/header.php');
-    include('inc/function.php');
-?>
-    <div class="row">
-        <div class="col-12">
-            <h2 style=" color: red">Danh Sách Đơn Hàng
-               
-             </h2>
-            <table class="table table-striped"> 
-                <thead> 
-                    <tr>
-                        <th>Mã đơn hàng</th>
-                        <th>Họ và tên</th>
-                        <th>Số điện thoại</th>
-                        <th>Địa chỉ</th>
-                        <th>Ngày đặt hàng</th>
-                        <th>Xem chi tiết</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                        $query = "SELECT code_order ,name_customer, phone_customer,address_customer,order_day FROM tb_order GROUP BY code_order";
-                        $result = mysqli_query($dbc,$query);
-                        kt_query($query, $result);
-                        while ($order = mysqli_fetch_array($result, MYSQLI_NUM)) {
-                        ?>                    
-                    <tr>
-                        <td><?php echo $order[0]; ?></td>
-                        <td><?php echo $order[1]; ?></td>
-                        <td><?php echo $order[2]; ?></td>
-                        <td><?php echo $order[3]; ?></td>
-                        <td><?php $date=date_create($order[4]);
-                            echo date_format($date,"H:i:s d/m/Y"); ?></td>
-                        <td class="text-center"><a href="order_detail.php?code_order=<?php echo $order[0]; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-                    </tr>
-                    <?php
-                        }
-                    ?>
-                </tbody>
-            </table>
-    </div>  
 
+<form method="POST" name="frmForm" action="./">
+    <input type="hidden" name="act" value="order">
+    <input type=hidden name="page" value="<?php //echo $page?>">
+    <?php //$pageindex = createPage(countRecord("tb_order","1=1"),'./?act=order"."&page=',$MAXPAGE,$page);
+    ?>
 
+    <table cellspacing="0" cellpadding="0" width="100%">
+        <tr><td height="30" class="smallfont">Trang : <?php //echo $pageindex?></td></tr>
+    </table>
 
-<?PHP 
-    include('includes/footer.php');
-?>
+    <table border="1" cellpadding="2" bordercolor="#C9C9C9" width="100%">
+        <tr>
+            <th width="20" class="title"><input type="checkbox" name="chkall" onclick="chkallClick(this);"></th>
+            <th width="20" class="title"></th>
+            <th width="80" class="title">Chi tiết</th>
+            <th width="20" class="title">ID</th>
+            <th class="title"><a class="title" href="<?php //echo getLinkSort(2)?>">Mã SP</a></th>
+            <th class="title">Số lượng SP</th>
+            <th class="title"><a class="title" href="<?php //echo getLinkSort(3)?>">Tên khách hàng</a></th>
+            <th width="90" class="title"><a class="title" href="<?php //echo getLinkSort(4)?>">Ngày tạo lập</a></th>
+            <th width="90" class="title"><a class="title" href="<?php //echo getLinkSort(5)?>">Lần hiệu chỉnh trước</a></th>
+        </tr>
 
+<!--        --><?php //$sortby = 'order by date_added';
+//        if ($_REQUEST['sortby']!='') $sortby='order by '.(int)$_REQUEST['sortby'];
+//        $direction=($_REQUEST['direction']==''||$_REQUEST['direction']=='0'?'desc':'');
+//
+//        $sql="select *,DATE_FORMAT(date_added,'%d/%m/%Y %h:%i') as dateAdd,DATE_FORMAT(last_modified,'%d/%m/%Y %h:%i') as dateModify from tbl_order $sortby $direction limit ".($p*$MAXPAGE).",".$MAXPAGE;
+//        $result=mysqli_query($sql,$dbc);
+//        $i=0;
+//        while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)){
+//            $cust = getRecord("tbl_member",'id='.$row['member_id']);
+//            $color = $i++%2 ? '#d5d5d5' : '#e5e5e5';
+            ?>
+
+            <tr>
+                <td bgcolor="<?php echo $color?>" class="smallfont">
+                    <input type="checkbox" name="chk[]" value="<?php echo $row['id']?>">
+                </td>
+                <td bgcolor="<?php echo $color?>" class="smallfont">
+                    <a onclick="return confirm('Bạn có chắc chắn muốn xóa ?');" href="./?act=order&action=del&id=<?php echo $row['id']?>">Xóa</a>
+                </td>
+                <td bgcolor="<?php echo $color?>" class="smallfont" align="center">
+                    <input type="button" name="butDetail" value="Đơn hàng" class="button" onclick="javascript:window.location='./?act=order_detail&id=<?php echo $row['id']?>'"></td>
+                <td bgcolor="<?php echo $color?>" align="center" class="smallfont"><?php //echo $row['id']?></td>
+                <td bgcolor="<?php echo $color?>" align="center" class="smallfont"><?php //echo $row['code']?></td>
+                <td bgcolor="<?php echo $color?>" align="center" class="smallfont">
+                    <?php //echo countRecord('tbl_order_detail','order_id='.$row['id'])?>
+                </td>
+                <td bgcolor="<?php echo $color?>" class="smallfont"><?php //echo $cust['name']?></td>
+                <td bgcolor="<?php echo $color?>" class="smallfont" align="center"><?php //echo $row['dateAdd']?></td>
+                <td bgcolor="<?php echo $color?>" class="smallfont" align="center"><?php //echo $row['dateModify']?></td>
+            </tr>
+        <?php //}
+        ?>
+    </table>
+
+    <input type="submit" value="Xóa chọn" name="ButDel" onclick="return confirm('Bạn có chắc chắn muốn xóa ?');" class="button">
+</form>
 <script language="JavaScript">
     function chkallClick(o) {
         var form = document.frmForm;
@@ -65,3 +76,9 @@
         }
     }
 </script>
+<?php //if($errMsg!=''){echo '<p align=center class="err">'.$errMsg.'<br></p>';}?>
+
+<table width="100%">
+    <tr><td height="10"></td></tr>
+    <tr><td class="smallfont"><?php //echo 'Tổng số hàng : <b>'.countRecord('tbl_order').'</b>'?></td></tr>
+</table>
