@@ -17,6 +17,7 @@ include('inc/function.php');
 
 
     <style type="text/css">
+        
   /*      #gioi-thieu {margin-top: 0px}
         #themes{transform: rotate(90deg);  -webkit-transform: rotate(90deg);-moz-transform: rotate(90deg);z-index: 9999999999;position: fixed;top: 172px;right: -24px;font-family: "Josefin Slab", serif;cursor: pointer;font-weight: 700;color: white;background: #d73814;padding:8px 10px;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px}
         #themeContainer{position: fixed;top:150px;right: -200px;z-index: 999999999999999;width: 200px;padding-top: 2px;background: #1e1e1e;}

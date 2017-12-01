@@ -26,9 +26,6 @@ if(isset($_GET['id'])&& isset($_GET['size'] )&& isset($_GET['quantity'])){
         if(array_key_exists($id, $_SESSION['cart'])){
             if(array_key_exists($size, $_SESSION['cart'][$id]['quantity'])){
                 $_SESSION['cart'][$id]['quantity'][$size]+=$quantity;
-//                echo "<pre>";
-//                print_r($_SESSION['cart'][$id]);
-//                echo "</pre>";
             }
             else{
                 $_SESSION['cart'][$id]['quantity'][$size]=$quantity;
@@ -44,14 +41,10 @@ if(isset($_GET['id'])&& isset($_GET['size'] )&& isset($_GET['quantity'])){
     }
 
 }
-else{
-    header('location:../index.php');
-}
+// else{
+//     header('location:../index.php');
+// }
 
-// header('location:thongtingiohang.php');
-echo "<pre>";
-print_r($_SESSION['cart']);
-echo "</pre>";
-//session_destroy();
+
 
 ?>

@@ -150,4 +150,3 @@ function updateView($id){
 
 ?>
 
-

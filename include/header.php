@@ -127,8 +127,12 @@
             </div>
             <div class="col-xs-7 col-sm-2 pull-right icon-header">
 					<span class="cart">
+                           
+                        <?php if(isset($_SESSION['cart']) ){ echo '<span class="quantity-cart">'.count($_SESSION['cart']).'</span>';
+                        }?>
+                        
 						<a href="thongtingiohang.php" class="cart-cart"><i
-                                    class="glyphicon glyphicon-shopping-cart"></i></a>
+                             class="glyphicon glyphicon-shopping-cart"></i></a>
 						<div class="item-icon-header">
 							Đã chọn
 							<span class="soluong">

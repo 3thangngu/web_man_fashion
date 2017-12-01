@@ -188,15 +188,27 @@ include('include/footer.php');
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCNkTJ_Dw5UL2Rf0reKcQ-5yzOQZX9v_g&callback=initMap" async defer></script> -->
 <script type="text/javascript">
     $(function(){
-
         $("input[name='name']").focusout(function(){
+
+            // nếu có giá trị
             if($(this).val()){
-                $(this).parent().removeClass("has-error has-feedback");
-                $(this).parent().addClass("has-success has-feedback");
-                $(this).next(".errors").css({"opacity":0});
-                $(this).next(".errors").html("...");
-                $(".wrapper-name .icon-notify").removeClass("glyphicon glyphicon-remove form-control-feedback");
-                $(".wrapper-name .icon-notify").addClass("glyphicon glyphicon-ok form-control-feedback");       
+                // nếu chiều dài giá trị < 3 || > 20
+                if ( $(this).val().length < 3 ||  $(this).val().length > 20 ) {
+                    $(this).parent().removeClass("has-success has-feedback");
+                    $(this).parent().addClass("has-error has-feedback");
+                    $(this).next(".errors").css({"opacity":1});
+                    $(this).next(".errors").html("Họ tên phải nằm trong khoảng từ 3-20 kí tự !!");
+                    $(".wrapper-name .icon-notify").removeClass("glyphicon glyphicon-ok form-control-feedback");
+                    $(".wrapper-name .icon-notify").addClass("glyphicon glyphicon-remove form-control-feedback");
+                }else{
+                     $(this).parent().removeClass("has-error has-feedback");
+                    $(this).parent().addClass("has-success has-feedback");
+                    $(this).next(".errors").css({"opacity":0});
+                    $(this).next(".errors").html("...");
+                    $(".wrapper-name .icon-notify").removeClass("glyphicon glyphicon-remove form-control-feedback");
+                    $(".wrapper-name .icon-notify").addClass("glyphicon glyphicon-ok form-control-feedback");  
+                }
+                    
             }else{
                 $(this).parent().removeClass("has-success has-feedback");
                 $(this).parent().addClass("has-error has-feedback");
@@ -205,6 +217,7 @@ include('include/footer.php');
                 $(".wrapper-name .icon-notify").removeClass("glyphicon glyphicon-ok form-control-feedback");
                 $(".wrapper-name .icon-notify").addClass("glyphicon glyphicon-remove form-control-feedback");
             }
+                
         });
 
         $("input[name='email']").focusout(function(){
@@ -246,7 +259,16 @@ include('include/footer.php');
                     $(this).next(".errors").html("Số điện thoại không hợp lệ");
                     $(".wrapper-phone_number .icon-notify").removeClass("glyphicon glyphicon-ok form-control-feedback");
                     $(".wrapper-phone_number .icon-notify").addClass("glyphicon glyphicon-remove form-control-feedback");   
-                }else{
+                }
+                else if( $(this).val().length <10 ||  $(this).val().length >11 ){
+                    $(this).parent().removeClass("has-success has-feedback");
+                    $(this).parent().addClass("has-error has-feedback");
+                    $(this).next(".errors").css({"opacity":1});
+                    $(this).next(".errors").html("Số điện thoại phải nằm trong khoảng từ 10-11 ký tự");
+                    $(".wrapper-phone_number .icon-notify").removeClass("glyphicon glyphicon-ok form-control-feedback");
+                    $(".wrapper-phone_number .icon-notify").addClass("glyphicon glyphicon-remove form-control-feedback");   
+                }
+                else{
                     $(this).parent().removeClass("has-error has-feedback");
                     $(this).parent().addClass("has-success has-feedback");
                     $(this).next(".errors").css({"opacity":0});
@@ -299,17 +321,31 @@ include('include/footer.php');
                 $(".wrapper-content .icon-notify").addClass("glyphicon glyphicon-remove form-control-feedback");
             }
         });
-        //
+
+
+        // su kien submit
         $("input[name='submit']").click(function(){
                 var errors = [];
+                // kiem tra name
                 if($("input[name='name']").val()){
-                    $("input[name='name']").parent().removeClass("has-error has-feedback");
-                    $("input[name='name']").parent().addClass("has-success has-feedback");
-                    $("input[name='name']").next(".errors").css({"opacity":0});
-                    $("input[name='name']").next(".errors").html("...");
-                    $(".wrapper-name .icon-notify").removeClass("glyphicon glyphicon-remove form-control-feedback");
-                    $(".wrapper-name .icon-notify").addClass("glyphicon glyphicon-ok form-control-feedback");       
-                }else{
+                    // kiem tra do dai
+                     if ( $("input[name='name']").val().length < 3 ||  $("input[name='name']").val().length > 20 ) {
+                        $("input[name='name']").parent().removeClass("has-success has-feedback");
+                        $("input[name='name']").parent().addClass("has-error has-feedback");
+                        $("input[name='name']").next(".errors").css({"opacity":1});
+                        $("input[name='name']").next(".errors").html("Họ tên phải nằm trong khoảng từ 3-20 kí tự !!");
+                        $(".wrapper-name .icon-notify").removeClass("glyphicon glyphicon-ok form-control-feedback");
+                        $(".wrapper-name .icon-notify").addClass("glyphicon glyphicon-remove form-control-feedback");
+                    }else{
+                        $("input[name='name']").parent().removeClass("has-error has-feedback");
+                        $("input[name='name']").parent().addClass("has-success has-feedback");
+                        $("input[name='name']").next(".errors").css({"opacity":0});
+                        $("input[name='name']").next(".errors").html("...");
+                        $(".wrapper-name .icon-notify").removeClass("glyphicon glyphicon-remove form-control-feedback");
+                        $(".wrapper-name .icon-notify").addClass("glyphicon glyphicon-ok form-control-feedback");      
+                    }
+                }
+                else{
                     errors.push("error");
                     $("input[name='name']").parent().removeClass("has-success has-feedback");
                     $("input[name='name']").parent().addClass("has-error has-feedback");
@@ -360,7 +396,15 @@ include('include/footer.php');
                         $("input[name='phone_number']").next(".errors").html("Số điện thoại không hợp lệ");
                         $(".wrapper-phone_number .icon-notify").removeClass("glyphicon glyphicon-ok form-control-feedback");
                         $(".wrapper-phone_number .icon-notify").addClass("glyphicon glyphicon-remove form-control-feedback");   
-                    }else{
+                    }else if( $("input[name='phone_number']").val().length <10 ||  $("input[name='phone_number']").val().length >11 ){
+                        $("input[name='phone_number']").parent().removeClass("has-success has-feedback");
+                        $("input[name='phone_number']").parent().addClass("has-error has-feedback");
+                        $("input[name='phone_number']").next(".errors").css({"opacity":1});
+                        $("input[name='phone_number']").next(".errors").html("Số điện thoại phải nằm trong khoảng từ 10-11 ký tự");
+                        $(".wrapper-phone_number .icon-notify").removeClass("glyphicon glyphicon-ok form-control-feedback");
+                        $(".wrapper-phone_number .icon-notify").addClass("glyphicon glyphicon-remove form-control-feedback");   
+                    }
+                    else{
                         $("input[name='phone_number']").parent().removeClass("has-error has-feedback");
                         $("input[name='phone_number']").parent().addClass("has-success has-feedback");
                         $("input[name='phone_number']").next(".errors").css({"opacity":0});

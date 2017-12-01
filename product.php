@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style-main.css">
-    <link rel="stylesheet" type="text/css" href="css/product.css">
+    <link rel="stylesheet" type="text/css" href="css/style-main.css?v=1.0">
+    <link rel="stylesheet" type="text/css" href="css/product.css?v=1.0">
     <style type="text/css">
+
 
     </style>
 </head>
@@ -159,18 +160,8 @@ while ($product = mysqli_fetch_array($result_sp, MYSQLI_ASSOC)) {
                     <div class="col-sm-5 col-sm-offset-1 col-xs-12">
                         <div class="row">
                             <div style="color: white">Số lượng<span style="font-size: 10px">*</span></div>
-                            <select name="soluong" class="select select-soluong col-xs-12">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
+                            <input type="text" name="soluong" class="select select-soluong col-xs-12" value="1">
+                           
                         </div>
 
                     </div>
@@ -183,6 +174,18 @@ while ($product = mysqli_fetch_array($result_sp, MYSQLI_ASSOC)) {
 							</span>
 							đăng kí mua
 						</span>
+
+                       </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 button-buy">
+                       <div class="buy-mua">
+                        <span class="dk-mua add-to-cart">
+                            <span>
+                                <i class="glyphicon glyphicon-plus"></i>
+                            </span>
+                             Thêm vào giỏ hàng
+                        </span>
+
                        </div>
                     </div>
                     <!-- <div class="col-xs-12 col-sm-6 button-cart">
@@ -409,7 +412,27 @@ include('include/footer.php');
 $(document).ready(function(){
     var id_product = $('.see-product').attr('product');
     $.get("xuli/session-seen.php",{id:id_product});
-});
 
+
+        // lan sau gap bo? cai nay
+      // $('.add-to-cart').click(function(){
+      //    // alert("b");
+      //   var id= $('.see-product').attr('product');
+      //   var size= $('.select-size').val();
+      //   var quantity= $('.select-soluong').val();   
+      //   try{
+      //       if(eval(quantity) > 0){
+      //           $.get('xuli/insert.php',{id:id,size:size,quantity:quantity},function(){
+      //              window.location.href = "";
+      //              alert("Đã thêm vào giỏ hàng");
+      //           });
+      //       }
+      //   }catch(err){
+      //       alert("Số lượng sản phẩm không hợp lệ");
+      //   }
+                
+      // });
+});
 </script>
 </html>
+<!-- sin(pi/2) + 1 lỗi them dấu cộng ở phía sau ở dạng chuỗi -->

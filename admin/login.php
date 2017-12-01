@@ -1,5 +1,5 @@
-
-<?PHP session_start();
+<?PHP 
+    session_start();
     if(isset($_SESSION['uid']))
     {
         header('location: index.php');
@@ -16,29 +16,55 @@
 <?php include('inc/function.php');?>
 
 <?php
-if($_SERVER['REQUEST_METHOD']=='POST')
+if( isset( $_POST['login'] ))
 {
     $error=array();
-    if(empty($_POST['username']))
+    if( empty($_POST['username']) || empty($_POST['password']) )
     {
         $error='username';
-    }
-    else
-    {
-        $taikhoan=$_POST['username'];
-    }
-    if(empty($_POST['password']))
-    {
         $error='password';
     }
     else
-    {
-        $matkhau=md5($_POST['password']);
+    {   
+        $partten = "/[A-Za-z0-9]/";
+        if( strlen($_POST['username']) < 3 || strlen($_POST['username']) >15 || strlen($_POST['password']) < 3 || strlen($_POST['password']) >15){
+            $error='username';
+            $error='password';
+            echo '<script>alert("Tài khoản và mật khẩu phải trong khoảng từ 3 đến 15 ký tự.!");</script>';
+        }elseif ( !preg_match($partten ,$_POST['username'], $matchs) || !preg_match($partten ,$_POST['password'], $matchs)) {
+            $error='username';
+            $error='password';
+            echo '<script>alert("Tài khoản mật khẩu không hợp lệ");</script>';
+        }else{
+            $taikhoan=$_POST['username'];
+            $matkhau=md5($_POST['password']);
+        }
+        
     }
+
+
+    // if(empty($_POST['password']))
+    // {
+    //     $error='password';
+    // }
+    // else
+    // {   
+    //     $partten = "/^[A-Za-z0-9]+$/";
+    //     if( strlen($_POST['password']) < 3 || strlen($_POST['password']) >15 ){
+    //         $error='password';
+    //         echo '<script>alert("Tài khoản và mật khẩu phải trong khoảng từ 3 đến 15 ký tự.!");</script>';
+    //     }elseif ( !preg_match($partten ,$_POST['username'], $matchs) ) {
+    //         $error='password';
+    //         echo '<script>alert("Tài khoản mật khẩu không hợp lệ");</script>';
+    //     }else{
+    //         $matkhau=$_POST['password'];
+    //     }
+    // }
+
     if(empty($error)){
-        $query = "SELECT id_user,account_user,pass_user 
+        $query =    "SELECT id_user,account_user,pass_user 
 					FROM tb_user
-					  WHERE account_user='{$taikhoan}' AND pass_user='{$matkhau}' AND status_user=1";
+					WHERE account_user='{$taikhoan}' AND pass_user='{$matkhau}' AND status_user=1";
         $result = mysqli_query($dbc,$query);
         kt_query($query,$result);
 

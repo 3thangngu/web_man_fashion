@@ -249,7 +249,7 @@
 			});
 
 
-
+            // dang ki mua
             $('.dki-mua').click(function(){
                 var id= $('.see-product').attr('product');
                 var size=$('.select-size').val();
@@ -257,7 +257,24 @@
                 $.get('xuli/insert.php',{id:id,size:size,quantity:quantity},function(){
                     window.location.href = "thongtingiohang.php";
                 });
-
+            });
+            // them vào giỏ hàng
+            $('.add-to-cart').click(function(){
+                 // alert("b");
+                var id= $('.see-product').attr('product');
+                var size= $('.select-size').val();
+                var quantity= $('.select-soluong').val();   
+                try{
+                    if(eval(quantity) > 0){
+                        $.get('xuli/insert.php',{id:id,size:size,quantity:quantity},function(){
+                           window.location.href = "";
+                           alert("Đã thêm vào giỏ hàng");
+                        });
+                    }
+                }catch(err){
+                    alert("Số lượng sản phẩm không hợp lệ");
+                }
+                    
             });
 
 

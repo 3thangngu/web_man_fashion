@@ -237,7 +237,7 @@ $(function(){
 
         var sl_delete= sl_product-sl;
         $('.item-icon-header .soluong').text(sl_delete);
-
+        $('.cart .quantity-cart').text(sl_delete);
     });
 
 
