@@ -263,13 +263,16 @@
                  // alert("b");
                 var id= $('.see-product').attr('product');
                 var size= $('.select-size').val();
-                var quantity= $('.select-soluong').val();   
+                var quantity= $('.select-soluong').val();  
                 try{
                     if(eval(quantity) > 0){
                         $.get('xuli/insert.php',{id:id,size:size,quantity:quantity},function(){
-                           window.location.href = "";
                            alert("Đã thêm vào giỏ hàng");
+                           window.location.href = "";
+                           
                         });
+                    }else{
+                         alert("Số lượng sản phẩm không hợp lệ");
                     }
                 }catch(err){
                     alert("Số lượng sản phẩm không hợp lệ");

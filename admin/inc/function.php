@@ -38,7 +38,7 @@ function show_categories($parent_id=0,$insert_text=""){
 
 }
 
-function ctrSelect($name,$class){
+function ctrSelect($name,$class,$current_id =""){
     global $dbc;
 
     echo "<select name='$name' class='$class' style='padding:5px 10px;border-radius:4px;display:block'>";

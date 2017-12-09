@@ -39,7 +39,7 @@
                     if($parent_id ==0){
                         echo "Danh mục gốc";
                     }else{
-                        $query_parent_category = "SELECT id_category,name_category,parent_id FROM tb_category WHERE  id_category={$parent_id}";
+                        $query_parent_category = "SELECT id_category,name_category,parent_id FROM tb_category WHERE  id_category={$parent_id} ORDER BY  name_category DESC ";
                         $result_parent_category= mysqli_query($dbc, $query_parent_category);
                         kt_query($query_parent_category, $result_parent_category);
                         list($id_category,$name_category,$parent_id)=mysqli_fetch_array($result_parent_category,MYSQLI_NUM);

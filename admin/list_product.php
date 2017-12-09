@@ -41,7 +41,7 @@
                 while ($product = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                         ?>
                     <tr>
-                    <td><?php echo $product['code_product']; ?></td>
+                        <td><?php echo $product['code_product']; ?></td>
                         <td><?php echo $product['name_product']; ?></td>
                         <td><?php echo $product['size_product']; ?></td>
                         <td><?php echo $product['id_category']; ?></td>
@@ -54,7 +54,7 @@
                                 if(isset($value) && !empty($value)){
                                     ?>
 
-                                        <img  style="height: 100px;width: 500px;margin-bottom: 8px" src="<?php echo $value; ?>" class="img-responsive" style="margin: 0 auto">
+                                        <img  style="height: 100px;width: 500px;margin-bottom: 8px" src="../<?php echo $value; ?>" class="img-responsive" style="margin: 0 auto">
 
                                     <?php
                                     $stt++;

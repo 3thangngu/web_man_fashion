@@ -39,9 +39,11 @@
                     $name = $_POST['name_category'];
                 }
 
+                $parent_id= $_POST['parent_id'];
+
 
                 if (empty($errors)) {
-                    $query_in = "UPDATE tb_category SET code_category='$code', name_category='$name' where id_category='$id'";
+                    $query_in = "UPDATE tb_category SET code_category='$code', name_category='$name',parent_id='$parent_id' where id_category='$id'";
                     $result_in = mysqli_query($dbc, $query_in);
                     kt_query($query_in, $result_in);
 
@@ -56,6 +58,7 @@
                     $message = "<p class='results1'> Bạn hãy nhập đầy đủ thông tin </p>";
                 }
             }
+
             //ket thuc submit
             $query = "SELECT * FROM tb_category WHERE id_category={$id}";
             $result = mysqli_query($dbc, $query);
@@ -83,17 +86,31 @@
 
                 <div class="form-group">
                     <label>Tên loại sản phẩm</label>
-                    <input type="text" name="name_category" value="<?php if(isset($_POST['name_category'])) {echo $_POST['name_category'];} echo $dong['name_category']; ?>" class="form-control" placeholder='Tên loại sản phẩm'/>
+                    <input type="text" name="name_category" value="<?php if(isset($_POST['name_category'])) {echo $_POST['name_category'];} echo $dong['name_category']; ?>" class="form-control" id="name_category" current_id="<?php echo $id; ?>" parent_id="<?php echo $dong['parent_id'] ?>" placeholder='Tên loại sản phẩm'/>
                 </div>
 
-                <!--<div class="form-group">
+                <div class="form-group">
                     <label>Thuộc loại </label>
-                    <?php ctrSelect('parent_id', 'class'); ?>
-                </div>-->
-
+                    <?php ctrSelect('parent_id', 'parent_category'); ?>
+                </div>
                 <input type="submit" name="submit" class="btn btn-primary" value="Chỉnh sửa"/>
 
             </form>
         </div>
     </div>
 <?PHP include('includes/footer.php'); ?>
+<script type="text/javascript">
+           var parent_id = $("#name_category").attr("parent_id");
+           var current_id = $("#name_category").attr("current_id");
+           $(".parent_category option").each(function(){
+                if( $(this).attr("value") ==  parent_id){
+                    $(this).attr("selected","selected");
+                }
+
+                if( $(this).attr("value") ==  current_id){
+                    $(this).attr("disabled","disabled");
+                }
+
+           })
+
+</script>

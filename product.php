@@ -160,7 +160,7 @@ while ($product = mysqli_fetch_array($result_sp, MYSQLI_ASSOC)) {
                     <div class="col-sm-5 col-sm-offset-1 col-xs-12">
                         <div class="row">
                             <div style="color: white">Số lượng<span style="font-size: 10px">*</span></div>
-                            <input type="text" name="soluong" class="select select-soluong col-xs-12" value="1">
+                            <input type="number" name="soluong" class="select select-soluong col-xs-12" value="1">
                            
                         </div>
 
