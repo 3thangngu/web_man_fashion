@@ -237,3 +237,45 @@ ul.alert-dropdown {
     margin-bottom:0;
     line-height:50px;
 }
+
+/* *------------- 
+*/
+.product-category .form-search{
+    float: right;
+}
+.product-category .form-search .text_search{
+    display: inline-block;
+    width: auto!important;
+}
+.product-category .form-search .btn-search{
+    display: inline-block!important;
+    width: auto!important;
+}
+/**/
+.product_label .form-search{
+    float: right;
+}
+.product_label .form-search .text_search{
+    display: inline-block;
+    width: auto!important;
+}
+.product_label .form-search .btn-search{
+    display: inline-block!important;
+    width: auto!important;
+}
+/**/
+
+.list-product .form-search{
+    float: right;
+}
+.list-product .form-search .text_search{
+    display: inline-block;
+    width: auto!important;
+}
+.list-product .form-search .btn-search{
+    display: inline-block!important;
+    width: auto!important;
+}
+.customer-infomation{
+    margin-top: 25px;
+}
