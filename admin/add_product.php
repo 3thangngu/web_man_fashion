@@ -22,6 +22,13 @@ include('includes/header.php');
         //error_reporting(0);
         if (isset($_POST['submit'])) {
             $errors = array();
+            // loại product
+            if (empty($_POST['id_loai'])) {
+                $errors[] = 'saleprice_product';
+            } else {
+                $id_loai = ($_POST['id_loai']);  
+                $code =  creat_code_product($id_loai);
+            }
             // hiệu product
             if (empty($_POST['label_product'])) {
                 $errors[] = 'label_product';

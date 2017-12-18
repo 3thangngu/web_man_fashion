@@ -276,13 +276,13 @@ function label_search($text_search) {
     }
 
 // Xử lý form search file list_product.php
-    function product_search($text_search){
+    function product_search($text_search, $page = 1, $limit = 15){
      global $dbc;
-
-     $query = "SELECT * FROM tb_product WHERE name_product LIKE". "'%".$text_search."%'";
+     $start = ( $page - 1 ) * $limit ;
+     $lm = $limit;
+     $query = "SELECT * FROM tb_product WHERE name_product LIKE ". "'%".$text_search."%'" . " LIMIT $start, $lm";
      $result = mysqli_query($dbc, $query);
      kt_query($query,$result);
-        // echo 
      if( mysqli_num_rows($result) <= 0) {
        echo "<tr>
        <td colspan='14' class='text-danger text-center'>Không tìm thấy kết quả</td>
@@ -303,7 +303,7 @@ function label_search($text_search) {
           if(isset($value) && !empty($value)){
             ?>
 
-            <img  style="width: 50px;" src="../<?php echo $value; ?>" class="img-responsive" style="margin: 0 auto">
+            <img  style="width: 50px;" src="../<?php echo $value; ?>"  style="margin: 0 auto">
 
             <?php
             $stt++;
@@ -344,9 +344,11 @@ function label_search($text_search) {
       }
     }
   // template list_product 
-    function list_product() {
+    function list_product($page = 1, $limit = 15) {
       global $dbc;
-      $query = 'SELECT * FROM tb_product ORDER BY id_product DESC';
+      $start = ( $page - 1 ) * $limit ;
+      $lm = $limit;
+      $query = "SELECT * FROM tb_product ORDER BY id_product DESC LIMIT $start, $lm";
       $result = mysqli_query($dbc, $query);
       kt_query($query, $result);
       while ($product = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -365,7 +367,7 @@ function label_search($text_search) {
             if(isset($value) && !empty($value)){
               ?>
 
-              <img  style="max-width: 50px" src="../<?php echo $value; ?>" class="img-responsive" style="margin: 0 auto">
+              <img  style="width: 50px" src="../<?php echo $value; ?>"  style="margin: 0 auto">
 
               <?php
               $stt++;
@@ -400,6 +402,10 @@ function label_search($text_search) {
 
             <?php
           }
+
+        }
+        // Phân trang trong list_product.php
+        function patination_product(){
 
         }
         ?>

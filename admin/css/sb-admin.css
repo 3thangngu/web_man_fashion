@@ -279,3 +279,64 @@ ul.alert-dropdown {
 .customer-infomation{
     margin-top: 25px;
 }
+#page-wrapper .frmedit-product .wrap-img .item{
+    box-sizing: border-box;
+    padding: 2px;
+    width: 80px;
+    height: 150px;
+    position: relative;
+    display: block;
+    cursor: pointer;
+    float:left;
+    margin-right: 10px;
+     background: #e1e1e1;
+    border: 1px dashed #333;
+}
+
+#page-wrapper .frmedit-product .wrap-img .item-img, #page-wrapper .frmedit-product .wrap-img .icon, #page-wrapper .frmedit-product .wrap-img .file{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+}
+#page-wrapper .frmedit-product .wrap-img .icon{
+    line-height: 150px;
+    text-align: center;
+    color: #999;
+}
+#page-wrapper .frmedit-product .wrap-img .item:hover .icon{
+    z-index: 5;
+    color: #333!important;
+}
+#page-wrapper .frmedit-product .wrap-img .icon i{
+   font-size: 24px;
+   cursor: pointer;
+   z-index: 5;
+}
+#page-wrapper .frmedit-product .wrap-img .file{
+    z-index: 10;
+    opacity: 0;
+    cursor: pointer;
+}
+#page-wrapper .frmedit-product .more{
+    display: block;
+    line-height: 150px;
+     width: 80px;
+    height: 150px;
+    float: left;
+    text-align: center;
+    font-size: 30px;
+    margin-left: 10px;
+    background:#f1f1f1;
+}
+#page-wrapper .frmedit-product .delete{
+    z-index: 9999999;
+    cursor: pointer;
+    position: absolute;
+    padding: 5px;
+    right: 0;
+    top: 0;
+    color:#bd0103;
+}
