@@ -1,5 +1,5 @@
 <?php include('inc/myconnect.php'); ?>
-<div class="collapse navbar-collapse navbar-ex1-collapse">
+<div class="collapse navbar-collapse navbar-ex1-collapse wrap-sidebar">
     <ul class="nav navbar-nav side-nav">
         <li style="color:rgba(26,27,23,0.87);">
             <a href="index.php"><i class="fa fa-fw fa-user"></i> 
@@ -20,9 +20,9 @@
         </li>
 
         <li>
-            <a href="javascript:;" data-toggle="collapse" data-target="#catalog"><i class="fa fa-fw fa-tags"></i>
+            <a href="javascript:;" data-toggle="collapse" data-target="#menu"><i class="fa fa-fw fa-tags"></i>
                 Danh mục <i class="fa fa-fw fa-angle-double-down"></i></a>
-            <ul id="catalog" class="collapse">
+            <ul id="menu" class="collapse">
                 <li>
                     <a href="list_category.php"><i class="fa fa-fw fa-list"></i> Loại sản phẩm</a>
                 </li>

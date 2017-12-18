@@ -22,6 +22,12 @@ include('includes/header.php');
         //error_reporting(0);
         if (isset($_POST['submit'])) {
             $errors = array();
+            // Kiem tra gia ban vs gia san pham
+            if( isset($_POST['price_product']) && isset($_POST['saleprice_product']) ){
+                if ($_POST['price_product'] > $_POST['saleprice_product']) {
+                    $errors[] = 'price';
+                }
+            }
             // loại product
             if (empty($_POST['id_loai'])) {
                 $errors[] = 'saleprice_product';
@@ -96,7 +102,7 @@ include('includes/header.php');
                     } elseif (($_FILES['img']['size'][$key] > 1000000)) {
                         $massge = "<p class='results1'>Kích thước phải nhỏ hơn 1MB !!</p>";
                     } else {
-                        $img = $_FILES['img']['name'][$key];
+                        $img = str_replace(" ","",$_FILES['img']['name'][$key]);
                         $link_img = 'upload/' . $img;
                         move_uploaded_file($_FILES['img']['tmp_name'][$key], "../upload/" . $img);
                             //xử lí resize, crop hinh anh
@@ -161,9 +167,13 @@ include('includes/header.php');
                 }
             }
         } else {
-            $message = "<p class='results1'> Bạn hãy nhập đầy đủ thông tin </p>";
-            print_r($errors);
-
+            if (in_array('price', $errors)) {
+                $message = "<p class='results1'>Giá sản phẩm không được lớn hơn giá bán </p>";
+            } else {
+                 $message = "<p class='results1'> Bạn hãy nhập đầy đủ thông tin </p>";
+            }
+           
+            // print_r($errors);
         }
     }
     ?>
@@ -279,3 +289,8 @@ include('includes/header.php');
 </div>
 </div>
 <?PHP include('includes/footer.php'); ?>
+<script type="text/javascript">
+    // auto open sidebar
+        $(".wrap-sidebar #menu").addClass("in");
+    //
+</script>
