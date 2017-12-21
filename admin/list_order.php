@@ -24,6 +24,7 @@
                         <th>Địa chỉ</th>
                         <th>Ngày đặt hàng</th>
                         <th>Xem chi tiết</th>
+                        <th>Duyệt</th>
                     </tr>
                 </thead>
                 <tbody>
