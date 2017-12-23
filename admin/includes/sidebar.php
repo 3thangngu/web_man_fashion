@@ -77,7 +77,7 @@
         			<a href="add_shiper.php"><i class="fa fa-fw fa-plus"></i> Thêm mới</a>
         		</li>
         		<li>
-        			<a href="search.php"><i class="fa fa-fw fa-list"></i> Danh sách</a>
+        			<a href="list_delivery.php"><i class="fa fa-fw fa-list"></i> Danh sách</a>
         		</li>
         	</ul>
         </li>

@@ -17,134 +17,54 @@ include('inc/function.php');
 
 
 	<style type="text/css">
-	.wrap-upload{
-		display: inline-block;
-	}
-	.upload{
-		overflow: hidden;
-		margin-right: 5px;
-		float: left;
-		border: 1px dashed #666;
-		position: relative;
-		height: 200px;
-		width: 200px;
-		line-height: 200px;
-		text-align: center;
-	}
-	.upload .icon{
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top:0;
-		left: 0;
-		z-index: 9;
-		color: #999;
-	}
-	.upload .img{
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top:0;
-		left: 0;
 
-	}
-	.upload  .file{
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top:0;
-		left: 0;
-		z-index: 10;
-		opacity: 0;
-	}
-	.upload:hover .icon{
-		color: black;
-	}
-	.more{
-		height:200px;	
-		width: 200px;
-		line-height: 200px;
-		text-align: center;
-		display: inline-block;
-	}
-</style>
+	</style>
 </head>
 
 <body>
-	<!-- <img src="image/icon/amelia.png" class="img"> -->
-	<?php
-	print_r($_FILES['file']);
-	include('include/header.php');
-	if(isset($_FILE['file'])){
-		print_r($_FILES['file']);
-		echo "a";
-	}
+	<?php 
+		if (isset($_POST['submit'])) {
+			$array_size = array();
+			if ( isset($_POST['size_m']) ) {
+				$array_size[$_POST['size_m']] = $_POST['sl_m'];
+			}
+			if ( isset($_POST['size_l']) ) {
+				$array_size[$_POST['size_l']] = $_POST['sl_l'];
+			}
+			if ( isset($_POST['size_xl']) ) {
+				$array_size[$_POST['size_xl']] = $_POST['sl_xl'];
+			}
+			// echo '<pre>';
+			echo Serialize($array_size);
+			// echo '</pre>';
+			echo '<pre>';
+			print_r(Unserialize(Serialize($array_size)));
+			echo '</pre>';
+		}	
 	?>
-	
-	<div class="container">
-		<div class="row">
-			<form action="" method="POST" enctype="multipart/form-data">
-				<div class="wrap-upload">
-					<div class="upload">
-						<div class="icon"><i class="glyphicon glyphicon-open"></i></div>
-						<input type="file" name="file[]" class="file" multiple="multiple">
-					</div>
-					<div class="more">
-						+
-					</div>
-				</div>
-				<input type="submit" name="submit" value="Submit">
-			</form>
-		</div>
-	</div>
+	<form action="" method="post">
+		<input type="checkbox" id="music" name="size_m" value="m">
+    	<label for="music">M</label>
+    	<input type="number" name="sl_m" value="1" >
+		<br>
+    	<input type="checkbox" id="music" name="size_l" value="l">
+    	<label for="music">L</label>
+    	<input type="number" name="sl_l" value="1">
+		<br>
+    	<input type="checkbox" id="music" name="size_xl" value="xl">
+    	<label for="music">XL</label>
+    	<input type="number" name="sl_xl" value="1">
+    	<br>
+    	<input type="submit" name="submit">
+
+	</form>
 </body>
 <script src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		var i = 0;
-		$(".more").click(function(e){
-			$(this).before(`<div class="upload">
-				<div class="icon"><i class="glyphicon glyphicon-open"></i></div>
-				<input type="file" name="file[]" class="file">
-				</div>`);
-			$('.upload').fadeIn("slow");
-		});
-		$("body").on("change",".file",function(){
-						$(this).parent().find("img").remove();
-						$(this).before("<img src='' class='img" + i + " img" +"'/>");
-						var ready = new FileReaderSync();
-						console.log(ready);
-						ready.onload  = function(e){
-							console.log("zo e 1");
-							// console.log(i + " "+j);
-							$('.img' + i).attr('src', e.srcElement.result);
-						};
 
-						ready.readAsDataURL(this.files[j]);
-						
-						// console.log("xong e 1");
-						// console.log("xong 1");
-						// i++;
-						// console.log("zo 2");
-						// $(this).parent().after(
-						// 	`<div class="upload">
-						// 	<div class="icon">
-						// 	<i class="glyphicon glyphicon-open"></i>
-						// 	</div>
-						// 	`
-						// 	+ `<img src='' class='img` + i + ` img` +`'/>` +
-						// 	`
-						// 	<input type="file" name="file[]" class="file" multiple="multiple">
-						// 	</div>`
-						// 	);
-						// var ready = new FileReader();
-						// ready.onload  = function(e){;
-						// 	$('.img' + i).attr('src', e.srcElement.result);
-						// };
-						// ready.readAsDataURL(this.files[j]);
-						// console.log("xong 2");
-				
-		})
+
 	})
+
 </script>
 </html>

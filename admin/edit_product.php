@@ -90,12 +90,12 @@
                     $massge = "<p class='results1'>Kích thước phải nhỏ hơn 1MB !!</p>";
                 } else {
 
-                 $img = str_replace(" ","",$_FILES['img']['name'][$key]);
-                 $link_img = 'upload/' . $img;
-                 move_uploaded_file($_FILES['img']['tmp_name'][$key], "../upload/" . $img);
+                   $img = str_replace(" ","",$_FILES['img']['name'][$key]);
+                   $link_img = 'upload/' . $img;
+                   move_uploaded_file($_FILES['img']['tmp_name'][$key], "../upload/" . $img);
                             //xử lí resize, crop hinh anh
-                 $temp = explode('.', $img);
-                 if ($temp[1] == 'jpeg' or $temp[1] == 'JPEG') {
+                   $temp = explode('.', $img);
+                   if ($temp[1] == 'jpeg' or $temp[1] == 'JPEG') {
                     $temp[1] = "jpg";
                 }
                 $temp[1] = strtolower($temp[1]);
@@ -151,13 +151,13 @@
                 if (in_array('price', $errors)) {
                     $message = "<p class='results1'>Giá sản phẩm không được lớn hơn giá bán </p>";
                 } else {
-                   $message = "<p class='results1'> Bạn hãy nhập đầy đủ thông tin </p>";
-               }
+                 $message = "<p class='results1'> Bạn hãy nhập đầy đủ thông tin </p>";
+             }
 
             // print_r($errors);
-           }
-           ?>
-           <form name="frmedit-product" method="post" enctype="multipart/form-data" class="frmedit-product">
+         }
+         ?>
+         <form name="frmedit-product" method="post" enctype="multipart/form-data" class="frmedit-product">
             <?php
             if (isset($message)) {
                 echo $message;
@@ -219,7 +219,7 @@
                         // echo "<pre>";
                         // print_r($array_img_thumb);
                         // echo "</pre>";
-                    for($i = 0; $i < count($array_img); $i++ ) {
+                    for($i = 0; $i < count($array_img)-1; $i++ ) {
                         ?>
                         <span class="item">
                             <span class="delete"><i class="glyphicon glyphicon-remove"></i></span>
@@ -237,72 +237,107 @@
 
                 <div class="clearfix"></div>
             </div>
+            
+            <div class="form-group wrap-size">
+                <label>Chọn loại size: </label>
+                <div class="title">
+                    <input type="radio" name="category" value="t" id="text" class="category_size" checked="checked "> 
+                    <label for="text">Size chữ</label>
 
-
-            <div class="form-group">
-                <label>Giá sản phẩm</label>
-                <input type="text" name="price_product" value="<?php if (isset($_POST['price_product'])) {
-                    echo $_POST['price_product'];
-                }
-                echo number_format($dong['price_product']); ?>" class="form-control"
-                placeholder='Nhập giá sản phẩm'/>
-                <?php
-                if (isset($errors) && in_array('price_product', $errors)) {
-                    echo "<p class='results1' >Bạn hãy nhập giá sản phẩm</p>";
-                }
-                ?>
-            </div>
-
-            <div class="form-group">
-                <label>Giá bán sản phẩm</label>
-                <input type="text" name="saleprice_product" value="<?php if (isset($_POST['saleprice_product'])) {
-                    echo $_POST['saleprice_product'];
-                }
-                echo number_format($dong['saleprice_product']); ?>" class="form-control"
-                placeholder='Nhập giá bán sản phẩm'/>
-                <?php
-                if (isset($errors) && in_array('saleprice_product', $errors)) {
-                    echo "<p class='results1' >Bạn hãy nhập giá bán sản phẩm</p>";
-                }
-                ?>
-            </div>
-
-
-            <div class="form-group">
-                <label>Mô tả sản phẩm</label>
-                <textarea rows="7"  name="describe_product" value="" class="form-control"><?php if (isset($_POST['describe_product'])) {
-                    echo $_POST['describe_product'];
-                }
-                echo $dong['describe_product']; ?></textarea>
-                <?php
-                if (isset($errors) && in_array('describe_product', $errors)) {
-                    echo "<p class='results1' >Bạn hãy nhập mô tả sản phẩm</p>";
-                }
-                ?>
-            </div>
-
-            <div class="form-group">
-                <label style="display:block">Trạng thái</label>
-
-                <label class="radio-inline"> <input type="radio" name="status" value="1" checked="checked"/>
-                    <p class="results"> Còn hàng</p>
-                </label>
-                <label class="radio-inline"> <input type="radio" name="status" value="0"/>
-                    <p class="results1"> Hết hàng</p></label>
+                    <input type="radio" name="category" value="n" id="number"  class="category_size">
+                    <label for="number">Size số</label>
                 </div>
+                <div class="all-size">
+                    <?php 
+                    if (isset($dong['size_product']) && !empty($dong['size_product']) ) {
+
+                        foreach (Unserialize($dong['size_product']) as $key => $value) {
+                            echo $key;
+                            if ($key == 's' || $key == 'm' || $key == 'l' || $key == 'xl' || $key == 'xxl' || $key == 'xxxl') {
+                                echo "---";
+                             temlate_size_text($key,$value);
+                         }
+                     };
+                 }
+                 ?>
 
 
 
-                <input type="submit" name="submit" class="btn btn-primary" value="Chỉnh sửa"/>
 
-            </form>
+
+
+
+
+
+
+
+             </div>
+         </div>
+
+         <div class="form-group">
+            <label>Giá sản phẩm</label>
+            <input type="text" name="price_product" value="<?php if (isset($_POST['price_product'])) {
+                echo $_POST['price_product'];
+            }
+            echo number_format($dong['price_product']); ?>" class="form-control"
+            placeholder='Nhập giá sản phẩm'/>
+            <?php
+            if (isset($errors) && in_array('price_product', $errors)) {
+                echo "<p class='results1' >Bạn hãy nhập giá sản phẩm</p>";
+            }
+            ?>
         </div>
-    </div>
 
-    <?PHP include('includes/footer.php'); ?>
-    <script type="text/javascript">
-        window.onload = function()
-        {   
+        <div class="form-group">
+            <label>Giá bán sản phẩm</label>
+            <input type="text" name="saleprice_product" value="<?php if (isset($_POST['saleprice_product'])) {
+                echo $_POST['saleprice_product'];
+            }
+            echo number_format($dong['saleprice_product']); ?>" class="form-control"
+            placeholder='Nhập giá bán sản phẩm'/>
+            <?php
+            if (isset($errors) && in_array('saleprice_product', $errors)) {
+                echo "<p class='results1' >Bạn hãy nhập giá bán sản phẩm</p>";
+            }
+            ?>
+        </div>
+
+
+        <div class="form-group">
+            <label>Mô tả sản phẩm</label>
+            <textarea rows="7"  name="describe_product" value="" class="form-control"><?php if (isset($_POST['describe_product'])) {
+                echo $_POST['describe_product'];
+            }
+            echo $dong['describe_product']; ?></textarea>
+            <?php
+            if (isset($errors) && in_array('describe_product', $errors)) {
+                echo "<p class='results1' >Bạn hãy nhập mô tả sản phẩm</p>";
+            }
+            ?>
+        </div>
+
+        <div class="form-group">
+            <label style="display:block">Trạng thái</label>
+
+            <label class="radio-inline"> <input type="radio" name="status" value="1" checked="checked"/>
+                <p class="results"> Còn hàng</p>
+            </label>
+            <label class="radio-inline"> <input type="radio" name="status" value="0"/>
+                <p class="results1"> Hết hàng</p></label>
+            </div>
+
+
+
+            <input type="submit" name="submit" class="btn btn-primary" value="Chỉnh sửa"/>
+
+        </form>
+    </div>
+</div>
+
+<?PHP include('includes/footer.php'); ?>
+<script type="text/javascript">
+    window.onload = function()
+    {   
             // auto open sidebar
             $(".wrap-sidebar #menu").addClass("in");
             //
@@ -334,7 +369,92 @@
 
             });
             $("body").on("click", ".delete", function(){
-             $(this).parent().remove();
-         })
+               $(this).parent().remove();
+           })
         };
     </script>
+    <script type="text/javascript">
+    // auto open sidebar
+    $(".wrap-sidebar #menu").addClass("in");
+    //
+    $('.wrap-size').on('change', '.category_size', function(){
+        if($(this).val() == 't' ) {
+            $(".wrap-size .all-size").html(size_text);
+        } else {
+            $(".wrap-size .all-size").html(size_number);
+        }
+    })
+    $('.wrap-size .all-size').on('change', '.check', function(){
+        if ( this.checked ) {
+            $(this).next().next().removeAttr('disabled');
+        } else {
+            $(this).next().next().attr('disabled', 'disabled');
+        }
+    })
+
+
+    var size_number = `
+    <input type="checkbox" id="27" name="size_27" value="27" class="check">
+    <label for="27" class="title-size">27</label>
+    <input type="number" name="sl_27" value="1"  disabled="disabled" class="number">
+
+    <input type="checkbox" id="28" name="size_28" value="28" class="check">
+    <label for="28" class="title-size">28</label>
+    <input type="number" name="sl_28" value="1"  disabled="disabled" class="number">
+
+    <input type="checkbox" id="29" name="size_29" value="29" class="check">
+    <label for="29" class="title-size">29</label>
+    <input type="number" name="sl_29" value="1" disabled="disabled" class="number">
+
+    <input type="checkbox" id="30" name="size_30" value="30" class="check">
+    <label for="30" class="title-size">30</label>
+    <input type="number" name="sl_30" value="1" disabled="disabled" class="number">
+
+    <input type="checkbox" id="31" name="size_31" value="31" class="check">
+    <label for="31" class="title-size">31</label>
+    <input type="number" name="sl_31" value="1" disabled="disabled" class="number">
+
+    <input type="checkbox" id="32" name="size_32" value="32" class="check">
+    <label for="32" class="title-size">32</label>
+    <input type="number" name="sl_32" value="1" disabled="disabled" class="number">
+
+    <input type="checkbox" id="33" name="size_33" value="33" class="check">
+    <label for="33" class="title-size">33</label>
+    <input type="number" name="sl_33" value="1" disabled="disabled" class="number">
+
+    <input type="checkbox" id="34" name="size_34" value="34" class="check">
+    <label for="34" class="title-size">34</label>
+    <input type="number" name="sl_34" value="1" disabled="disabled" class="number">
+
+    <input type="checkbox" id="35" name="size_35" value="35" class="check">
+    <label for="35" class="title-size">35</label>
+    <input type="number" name="sl_36" value="1" disabled="disabled" class="number">
+
+    <input type="checkbox" id="36" name="size_36" value="36" class="check">
+    <label for="36" class="title-size">36</label>
+    <input type="number" name="sl_36" value="1" disabled="disabled" class="number">`;
+    var size_text = `
+    <input type="checkbox" id="s" name="size_s" value="s" class="check">
+    <label for="s" class="title-size">S</label>
+    <input type="number" name="sl_s" value="1"  disabled="disabled" class="number">
+
+    <input type="checkbox" id="m" name="size_m" value="m" class="check">
+    <label for="m" class="title-size">M</label>
+    <input type="number" name="sl_m" value="1"  disabled="disabled" class="number">
+
+    <input type="checkbox" id="l" name="size_l" value="l" class="check">
+    <label for="l" class="title-size">L</label>
+    <input type="number" name="sl_l" value="1" disabled="disabled" class="number">
+
+    <input type="checkbox" id="xl" name="size_xl" value="xl" class="check">
+    <label for="xl" class="title-size">XL</label>
+    <input type="number" name="sl_xl" value="1" disabled="disabled" class="number">
+
+    <input type="checkbox" id="xxl" name="size_xl" value="xxl" class="check">
+    <label for="xxl" class="title-size">XXL</label>
+    <input type="number" name="sl_xxl" value="1" disabled="disabled" class="number">
+
+    <input type="checkbox" id="xxxl" name="size_xl" value="xxxl" class="check">
+    <label for="xxxl" class="title-size">XXXL</label>
+    <input type="number" name="sl_xxxl" value="1" disabled="disabled" class="number">`;
+</script>

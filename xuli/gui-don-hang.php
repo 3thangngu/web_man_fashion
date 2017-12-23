@@ -12,8 +12,9 @@
 		$sonha = $_GET['sonha'];
 		$phuong = $_GET['phuong'];
 		$code_order = ramdom_code();
-		$address_customer = $sonha . " ". $phuong . " " . $quan . " ".$tinh;
-		$order_day =  date('h:i:sa Y-m-d');
+		$address_customer = $sonha . ", ". $phuong . ", " . $quan . ", ".$tinh;
+		date_default_timezone_set("Asia/HO_CHI_MINH");
+		$order_day =date("Y-m-d  H:i:s");
 			foreach ($_SESSION['cart'] as $value) {
 				$id_product = $value['id_product'];
 				foreach ($value['quantity'] as $key_sl => $value_sl) {
@@ -22,7 +23,7 @@
 					$query= "INSERT INTO tb_order(
 											code_order,
 											status_order,
-											id_ship, 
+											status_bill,
 											id_product,
 											size_product,
 											quantity_product,
@@ -47,7 +48,8 @@
 				$result =  mysqli_query($dbc,$query);
 				}
 				// header('location:../gui-hang-thanh-cong.php');
+				unset($_SESSION['cart']);
 			}	
-		header('location:../gui-hang-thanh-cong.php');
+		// header('location:../gui-hang-thanh-cong.php');
 	}
 ?>

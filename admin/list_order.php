@@ -29,7 +29,7 @@
                 </thead>
                 <tbody>
                     <?php 
-                        $query = "SELECT code_order ,name_customer, phone_customer,address_customer,order_day FROM tb_order GROUP BY code_order";
+                        $query = "SELECT code_order ,name_customer, phone_customer,address_customer,order_day,id_product FROM tb_order WHERE status_order = '0'  GROUP BY code_order";
                         $result = mysqli_query($dbc,$query);
                         kt_query($query, $result);
                         while ($order = mysqli_fetch_array($result, MYSQLI_NUM)) {
@@ -42,6 +42,7 @@
                         <td><?php $date=date_create($order[4]);
                             echo date_format($date,"H:i - d/m/Y"); ?></td>
                         <td class="text-center"><a href="order_detail.php?code_order=<?php echo $order[0]; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                        <td class="text-center"><a onClick="return confirm('Bạn muốn chuyển đơn hàng này qua bên giao hàng ?');" href="functions/review_order.php?id_order=<?php echo $order[0]; ?>"><i class="glyphicon glyphicon-ok"></i></a></td>
                     </tr>
                     <?php
                         }

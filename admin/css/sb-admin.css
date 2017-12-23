@@ -450,3 +450,121 @@ ul.alert-dropdown {
     cursor: pointer;
     opacity: 0;
 }
+
+/* style-bill(bill-detail.php)*/
+/*html{
+    background: white
+}*/
+.wrap-bill{
+    background: white;
+    position: relative;
+    padding: 0 0 50px;
+    color: #bd0103;
+    font-family: Tahoma, sans-serif;
+    font-size: 15px;
+}
+.wrap-bill .header{
+     padding: 0 35px;
+}
+.wrap-bill .fm-custommer > .title{
+    text-transform: uppercase;
+    font-size: 28px;
+    font-weight: bold;
+}
+.wrap-bill .fm-custommer > .title .code_bil{
+    font-size: 15px;
+    margin-left: 50px;
+    font-weight: normal;
+    text-transform: capitalize;
+}
+.wrap-bill .fm-custommer .wrap-title{
+    font-weight: 700;
+    /*background: white;*/
+    position: relative;
+    z-index: 1;
+        margin-right: 5px;
+}
+.wrap-bill .fm-custommer .name{
+    margin-bottom: 15px;
+}
+.wrap-bill .fm-custommer hr{
+    margin: -4px 0 0;
+    border-top: 1px dotted #bd0103;
+}
+.wrap-bill .fm-custommer .adress-custommmer{
+    padding-right: 0;
+}
+.wrap-bill .ifm-product{
+    margin-top: 65px;
+}
+.wrap-bill .bottom{
+    margin-top: 15px;
+}
+.wrap-bill .bottom .left{
+    margin-top: 25px;
+}
+.wrap-bill .bottom .left .title-left{
+    font-weight: 700;
+    font-size: 18px;
+}
+.wrap-bill .bottom .left .title-left .text-title-left{
+   font-style: italic;
+   font-weight: normal;
+   font-size: 14px;
+}
+.wrap-bill .bottom .right .date{
+    display: inline-block;
+}
+.wrap-bill .bottom .right .date .title{
+    background: white;
+    position: relative;
+    z-index: 10;
+}
+.wrap-bill .bottom .right .date hr{
+    margin-top: -4px;
+     border-top: 1px dotted #bd0103;
+     margin-bottom: 8px;
+}
+.wrap-bill .bottom .right .title-right{
+    font-weight: 700;
+    font-size: 18px;
+}
+.wrap-bill .bottom .right .title-right .text-title-right{
+   font-style: italic;
+   font-weight: normal;
+   font-size: 14px;
+}
+.wrap-bill .bottom .right .date .value{
+    min-width: 15px;
+    display: inline-block;
+        border-bottom: 1px dotted #bd0103;
+    line-height: 1em;
+}
+.print{
+    cursor: pointer;
+    text-align: center;
+}
+.print:hover i{
+    color: black;
+}
+.print i{
+    color: #444;
+    font-size: 50px;
+}
+
+/*wrap-add-product*/
+.wrap-size{
+    border: 1px solid #eee;
+    padding: 15px 5px;
+}
+.wrap-size legend{
+    font-size: 14px;
+    font-weight: bold;
+}
+.wrap-size .title{
+    margin-left: 15px;
+}
+ .wrap-size .all-size input[type='number']{
+    width: 50px;
+    margin-right: 14px;
+}
