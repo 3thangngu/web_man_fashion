@@ -1,10 +1,8 @@
 <?PHP include('includes/header.php'); ?>
 <style>
 .results {
-
     color: #009966;
 }
-
 .results1 {
     color: #FF0000;
 }
@@ -23,10 +21,90 @@
             header("Location: list_product.php");
             exit();
         }
-
             //bat dau submit
         if (isset($_POST['submit'])) {
             $errors = array();
+            if( $_POST['category'] == 't' ) {
+                if ( isset($_POST['size_s']) ) {
+                    $array_size[$_POST['size_s']] = $_POST['sl_s'];
+                }
+                if ( isset($_POST['size_m']) ) {
+                    $array_size[$_POST['size_m']] = $_POST['sl_m'];
+                }
+                if ( isset($_POST['size_l']) ) {
+                    $array_size[$_POST['size_l']] = $_POST['sl_l'];
+                }
+                if ( isset($_POST['size_xl']) ) {
+                    $array_size[$_POST['size_xl']] = $_POST['sl_xl'];
+                }
+                if ( isset($_POST['size_xxl']) ) {
+                    $array_size[$_POST['size_xxl']] = $_POST['sl_xxl'];
+                }
+                if ( isset($_POST['size_xxl']) ) {
+                    $array_size[$_POST['size_xxl']] = $_POST['sl_xxl'];
+                }
+
+            } else {
+                if ( isset($_POST['size_27']) ) {
+                    $array_size[$_POST['size_27']] = $_POST['sl_27'];
+                }
+                if ( isset($_POST['size_28']) ) {
+                    $array_size[$_POST['size_28']] = $_POST['sl_28'];
+                }
+                if ( isset($_POST['size_29']) ) {
+                    $array_size[$_POST['size_29']] = $_POST['sl_29'];
+                }
+                if ( isset($_POST['size_30']) ) {
+                    $array_size[$_POST['size_30']] = $_POST['sl_30'];
+                }
+                if ( isset($_POST['size_31']) ) {
+                    $array_size[$_POST['size_31']] = $_POST['sl_31'];
+                }
+                if ( isset($_POST['size_32']) ) {
+                    $array_size[$_POST['size_32']] = $_POST['sl_32'];
+                }
+                if ( isset($_POST['size_33']) ) {
+                    $array_size[$_POST['size_33']] = $_POST['sl_33'];
+                }
+                if ( isset($_POST['size_34']) ) {
+                    $array_size[$_POST['size_34']] = $_POST['sl_34'];
+                }
+                if ( isset($_POST['size_35']) ) {
+                    $array_size[$_POST['size_35']] = $_POST['sl_35'];
+                }
+                if ( isset($_POST['size_36']) ) {
+                    $array_size[$_POST['size_36']] = $_POST['sl_36'];
+                }
+                if ( isset($_POST['size_37']) ) {
+                    $array_size[$_POST['size_37']] = $_POST['sl_37'];
+                }
+                if ( isset($_POST['size_38']) ) {
+                    $array_size[$_POST['size_38']] = $_POST['sl_38'];
+                }
+                if ( isset($_POST['size_39']) ) {
+                    $array_size[$_POST['size_39']] = $_POST['sl_39'];
+                }
+                if ( isset($_POST['size_40']) ) {
+                    $array_size[$_POST['size_40']] = $_POST['sl_40'];
+                }
+                if ( isset($_POST['size_41']) ) {
+                    $array_size[$_POST['size_41']] = $_POST['sl_41'];
+                }
+                if ( isset($_POST['size_42']) ) {
+                    $array_size[$_POST['size_42']] = $_POST['sl_42'];
+                }
+                if ( isset($_POST['size_43']) ) {
+                    $array_size[$_POST['size_43']] = $_POST['sl_43'];
+                }
+                if ( isset($_POST['size_44']) ) {
+                    $array_size[$_POST['size_44']] = $_POST['sl_44'];
+                }
+
+            }
+            // echo '<pre>';
+            // print_r($array_size);
+            // echo '</pre>';
+            $array_size = Serialize($array_size);
             // Kiem tra gia ban vs gia san pham
             if( isset($_POST['price_product']) && isset($_POST['saleprice_product']) ){
                 if ($_POST['price_product'] > $_POST['saleprice_product']) {
@@ -55,13 +133,13 @@
             if (empty($_POST['price_product'])) {
                 $errors[] = 'price_product';
             } else {
-                $price = $_POST['price_product'];
+                $price = str_replace(',' , '' ,  $_POST['price_product']);
             }
                 // giá bán sản phẩm
             if (empty($_POST['saleprice_product'])) {
                 $errors[] = 'saleprice_product';
             } else {
-                $saleprice = $_POST['saleprice_product'];
+                $saleprice = str_replace(',' , '' ,  $_POST['saleprice_product']);
             }
                 // mô tả sản phẩm
             if (empty($_POST['describe_product'])) {
@@ -89,7 +167,6 @@
                 } elseif (($_FILES['img']['size'][$key] > 1000000)) {
                     $massge = "<p class='results1'>Kích thước phải nhỏ hơn 1MB !!</p>";
                 } else {
-
                    $img = str_replace(" ","",$_FILES['img']['name'][$key]);
                    $link_img = 'upload/' . $img;
                    move_uploaded_file($_FILES['img']['tmp_name'][$key], "../upload/" . $img);
@@ -110,7 +187,6 @@
                         }
                     }//ket thuc foreach
                     // echo $link_image . "         ....................................            " . $link_image_thump . "<br>";
-
                     $query_in = "UPDATE tb_product SET 
                     name_product = '$name',
                     image = '$link_image',
@@ -118,6 +194,7 @@
                     price_product = '$price',
                     saleprice_product = '$saleprice',
                     describe_product = '$describe',
+                    size_product = '$array_size',
                     status_product = '$status',
                     id_category = " . $id_loai .",
                     id_label = {$label}
@@ -146,14 +223,12 @@
             kt_query($query, $result);
             //kiem tra id có tồn tại không
             if (mysqli_num_rows($result)) {
-
             } else {
                 if (in_array('price', $errors)) {
                     $message = "<p class='results1'>Giá sản phẩm không được lớn hơn giá bán </p>";
                 } else {
                  $message = "<p class='results1'> Bạn hãy nhập đầy đủ thông tin </p>";
              }
-
             // print_r($errors);
          }
          ?>
@@ -219,7 +294,7 @@
                         // echo "<pre>";
                         // print_r($array_img_thumb);
                         // echo "</pre>";
-                    for($i = 0; $i < count($array_img)-1; $i++ ) {
+                    for($i = 0; $i < count($array_img); $i++ ) {
                         ?>
                         <span class="item">
                             <span class="delete"><i class="glyphicon glyphicon-remove"></i></span>
@@ -234,47 +309,45 @@
                     ?>
                     <div class="more"><i class="glyphicon glyphicon-plus"></i></div>
                 </div>
-
                 <div class="clearfix"></div>
             </div>
             
             <div class="form-group wrap-size">
-                <label>Chọn loại size: </label>
-                <div class="title">
-                    <input type="radio" name="category" value="t" id="text" class="category_size" checked="checked "> 
-                    <label for="text">Size chữ</label>
+             <?php 
+             $type_size ='';
+             if (isset($dong['size_product']) && !empty($dong['size_product']) ) {
+                foreach (Unserialize($dong['size_product']) as $key => $value) {
+                    if ( is_numeric( $key )) {
+                        $type_size = 'number';
+                        break;
+                    } else {
+                        $type_size = 'text';
+                        break;
+                    }
+                };
+            }
+            
+            ?>
+            <label>Chọn loại size: </label>
+            <div class="title">
+                <input type="radio" name="category" value="t" id="text" class="category_size" <?php echo $type_size == 'text' ?  "checked" : ''; ?> > 
+                <label for="text">Size chữ</label>
 
-                    <input type="radio" name="category" value="n" id="number"  class="category_size">
-                    <label for="number">Size số</label>
-                </div>
-                <div class="all-size">
-                    <?php 
-                    if (isset($dong['size_product']) && !empty($dong['size_product']) ) {
-
-                        foreach (Unserialize($dong['size_product']) as $key => $value) {
-                            echo $key;
-                            if ($key == 's' || $key == 'm' || $key == 'l' || $key == 'xl' || $key == 'xxl' || $key == 'xxxl') {
-                                echo "---";
-                             temlate_size_text($key,$value);
-                         }
-                     };
-                 }
-                 ?>
-
-
-
-
-
-
-
-
-
-
-
-             </div>
-         </div>
-
-         <div class="form-group">
+                <input type="radio" name="category" value="n" id="number"  class="category_size" <?php echo $type_size == 'number' ?  "checked" : ''; ?>>
+                <label for="number">Size số</label>
+            </div>
+            <div class="all-size">
+                <?php 
+                if (isset($dong['size_product']) && !empty($dong['size_product']) ) {
+                    if( $type_size == 'text' ) {
+                        temlate_size_text( Unserialize($dong['size_product']) );
+                    } else {
+                       temlate_size_number( Unserialize($dong['size_product']) );
+                   }
+               }
+               ?>
+           </div>
+           <div class="form-group">
             <label>Giá sản phẩm</label>
             <input type="text" name="price_product" value="<?php if (isset($_POST['price_product'])) {
                 echo $_POST['price_product'];
@@ -287,7 +360,6 @@
             }
             ?>
         </div>
-
         <div class="form-group">
             <label>Giá bán sản phẩm</label>
             <input type="text" name="saleprice_product" value="<?php if (isset($_POST['saleprice_product'])) {
@@ -301,8 +373,6 @@
             }
             ?>
         </div>
-
-
         <div class="form-group">
             <label>Mô tả sản phẩm</label>
             <textarea rows="7"  name="describe_product" value="" class="form-control"><?php if (isset($_POST['describe_product'])) {
@@ -315,25 +385,24 @@
             }
             ?>
         </div>
-
         <div class="form-group">
             <label style="display:block">Trạng thái</label>
-
-            <label class="radio-inline"> <input type="radio" name="status" value="1" checked="checked"/>
+            <label class="radio-inline"> 
+                <input type="radio" name="status" value="1" <?php if ($dong['status_product'] == '1') {
+               echo 'checked = "checked"';
+            } ?>/>
                 <p class="results"> Còn hàng</p>
             </label>
-            <label class="radio-inline"> <input type="radio" name="status" value="0"/>
+            <label class="radio-inline"> 
+               <input type="radio" name="status" value="0" <?php if ($dong['status_product'] == '0') {
+               echo 'checked = "checked"';
+            } ?>/>
                 <p class="results1"> Hết hàng</p></label>
             </div>
-
-
-
             <input type="submit" name="submit" class="btn btn-primary" value="Chỉnh sửa"/>
-
         </form>
     </div>
 </div>
-
 <?PHP include('includes/footer.php'); ?>
 <script type="text/javascript">
     window.onload = function()
@@ -343,6 +412,7 @@
             //
             $(".class option").each(function(){
                 if($(this).attr("value") ==  $(".wrap-category").attr("id")) { $(this).attr("selected", "selected")};
+                if($(this).attr("value") ==  0) { $(this).attr("disabled", "disabled")};
             });
             var i = 0;
             $(".more").click(function(e){
@@ -394,67 +464,27 @@
 
 
     var size_number = `
-    <input type="checkbox" id="27" name="size_27" value="27" class="check">
-    <label for="27" class="title-size">27</label>
-    <input type="number" name="sl_27" value="1"  disabled="disabled" class="number">
-
-    <input type="checkbox" id="28" name="size_28" value="28" class="check">
-    <label for="28" class="title-size">28</label>
-    <input type="number" name="sl_28" value="1"  disabled="disabled" class="number">
-
-    <input type="checkbox" id="29" name="size_29" value="29" class="check">
-    <label for="29" class="title-size">29</label>
-    <input type="number" name="sl_29" value="1" disabled="disabled" class="number">
-
-    <input type="checkbox" id="30" name="size_30" value="30" class="check">
-    <label for="30" class="title-size">30</label>
-    <input type="number" name="sl_30" value="1" disabled="disabled" class="number">
-
-    <input type="checkbox" id="31" name="size_31" value="31" class="check">
-    <label for="31" class="title-size">31</label>
-    <input type="number" name="sl_31" value="1" disabled="disabled" class="number">
-
-    <input type="checkbox" id="32" name="size_32" value="32" class="check">
-    <label for="32" class="title-size">32</label>
-    <input type="number" name="sl_32" value="1" disabled="disabled" class="number">
-
-    <input type="checkbox" id="33" name="size_33" value="33" class="check">
-    <label for="33" class="title-size">33</label>
-    <input type="number" name="sl_33" value="1" disabled="disabled" class="number">
-
-    <input type="checkbox" id="34" name="size_34" value="34" class="check">
-    <label for="34" class="title-size">34</label>
-    <input type="number" name="sl_34" value="1" disabled="disabled" class="number">
-
-    <input type="checkbox" id="35" name="size_35" value="35" class="check">
-    <label for="35" class="title-size">35</label>
-    <input type="number" name="sl_36" value="1" disabled="disabled" class="number">
-
-    <input type="checkbox" id="36" name="size_36" value="36" class="check">
-    <label for="36" class="title-size">36</label>
-    <input type="number" name="sl_36" value="1" disabled="disabled" class="number">`;
-    var size_text = `
-    <input type="checkbox" id="s" name="size_s" value="s" class="check">
-    <label for="s" class="title-size">S</label>
-    <input type="number" name="sl_s" value="1"  disabled="disabled" class="number">
-
-    <input type="checkbox" id="m" name="size_m" value="m" class="check">
-    <label for="m" class="title-size">M</label>
-    <input type="number" name="sl_m" value="1"  disabled="disabled" class="number">
-
-    <input type="checkbox" id="l" name="size_l" value="l" class="check">
-    <label for="l" class="title-size">L</label>
-    <input type="number" name="sl_l" value="1" disabled="disabled" class="number">
-
-    <input type="checkbox" id="xl" name="size_xl" value="xl" class="check">
-    <label for="xl" class="title-size">XL</label>
-    <input type="number" name="sl_xl" value="1" disabled="disabled" class="number">
-
-    <input type="checkbox" id="xxl" name="size_xl" value="xxl" class="check">
-    <label for="xxl" class="title-size">XXL</label>
-    <input type="number" name="sl_xxl" value="1" disabled="disabled" class="number">
-
-    <input type="checkbox" id="xxxl" name="size_xl" value="xxxl" class="check">
-    <label for="xxxl" class="title-size">XXXL</label>
-    <input type="number" name="sl_xxxl" value="1" disabled="disabled" class="number">`;
+    <?php 
+    if (isset($dong['size_product']) && !empty($dong['size_product']) ) {
+        if( $type_size == 'number' ) {
+            temlate_size_number( Unserialize($dong['size_product']) );
+        } else {
+           temlate_size_number();
+       }
+   } else {
+        temlate_size_number();
+   }
+   ?>
+   `;
+   var size_text = `<?php 
+   if (isset($dong['size_product']) && !empty($dong['size_product']) ) {
+    if( $type_size == 'text' ) {
+        temlate_size_text( Unserialize($dong['size_product']) );
+    } else {
+       temlate_size_text();
+   }
+} else {
+       temlate_size_text();
+   }
+?>`;
 </script>

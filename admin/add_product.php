@@ -63,7 +63,7 @@ include('includes/header.php');
                 if ( isset($_POST['size_32']) ) {
                     $array_size[$_POST['size_32']] = $_POST['sl_32'];
                 }
-                 if ( isset($_POST['size_33']) ) {
+                if ( isset($_POST['size_33']) ) {
                     $array_size[$_POST['size_33']] = $_POST['sl_33'];
                 }
                 if ( isset($_POST['size_34']) ) {
@@ -75,8 +75,35 @@ include('includes/header.php');
                 if ( isset($_POST['size_36']) ) {
                     $array_size[$_POST['size_36']] = $_POST['sl_36'];
                 }
+                if ( isset($_POST['size_37']) ) {
+                    $array_size[$_POST['size_37']] = $_POST['sl_37'];
+                }
+                if ( isset($_POST['size_38']) ) {
+                    $array_size[$_POST['size_38']] = $_POST['sl_38'];
+                }
+                if ( isset($_POST['size_39']) ) {
+                    $array_size[$_POST['size_39']] = $_POST['sl_39'];
+                }
+                if ( isset($_POST['size_40']) ) {
+                    $array_size[$_POST['size_40']] = $_POST['sl_40'];
+                }
+                if ( isset($_POST['size_41']) ) {
+                    $array_size[$_POST['size_41']] = $_POST['sl_41'];
+                }
+                if ( isset($_POST['size_42']) ) {
+                    $array_size[$_POST['size_42']] = $_POST['sl_42'];
+                }
+                if ( isset($_POST['size_43']) ) {
+                    $array_size[$_POST['size_43']] = $_POST['sl_43'];
+                }
+                if ( isset($_POST['size_44']) ) {
+                    $array_size[$_POST['size_44']] = $_POST['sl_44'];
+                }
 
             }
+            // echo '<pre>';
+            // print_r($array_size);
+            // echo '</pre>';
             $array_size = Serialize($array_size);
             // Kiem tra gia ban vs gia san pham
             if( isset($_POST['price_product']) && isset($_POST['saleprice_product']) ){
@@ -177,7 +204,8 @@ include('includes/header.php');
                             $link_image_thump .= $thump . " ";
                         }
                     }//ket thuc foreach
-
+                    $link_image = trim($link_image);
+                    $link_image = trim($link_image_thump);
                     $query_data = "INSERT INTO tb_product(
                     code_product,
                     name_product,
@@ -232,14 +260,14 @@ include('includes/header.php');
             if (in_array('price', $errors)) {
                 $message = "<p class='results1'>Giá sản phẩm không được lớn hơn giá bán </p>";
             } else {
-             $message = "<p class='results1'> Bạn hãy nhập đầy đủ thông tin </p>";
-         }
+               $message = "<p class='results1'> Bạn hãy nhập đầy đủ thông tin </p>";
+           }
 
             // print_r($errors);
-     }
- }
- ?>
- <form name="frmadd-product" method="post" enctype="multipart/form-data">
+       }
+   }
+   ?>
+   <form name="frmadd-product" method="post" enctype="multipart/form-data">
     <?php
     if (isset($message)) {
         echo $message;
@@ -312,29 +340,7 @@ include('includes/header.php');
             <label for="number">Size số</label>
         </div>
         <div class="all-size">
-            <input type="checkbox" id="s" name="size_s" value="s" class="check">
-            <label for="s" class="title-size">S</label>
-            <input type="number" name="sl_s" value="1"  disabled="disabled" class="number">
-
-            <input type="checkbox" id="m" name="size_m" value="m" class="check">
-            <label for="m" class="title-size">M</label>
-            <input type="number" name="sl_m" value="1"  disabled="disabled" class="number">
-
-            <input type="checkbox" id="l" name="size_l" value="l" class="check">
-            <label for="l" class="title-size">L</label>
-            <input type="number" name="sl_l" value="1" disabled="disabled" class="number">
-
-            <input type="checkbox" id="xl" name="size_xl" value="xl" class="check">
-            <label for="xl" class="title-size">XL</label>
-            <input type="number" name="sl_xl" value="1" disabled="disabled" class="number">
-
-            <input type="checkbox" id="xxl" name="size_xl" value="xxl" class="check">
-            <label for="xxl" class="title-size">XXL</label>
-            <input type="number" name="sl_xxl" value="1" disabled="disabled" class="number">
-
-            <input type="checkbox" id="xxxl" name="size_xl" value="xxxl" class="check">
-            <label for="xxxl" class="title-size">XXXL</label>
-            <input type="number" name="sl_xxxl" value="1" disabled="disabled" class="number">
+            <?php temlate_size_text(); ?>
         </div>
     </div>
 
@@ -388,6 +394,10 @@ include('includes/header.php');
 </div>
 <?PHP include('includes/footer.php'); ?>
 <script type="text/javascript">
+    // disable loai san pham danh muc cha
+    $(".class option").each(function(){
+        if($(this).attr("value") ==  0) { $(this).attr("disabled", "disabled")};
+    });
     // auto open sidebar
     $(".wrap-sidebar #menu").addClass("in");
     //
@@ -397,7 +407,7 @@ include('includes/header.php');
         } else {
             $(".wrap-size .all-size").html(size_number);
         }
- })
+    })
     $('.wrap-size .all-size').on('change', '.check', function(){
         if ( this.checked ) {
             $(this).next().next().removeAttr('disabled');
@@ -408,67 +418,12 @@ include('includes/header.php');
 
 
     var size_number = `
-            <input type="checkbox" id="27" name="size_27" value="27" class="check">
-            <label for="27" class="title-size">27</label>
-            <input type="number" name="sl_27" value="1"  disabled="disabled" class="number">
-
-            <input type="checkbox" id="28" name="size_28" value="28" class="check">
-            <label for="28" class="title-size">28</label>
-            <input type="number" name="sl_28" value="1"  disabled="disabled" class="number">
-
-            <input type="checkbox" id="29" name="size_29" value="29" class="check">
-            <label for="29" class="title-size">29</label>
-            <input type="number" name="sl_29" value="1" disabled="disabled" class="number">
-
-            <input type="checkbox" id="30" name="size_30" value="30" class="check">
-            <label for="30" class="title-size">30</label>
-            <input type="number" name="sl_30" value="1" disabled="disabled" class="number">
-
-            <input type="checkbox" id="31" name="size_31" value="31" class="check">
-            <label for="31" class="title-size">31</label>
-            <input type="number" name="sl_31" value="1" disabled="disabled" class="number">
-
-            <input type="checkbox" id="32" name="size_32" value="32" class="check">
-            <label for="32" class="title-size">32</label>
-            <input type="number" name="sl_32" value="1" disabled="disabled" class="number">
-
-            <input type="checkbox" id="33" name="size_33" value="33" class="check">
-            <label for="33" class="title-size">33</label>
-            <input type="number" name="sl_33" value="1" disabled="disabled" class="number">
-
-            <input type="checkbox" id="34" name="size_34" value="34" class="check">
-            <label for="34" class="title-size">34</label>
-            <input type="number" name="sl_34" value="1" disabled="disabled" class="number">
-
-            <input type="checkbox" id="35" name="size_35" value="35" class="check">
-            <label for="35" class="title-size">35</label>
-            <input type="number" name="sl_36" value="1" disabled="disabled" class="number">
-
-            <input type="checkbox" id="36" name="size_36" value="36" class="check">
-            <label for="36" class="title-size">36</label>
-            <input type="number" name="sl_36" value="1" disabled="disabled" class="number">`;
+    <?php 
+        temlate_size_number();
+    ?>
+    `;
     var size_text = `
-            <input type="checkbox" id="s" name="size_s" value="s" class="check">
-            <label for="s" class="title-size">S</label>
-            <input type="number" name="sl_s" value="1"  disabled="disabled" class="number">
-
-            <input type="checkbox" id="m" name="size_m" value="m" class="check">
-            <label for="m" class="title-size">M</label>
-            <input type="number" name="sl_m" value="1"  disabled="disabled" class="number">
-
-            <input type="checkbox" id="l" name="size_l" value="l" class="check">
-            <label for="l" class="title-size">L</label>
-            <input type="number" name="sl_l" value="1" disabled="disabled" class="number">
-
-            <input type="checkbox" id="xl" name="size_xl" value="xl" class="check">
-            <label for="xl" class="title-size">XL</label>
-            <input type="number" name="sl_xl" value="1" disabled="disabled" class="number">
-
-            <input type="checkbox" id="xxl" name="size_xl" value="xxl" class="check">
-            <label for="xxl" class="title-size">XXL</label>
-            <input type="number" name="sl_xxl" value="1" disabled="disabled" class="number">
-
-            <input type="checkbox" id="xxxl" name="size_xl" value="xxxl" class="check">
-            <label for="xxxl" class="title-size">XXXL</label>
-            <input type="number" name="sl_xxxl" value="1" disabled="disabled" class="number">`;
+    <?php 
+        temlate_size_text();
+    ?>`;
 </script>

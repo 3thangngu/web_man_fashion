@@ -445,105 +445,45 @@ function label_search($text_search) {
       }
       // temlate size 
       // file : edit_product.php
-      function temlate_size_text($key ,$value) {
-        if($key == 's'){
-          ?>
-          <input type="checkbox" id="s" name="size_s" value="s" class="check">
-          <label for="s" class="title-size">S</label>
-          <input type="number" name="sl_s" value="<?php echo $value; ?>" class="number">
-          <?php 
-          return false;
-        } else {
-          ?>
-          <input type="checkbox" id="s" name="size_m" value="s" class="check">
-          <label for="s" class="title-size">S</label>
-          <input type="number" name="sl_s" value="1"  disabled="disabled" class="number">
-          <?php 
-          return false;
-        }
-
-        if($key == 'm'){
-          ?>
-          <input type="checkbox" id="m" name="size_m" value="m" class="check">
-          <label for="m" class="title-size">M</label>
-          <input type="number" name="sl_m" value="<?php echo $value; ?>" class="number">
-          <?php 
-          return false;
-        } else {
-          ?>
-          <input type="checkbox" id="m" name="size_m" value="m" class="check">
-          <label for="m" class="title-size">M</label>
-          <input type="number" name="sl_m" value="1"  disabled="disabled" class="number">
-          <?php 
-          return false;
-        }
-
-        if($key == 'l'){
-          ?>
-          <input type="checkbox" id="l" name="size_l" value="l" class="check">
-          <label for="l" class="title-size">L</label>
-          <input type="number" name="sl_l" value="<?php echo $value; ?>"  class="number">
-          <?php 
-          return false;
-        } else {
-          ?>
-          <input type="checkbox" id="l" name="size_l" value="l" class="check">
-          <label for="l" class="title-size">L</label>
-          <input type="number" name="sl_l" value="1" disabled="disabled" class="number">
-          <?php 
-          return false;
-        }
-
-        if($key == 'xl'){
-          ?>
-          <input type="checkbox" id="xl" name="size_xl" value="xl" class="check">
-          <label for="xl" class="title-size">XL</label>
-          <input type="number" name="sl_xl" value="<?php echo $value; ?>" class="number">
-          <?php 
-          return false;
-        } else {
-          ?>
-          <input type="checkbox" id="xl" name="size_xl" value="xl" class="check">
-          <label for="xl" class="title-size">XL</label>
-          <input type="number" name="sl_xl" value="1" disabled="disabled" class="number">
-          <?php 
-          return false;
-        }
-
-        if($key == 'xxl'){
-          ?>
-          <input type="checkbox" id="xxl" name="size_xl" value="xxl" class="check">
-          <label for="xxl" class="title-size">XXL</label>
-          <input type="number" name="sl_xxl" value="<?php echo $value; ?>"  class="number">
-          <?php 
-          return false;
-        } else {
-          ?>
-          <input type="checkbox" id="xxl" name="size_xl" value="xxl" class="check">
-          <label for="xxl" class="title-size">XXL</label>
-          <input type="number" name="sl_xxl" value="1" disabled="disabled" class="number">
-          <?php 
-          return false;
-        }
-
-        if($key == 'xxxl'){
-          ?>
-          <input type="checkbox" id="xxxl" name="size_xl" value="xxxl" class="check">
-          <label for="xxxl" class="title-size">XXXL</label>
-          <input type="number" name="sl_xxxl" value="<?php echo $value; ?>" class="number">
-          <?php 
-          return false;
-        } else {
-          ?>
-          <input type="checkbox" id="xxxl" name="size_xl" value="xxxl" class="check">
-          <label for="xxxl" class="title-size">XXXL</label>
-          <input type="number" name="sl_xxxl" value="1" disabled="disabled" class="number">
-          <?php 
-          return false;
-        }
-
+      function temlate_size_text( $arary_size = array() ) {
+          $arary_size_text = array('s', 'm', 'l', 'xl', 'xxl', 'xxxl');
+          foreach ($arary_size_text as  $size) {
+              if( array_key_exists( $size, $arary_size ) ) {
+                ?>
+                <input type="checkbox" id="<?php echo $size; ?>" name="size_<?php echo $size; ?>" value="<?php echo $size; ?>" class="check" checked>
+                <label for="<?php echo $size; ?>" class="title-size"><?php echo strtoupper($size); ?></label>
+                <input type="number" name="sl_<?php echo $size; ?>" value="<?php echo $arary_size[$size]; ?>" class="number">
+                <?php
+              } else {
+                ?>
+                 <input type="checkbox" id="<?php echo $size; ?>" name="size_<?php echo $size; ?>" value="<?php echo $size; ?>" class="check">
+                <label for="<?php echo $size; ?>" class="title-size"><?php echo strtoupper($size); ?></label>
+                <input type="number" name="sl_<?php echo $size; ?>" value="10" class="number" disabled="disabled">
+                <?php 
+              }
+           } 
 
       }
+       function temlate_size_number( $arary_size = array() ) {
+          $arary_size_number = array('27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44');
+          foreach ($arary_size_number as  $size) {
+              if( array_key_exists( $size, $arary_size ) ) {
+                ?>
+                <input type="checkbox" id="<?php echo $size; ?>" name="size_<?php echo $size; ?>" value="<?php echo $size; ?>" class="check" checked>
+                <label for="<?php echo $size; ?>" class="title-size"><?php echo strtoupper($size); ?></label>
+                <input type="number" name="sl_<?php echo $size; ?>" value="<?php echo $arary_size[$size]; ?>" class="number">
+                <?php
+              } else {
+                ?>
+                 <input type="checkbox" id="<?php echo $size; ?>" name="size_<?php echo $size; ?>" value="<?php echo $size; ?>" class="check">
+                <label for="<?php echo $size; ?>" class="title-size"><?php echo strtoupper($size); ?></label>
+                <input type="number" name="sl_<?php echo $size; ?>" value="10" class="number" disabled="disabled">
+                <?php 
+              }
+           } 
+
+      }
+      // kết thúc temlate size
       function patination_product(){
 
       }

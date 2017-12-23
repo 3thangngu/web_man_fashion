@@ -15,14 +15,14 @@
 		while ( $rows = mysqli_fetch_array($result_code_order, MYSQLI_ASSOC) ) {
 			$id_order = $rows['id_order'];
 			$query_bill = "INSERT INTO `tb_bill`(`code_bill`, `id_order`) VALUES ('{$code_bill}','{$id_order}')";
-			echo '<pre>';
-			print_r($query_bill);
-			echo '</pre>';
+			// echo '<pre>';
+			// print_r($query_bill);
+			// echo '</pre>';
 			$result_bill = mysqli_query($dbc, $query_bill);
 		}
 		
 		
-		// header('location: ../list_bill.php');
+		header('location: ../list_bill.php');
 
 	} 
 	else {
