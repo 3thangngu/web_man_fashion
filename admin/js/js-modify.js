@@ -210,7 +210,7 @@
 			select.parents(".wrap-phone").find(".notifi").removeClass('active');
 			var value = select.parents(".wrap-right").find(".text-phone").val();
 			// Kiêm tra đúng dịnh dang sdt chưa
-			var filter = /^[0-9-+]{10,12}$/;
+			var filter = /^[0-9-+]{10,11}$/;
 			if (filter.test(value)) {
 				// 
 	        	select.parents(".wrap-right").find(".text-phone").before(`

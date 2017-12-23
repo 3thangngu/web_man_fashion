@@ -43,27 +43,13 @@
             </a>
             <ul id="sales" class="collapse">
                 <li>
-                    <a href="list_order.php"><i class="fa fa-fw fa-plus"></i> Đặt hàng</a>
+                    <a href="list_order.php"><i class="fa fa-fw fa-list"></i> Đặt hàng</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-shopping-cart"></i> Bán hàng</a>
+                    <a href="list_bill.php"><i class="fa fa-fw fa-list"></i> Hóa đơn</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-gift"></i> Quà tặng</a>
-                </li>
-            </ul>
-        </li>
-
-        <li>
-            <a href="javascript:;" data-toggle="collapse" data-target="#demo_bill"><i class="fa fa-fw fa-dollar"></i> Hóa đơn
-                <i class="fa fa-fw fa-angle-double-down"></i>
-            </a>
-            <ul id="demo_bill" class="collapse">
-                <li>
-                    <a href="list_order.php"><i class="fa fa-fw fa-plus"></i> Thêm mới</a>
-                </li>
-                <li>
-                    <a href="list_bill.php"><i class="fa fa-fw fa-list"></i> Xem hóa đơn</a>
+                    <a href="list_delivery.php"><i class="fa fa-fw fa-list"></i> Giao hàng</a>
                 </li>
             </ul>
         </li>
@@ -91,10 +77,7 @@
         			<a href="addslider.php"><i class="fa fa-fw fa-sliders"></i>  Slider</a>
         		</li>
         		<li>
-        			<a href="#"><i class="fa fa-fw fa-video-camera"></i>  Video</a>
-        		</li>
-        		<li>
-        			<a href="#"><i class="fa fa-fw fa-bookmark-o"></i>  Banner</a>
+        			<a href="#"><i class="fa fa-fw fa-camera-retro"></i>  Hình ảnh</a>
         		</li>
         	</ul>
         </li>
