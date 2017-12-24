@@ -93,7 +93,7 @@
                     <a href="list_customer.php"><i class="fa fa-fw fa-info-circle"></i> Thông tin</a>
                 </li>
                 <li>
-                    <a href="list_product.php"><i class="fa fa-fw fa-list"></i> Tích lũy điểm</a>
+                    <a href="list_product.php"><i class="fa fa-fw fa-list"></i> Tích lũy</a>
                 </li>
             </ul>
         </li>
