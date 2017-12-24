@@ -79,11 +79,14 @@
         		<li>
         			<a href="#"><i class="fa fa-fw fa-camera-retro"></i>  Hình ảnh</a>
         		</li>
+        		<li>
+        			<a href="#"><i class="fa fa-fw fa-handshake-o"></i>  Giới thiệu</a>
+        		</li>
         	</ul>
         </li>
 
         <li>
-            <a href="javascript:;" data-toggle="collapse" data-target="#customer"><i class="fa fa-fw fa-male"></i> Khách hàng
+            <a href="javascript:;" data-toggle="collapse" data-target="#customer"><i class="fa fa-fw fa-male"></i> Liên hệ
                 <i class="fa fa-fw fa-angle-double-down"></i></a>
             <ul id="customer" class="collapse">
                 <li>
@@ -101,9 +104,6 @@
             </a>
             <ul id="demo_user" class="collapse">
                 <li>
-                    <a href="add_user.php"><i class="fa fa-fw fa-plus"></i> Thêm mới</a>
-                </li>
-                <li>
                     <a href="list_user.php"><i class="fa fa-fw fa-list"></i> Danh sách</a>
                 </li>
             </ul>
@@ -115,10 +115,7 @@
             </a>
             <ul id="demo_information" class="collapse">
                 <li>
-                    <a href="modify.php"><i class="fa fa-fw fa-plus"></i> Thêm mới</a>
-                </li>
-                <li>
-                    <a href="list_web_infor.php"><i class="fa fa-fw fa-list"></i> Danh sách</a>
+                    <a href="modify.php"><i class="fa fa-fw fa-pencil"></i> Chỉnh sửa</a>
                 </li>
             </ul>
         </li>
