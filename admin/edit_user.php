@@ -133,10 +133,7 @@
                 <h3>Chỉnh sửa User</h3>
                 <div class="form-group">
                     <label>Tài khoản</label>
-                    <input type="text" name="account" value="<?php if (isset($_POST['account'])) {
-                        echo $_POST['account'];
-                    }
-                    echo $hienthi['account_user']; ?>" class="form-control" placeholder='Tài khoản'/>
+                    <input type="text" name="account" value="<?php echo $hienthi['account_user']; ?>" class="form-control" placeholder='Tài khoản'/>
 
                     <?php
                     if (isset($errors) && in_array('account', $errors)) {
@@ -147,9 +144,7 @@
 
                 <div class="form-group">
                     <label>Mật khẩu</label>
-                    <input type="password" name="pass" maxlength="20" value="<?php if (isset($_POST['pass'])) {
-                        echo $_POST['pass'];
-                    } ?>" class="form-control" placeholder='Nhập mật khẩu - tối đa 20 ký tự'/>
+                    <input type="password" name="pass" maxlength="20" value="<?php echo $hienthi['pass_user']; ?>" class="form-control" placeholder='Nhập mật khẩu - tối đa 20 ký tự'/>
 
                     <?php
                     if (isset($errors) && in_array('pass', $errors)) {
@@ -160,9 +155,7 @@
 
                 <div class="form-group">
                     <label>Xác nhận mật khẩu</label>
-                    <input type="password" name="repass" maxlength="20" value="<?php if (isset($_POST['repass'])) {
-                        echo $_POST['repass'];
-                    } ?>" class="form-control" placeholder='Xác nhận mật khẩu'/>
+                    <input type="password" name="repass" maxlength="20" value="<?php echo $hienthi['pass_user']; ?>" class="form-control" placeholder='Xác nhận mật khẩu'/>
 
                     <?php
                     if (isset($errors) && in_array('repass', $errors)) {
@@ -173,10 +166,7 @@
 
                 <div class="form-group">
                     <label>Họ tên</label>
-                    <input type="text" name="name" value="<?php if (isset($_POST['name'])) {
-                        echo $_POST['name'];
-                    }
-                    echo $hienthi['name_user']; ?>" class="form-control" placeholder='Họ tên'/>
+                    <input type="text" name="name" value="<?php echo $hienthi['name_user']; ?>" class="form-control" placeholder='Họ tên'/>
 
                     <?php
                     if (isset($errors) && in_array('name', $errors)) {
@@ -187,11 +177,8 @@
 
                 <div class="form-group">
                     <label>Ngày sinh</label>
-                    <input type="date" name="birthday" value="<?php if (isset($_POST['birthday'])) {
-                        echo $_POST['birthday'];
-                    }
-                    echo $hienthi['birthday_user']; ?>" class="form-control" placeholder='Ngày sinh'/>
-
+                    <input type="date" name="birthday" value="<?php  $date=date_create($hienthi['cmnd_user']);
+                            echo date_format($date,'d/m/Y'); ?>" class="form-control" placeholder='Ngày sinh'/>
                     <?php
                     if (isset($errors) && in_array('birthday', $errors)) {
                         echo "<p class='results1' >Bạn hãy nhập ngày sinh</p>";
@@ -201,10 +188,7 @@
 
                 <div class="form-group">
                     <label>Số CMND</label>
-                    <input type="text" name="cmnd" minlength="9" maxlength="13" value="<?php if (isset($_POST['name'])) {
-                        echo $_POST['cmnd'];
-                    }
-                    echo $hienthi['cmnd_user']; ?>" class="form-control" placeholder='Chứng minh nhân dân'/>
+                    <input type="text" name="cmnd" minlength="9" maxlength="13" value="<?php echo $hienthi['cmnd_user']; ?>" class="form-control" placeholder='Chứng minh nhân dân'/>
 
                     <?php
                     if (isset($errors) && in_array('cmnd', $errors)) {
@@ -215,10 +199,7 @@
 
                 <div class="form-group">
                     <label>Điện thoại</label>
-                    <input type="text" name="phone" value="<?php if (isset($_POST['phone'])) {
-                        echo $_POST['phone'];
-                    }
-                    echo $hienthi['phonenumber_user']; ?>" class="form-control" placeholder='Điện thoại'/>
+                    <input type="text" name="phone" value="<?php echo $hienthi['phonenumber_user']; ?>" class="form-control" placeholder='Điện thoại'/>
 
                     <?php
                     if (isset($errors) && in_array('phone', $errors)) {
@@ -229,10 +210,7 @@
 
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="text" name="email" value="<?php if (isset($_POST['email'])) {
-                        echo $_POST['email'];
-                    }
-                    echo $hienthi['email_user']; ?>" class="form-control" placeholder='Email'/>
+                    <input type="text" name="email" value="<?php echo $hienthi['email_user']; ?>" class="form-control" placeholder='Email'/>
 
                     <?php
                     if (isset($errors) && in_array('email', $errors)) {
@@ -243,10 +221,7 @@
 
                 <div class="form-group">
                     <label>Địa chỉ</label>
-                    <input type="text" name="address" value="<?php if (isset($_POST['address'])) {
-                        echo $_POST['address'];
-                    }
-                    echo $hienthi['address_user']; ?>" class="form-control" placeholder='Địa chỉ'/>
+                    <input type="text" name="address" value="<?php echo $hienthi['address_user']; ?>" class="form-control" placeholder='Địa chỉ'/>
 
                     <?php
                     if (isset($errors) && in_array('address', $errors)) {
@@ -257,9 +232,10 @@
 
                 <div class="form-group">
                     <label style="display:block">Trạng thái</label>
-                    <label class="radio-inline"> <input type="radio" name="status" value="1" checked="checked"/>
+                    <label class="radio-inline"> <input type="radio" name="status" value="1"  <?php echo $hienthi['status_user']==1 ? 'checked="checked"' : ''  ?>/>
                         <p class="results">Hoạt động</p></label>
-                    <label class="radio-inline"> <input type="radio" name="status" value="0"/>
+
+                    <label class="radio-inline"> <input type="radio" name="status" value="0" <?php echo $hienthi['status_user']==0 ? 'checked="checked"' : ''  ?>/>
                         <p class="results1">Không hoạt động</p></label>
                 </div>
 

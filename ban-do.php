@@ -71,10 +71,24 @@ include('include/header.php');
 
 <div class="container map-bd" >
         <div class="row">
-            <div class="col-xs-12 title"><h3>BẢN ĐỒ ĐẾN 4MEN®</h3></div>
+            <div class="col-xs-12 title"><h3>BẢN ĐỒ ĐẾN  <?php
+                            $query_description = 'SELECT value FROM tb_information WHERE name = "name"';
+                            $result_description = mysqli_query($dbc, $query_description);
+                            if( mysqli_num_rows($result_description) > 0 ) {
+                                extract( mysqli_fetch_array($result_description, MYSQLI_ASSOC) );
+                                echo  $value;
+                            }
+                            ?> </h3></div>
             <div class="col-xs-12">
                 <div class="wapper-map">
-                    <div class="top-map text-center">4MEN®</div>
+                    <div class="top-map text-center"> <?php
+                            $query_description = 'SELECT value FROM tb_information WHERE name = "name"';
+                            $result_description = mysqli_query($dbc, $query_description);
+                            if( mysqli_num_rows($result_description) > 0 ) {
+                                extract( mysqli_fetch_array($result_description, MYSQLI_ASSOC) );
+                                echo  $value;
+                            }
+                            ?>  </div>
                     <div id="map_canvas"></div>
 
                 </div>

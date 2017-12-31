@@ -14,36 +14,6 @@ include('inc/function.php');
     <!--    <link rel="stylesheet" type="text/css" href="css/style.css">-->
     <link rel="stylesheet" type="text/css" href="css/slider.css">
     <link rel="stylesheet" type="text/css" href="css/style-body1.css">
-
-
-    <style type="text/css">
-    
-  /*      #gioi-thieu {margin-top: 0px}
-        #themes{transform: rotate(90deg);  -webkit-transform: rotate(90deg);-moz-transform: rotate(90deg);z-index: 9999999999;position: fixed;top: 172px;right: -24px;font-family: "Josefin Slab", serif;cursor: pointer;font-weight: 700;color: white;background: #d73814;padding:8px 10px;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px}
-        #themeContainer{position: fixed;top:150px;right: -200px;z-index: 999999999999999;width: 200px;padding-top: 2px;background: #1e1e1e;}
-
-         #themeContainer .wrapper-style .time #minutes,#themeContainer .wrapper-style .time #seconds{width: 40px}
-         #themeContainer .wrapper-style .time{padding: 15px}
-         #themeContainer .wrapper-style .time  #save-time{margin-left: 10px}
-        #themeContainer .wrapper-style .time #point{font-weight: bold;color: white;margin: 0 2px}
-        #themeContainer .wrapper-style >h4 {box-sizing: border-box;background: #1e1e1e;font-size: 16px;margin: 0;color: white;padding: 10px;width: 100%;border-top: 1px solid #444;border-bottom: 1px solid #444;}
-        #themeContainer .wrapper-style >h4 #close-themes{transition: color .5s;float: right;font-size: 20px;margin-top: -5px;margin-right: 10px;box-sizing: border-box}
-        #themeContainer .wrapper-style >h4 #close-themes:hover{color: #d73814}
-        #themeContainer .wrapper-style .oregional-skins{width: 100%;border-bottom: 1px solid #444}
-        #themeContainer .wrapper-style .oregional-skins  .item-oregional-skins{box-sizing: border-box;padding: 10px ;width: 100%}
-        #themeContainer .wrapper-style .oregional-skins  .item-oregional-skins .item-oregional-skins-x{width: 18px;height: 18px;border: 2px solid #666;display: inline-block;margin-right: 5px}*/
-      /*  #themeContainer .wrapper-style .oregional-skins  .item-oregional-skins  #default{background: #F1F1F1}
-      #themeContainer .wrapper-style .oregional-skins  .item-oregional-skins  #red{background: red}*/
-
-
-
-      /*.item-product-sp{width: 200px;padding: 0;position: absolute;text-align: left;top: 78px;display: none;background: white;z-index: 9999}*/
-      /*.item-product-sp li{margin: 0!important;display: block;border-bottom: 1px solid #ededed;width: 200px;font-size: 13px;font-weight: bold;}*/
-      /*.item-product-sp li:hover{background: #ededed;color:#bd0103}*/
-      /*.item-product-sp li:hover a{color:#bd0103 }*/
-      /*.item-product-sp li a{margin: 0;padding:0;color: #666;width: 100%;height: 100%;display: block;}*/
-      /*.menu-header > ul li:hover .item-product-sp{display: block;}*/
-  </style>
 </head>
 
 <body>
@@ -57,40 +27,39 @@ include('inc/function.php');
             <div class="row">
                 <div class="hidden-sm hidden-xs wap">
                     <div class="slider">
-                    <!-- <div id="pre"><img src="pre-icon.png"></div>
-                        <div id="next"><img src="next-icon.png"></div> -->
-                        <ul id="img">
-                            
-                            <li stt="0"><img src="image/slider/g144.jpg"></li>
-                            <li stt="1"><img src="image/slider/g116.jpg"></li>
-                            <li stt="2"><img src="image/slider/g137.jpg"></li>
-                            <li stt="3"><img src="image/slider/g142.jpg"></li>
-                            <li stt="4"><img src="image/slider/g143.jpg"></li>
-                        </ul>
-                        <ul id="icon">
-                            <li class="active" stt="0"></li>
-                            <li stt="1"></li>
-                            <li stt="2"></li>
-                            <li stt="3"></li>
-                            <li stt="4"></li>
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<!-- <div class="bcrumbs" style="height: 48px;background-color: #f2f2f2;overflow: hidden;margin-top: -10px;line-height: 48px">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <ul>
-                    <li><a href="index.php">Trang chủ</a></li>
+                  <!--   <div id="pre"><img src="pre-icon.png"></div>
+                    <div id="next"><img src="next-icon.png"></div> -->
+                    <ul id="img">
+                     <?php
+                     $query_slider = 'SELECT value FROM tb_information WHERE name = "slider"';
+                     $result_slider = mysqli_query($dbc, $query_slider);
+                     extract( mysqli_fetch_array($result_slider, MYSQLI_ASSOC) );
+                     $array_slider = explode(' ', $value);
+                     $stt = 0;
+                     $total_slider = count($array_slider);
+                     foreach ($array_slider as  $value) {
+                        ?>
+                        <li stt="<?php echo $stt; ?>"><img src="<?php echo $value; ?>"></li>
+                        <?php
+                        $stt++;
+                    }
+                    ?>
                 </ul>
-            </div>
-        </div>
-    </div>
-</div> -->
+                <ul id="icon">
+                    <?php for ($i=0; $i < 5; $i++) { 
+                       ?>
+
+                       <li class='<?php if( $i == 0 ) echo "active" ?>' stt="<?php echo $i ?>"></li>
+                       <?php 
+                   }
+                   ?> 
+               </ul>
+
+           </div>
+       </div>
+   </div>
+</div>
+</div>
 <div id="wapper-body" style="padding-top: 30px;">
     <div id="gioi-thieu" class=" hidden-xs">
         <div class="container">
@@ -176,12 +145,12 @@ include('inc/function.php');
                                                                 <img title="<?php echo $product['name_product']; ?>"
                                                                 src="<?php echo $value; ?>"
                                                                 class="img<?php if ($i == 1) {
-                                                                   echo '_1';
-                                                               } ?>">
-                                                           </a>
+                                                                 echo '_1';
+                                                             } ?>">
+                                                         </a>
 
-                                                           <?php
-                                                           if ($i == 1) {
+                                                         <?php
+                                                         if ($i == 1) {
                                                             break;
                                                         }
                                                         ++$i;
@@ -195,31 +164,31 @@ include('inc/function.php');
                                                 <div class="text-center price"><?php echo number_format($product['saleprice_product'], 0, ',', '.'); ?></div>
                                                 <div class="button-product">
                                                     <a href="product.php?id=<?php echo $product['id_product']; ?>"
-                                                     class="cart">
-                                                     <i class="glyphicon glyphicon-shopping-cart"></i><span>Mua ngay</span>
-                                                 </a>
-                                                 <a href="product.php?id=<?php echo $product['id_product']; ?>"
-                                                     class="see">
-                                                     <i class="glyphicon glyphicon-triangle-right"></i><span>Chi tiết</span>
-                                                 </a>
-                                             </div>
-                                         </div>
-                                     </div>
-                                     <?php } ?>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-                 <?php
+                                                       class="cart">
+                                                       <i class="glyphicon glyphicon-shopping-cart"></i><span>Mua ngay</span>
+                                                   </a>
+                                                   <a href="product.php?id=<?php echo $product['id_product']; ?>"
+                                                       class="see">
+                                                       <i class="glyphicon glyphicon-triangle-right"></i><span>Chi tiết</span>
+                                                   </a>
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <?php } ?>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <?php
 
-             }
-             ?>
+               }
+               ?>
 
-         </div>
-     </div>
- </div>  <!-- kết thúc body -->
- <div class="news-letter hidden-sm hidden-xs">
+           </div>
+       </div>
+   </div>  <!-- kết thúc body -->
+   <div class="news-letter hidden-sm hidden-xs">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 text-center">
@@ -243,8 +212,10 @@ include('inc/function.php');
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-xs-12 footer-content">
-            <h4>Quần áo nam đẹp, shop bán quần áo thời trang nam hàng hiệu, cao cấp kiểu 2017</h4>
+        <br><br><br><br><br>
+        <!-- <div class="col-md-8 col-xs-12 footer-content"> -->
+
+            <!-- <h4>Quần áo nam đẹp, shop bán quần áo thời trang nam hàng hiệu, cao cấp kiểu 2017</h4>
             <p>4MEN(R) giới thiệu đến các bạn các mẫu quần áo nam đẹp, kiểu dáng thời trang, kiểu quần áo nam thời
                 trang
                 Hàn Quốc, phong cách thời trang 2017<br>
@@ -268,8 +239,8 @@ include('inc/function.php');
                 Nếu tổng giá trị đơn hàng lớn hơn 1 triệu đồng, chúng tôi sẽ ship hàng miễn phí cho quí khách<br>
             Xin cảm ơn quí khách.</p>
 
-            <p>4MEN hân hạnh được phục vụ các bạn</p>
-        </div>
+            <p>4MEN hân hạnh được phục vụ các bạn</p> -->
+        <!-- </div> -->
     </div>
 </div>
 </div>
@@ -299,11 +270,11 @@ include('include/footer.php');
             if($(this).attr("id")=="default"){
                 $(this).css("background","#F1F1F1");
             }else{
-               $(this).css("background",function(){
+             $(this).css("background",function(){
                 return $(this).attr("id");
             });
-           }
-       });
+         }
+     });
         $("#themes").click(function(){
           $(this).animate({"right": -60},500,function(){
               $("#themeContainer").animate({"right": 0},500);
@@ -355,11 +326,11 @@ include('include/footer.php');
                 $(".product-body .title-product .left h2").css("background",id);
                 $(".product-body .title-product .right").css("background",id);
                 setTimeout(function(){
-                   $(".header").css("background","#F1F1F1");
-                   $(".product-body .title-product .left").css("background","white");
-                   $(".product-body .title-product .left h2").css("background","url(../image/icon/c.gif) no-repeat left center,#fff url(../image/icon/c.gif) no-repeat right center");
-                   $(".product-body .title-product .right").css("background","white");
-               },time);
+                 $(".header").css("background","#F1F1F1");
+                 $(".product-body .title-product .left").css("background","white");
+                 $(".product-body .title-product .left h2").css("background","url(../image/icon/c.gif) no-repeat left center,#fff url(../image/icon/c.gif) no-repeat right center");
+                 $(".product-body .title-product .right").css("background","white");
+             },time);
             }
 
 

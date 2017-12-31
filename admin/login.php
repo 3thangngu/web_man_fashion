@@ -43,26 +43,10 @@ if( isset( $_POST['login'] ))
     }
 
 
-    // if(empty($_POST['password']))
-    // {
-    //     $error='password';
-    // }
-    // else
-    // {   
-    //     $partten = "/^[A-Za-z0-9]+$/";
-    //     if( strlen($_POST['password']) < 3 || strlen($_POST['password']) >15 ){
-    //         $error='password';
-    //         echo '<script>alert("Tài khoản và mật khẩu phải trong khoảng từ 3 đến 15 ký tự.!");</script>';
-    //     }elseif ( !preg_match($partten ,$_POST['username'], $matchs) ) {
-    //         $error='password';
-    //         echo '<script>alert("Tài khoản mật khẩu không hợp lệ");</script>';
-    //     }else{
-    //         $matkhau=$_POST['password'];
-    //     }
-    // }
+
 
     if(empty($error)){
-        $query =    "SELECT id_user,account_user,pass_user 
+        $query =    "SELECT id_user,account_user,pass_user,type_user
 					FROM tb_user
 					WHERE account_user='{$taikhoan}' AND pass_user='{$matkhau}' AND status_user=1";
         $result = mysqli_query($dbc,$query);
@@ -70,9 +54,10 @@ if( isset( $_POST['login'] ))
 
 
         if(mysqli_num_rows($result) ==1){
-            list($id,$taikhoan,$matkhau,$status)= mysqli_fetch_array($result,MYSQLI_NUM);
+            list($id,$taikhoan,$matkhau,$type_user)= mysqli_fetch_array($result,MYSQLI_NUM);
             $_SESSION['uid']= $id;
             $_SESSION['taikhoan']= $taikhoan;
+            $_SESSION['type_user']= $type_user;
             header('Location: index.php') ;
         }
         else{

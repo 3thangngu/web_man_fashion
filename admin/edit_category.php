@@ -78,7 +78,7 @@
                 }
                 ?>
 
-                <h3 style="color: red;">Chỉnh sửa</h3>
+                <h3 style="color: #bd0103;text-align: center;text-transform: uppercase;text-decoration: underline;">Chỉnh sửa</h3>
                 <div class="form-group">
                     <label>Mã loại sản phẩm</label>
                     <input type="text" name="code_category" value="<?php if(isset($_POST['code_category'])) {echo $_POST['code_category'];} echo $dong['code_category']; ?>" class="form-control" placeholder='Mã loại sản phẩm'/>

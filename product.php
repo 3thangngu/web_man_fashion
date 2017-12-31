@@ -201,8 +201,24 @@ while ($product = mysqli_fetch_array($result_sp, MYSQLI_ASSOC)) {
                     <div class="col-xs-12 diachi">
                         <h6>ĐỊA CHỈ BÁN HÀNG:</h6>
                         <ul>
-                            <li>384 Nguyễn Văn Cừ, P. An Hòa, Q.Ninh Kiều, Tp.Cần Thơ</li>
-                            <li>(Ngoài những địa chỉ mua hàng trực tiếp 4MEN còn có hình thức Giao Hàng Tận Nhà và Thu
+                            <?php
+                        $query_adress = 'SELECT value FROM tb_information WHERE name = "adress"';
+                        $result_adress = mysqli_query($dbc, $query_adress);
+                        if( mysqli_num_rows($result_adress) > 0 ) { 
+                            extract( mysqli_fetch_array($result_adress, MYSQLI_ASSOC) );
+                            $array_adress = explode("$%^$%^", trim($value, "$%^$%^") );
+                            echo '<li>'. $array_adress[0] .'</li>';
+                        }
+                        ?>
+                            <li>(Ngoài những địa chỉ mua hàng trực tiếp  
+                                <?php
+                            $query_description = 'SELECT value FROM tb_information WHERE name = "name"';
+                            $result_description = mysqli_query($dbc, $query_description);
+                            if( mysqli_num_rows($result_description) > 0 ) {
+                                extract( mysqli_fetch_array($result_description, MYSQLI_ASSOC) );
+                                echo  $value;
+                            }
+                            ?>  còn có hình thức Giao Hàng Tận Nhà và Thu
                                 Tiền)
                             </li>
                         </ul>
@@ -212,7 +228,14 @@ while ($product = mysqli_fetch_array($result_sp, MYSQLI_ASSOC)) {
                         <div class="row  cam-ket">
                             <span class="info"><i class="glyphicon glyphicon-info-sign"></i>Cam kết:</span>
                             Hình ảnh sản phẩm thời trang được chụp từ mẫu thực. Chất lượng sản phẩm được sản xuất và
-                            thiết kế theo xu hướng thời trang 2017 của thương hiệu 4MEN(R)
+                            thiết kế theo xu hướng thời trang 2017 của thương hiệu  <?php
+                            $query_description = 'SELECT value FROM tb_information WHERE name = "name"';
+                            $result_description = mysqli_query($dbc, $query_description);
+                            if( mysqli_num_rows($result_description) > 0 ) {
+                                extract( mysqli_fetch_array($result_description, MYSQLI_ASSOC) );
+                                echo  $value;
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

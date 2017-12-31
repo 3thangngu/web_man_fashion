@@ -66,6 +66,11 @@
                 } else {
                     $diachi = $_POST['address'];
                 }
+                if (empty($_POST['type_user'])) {
+                    $errors[] = 'type_user';
+                } else {
+                    $type_user = $_POST['type_user'];
+                }
                 $status = $_POST['status'];
 
                 if (empty($errors)) {
@@ -90,8 +95,8 @@
                         $message="<p class='results1'>Số chứng minh nhân dân đã tồn tại</p>";
                     }
                     else {
-                        $query_in = "INSERT INTO tb_user(account_user,pass_user,name_user,birthday_user,cmnd_user,phonenumber_user,email_user,address_user,status_user)
-									VALUES('{$taikhoan}','{$matkhau}','{$hoten}','{$birthday}','{$cmnd}','{$dienthoai}','{$email}','{$diachi}',{$status})
+                        $query_in = "INSERT INTO tb_user(account_user,pass_user,name_user,birthday_user,cmnd_user,phonenumber_user,email_user,address_user,type_user,status_user)
+									VALUES('{$taikhoan}','{$matkhau}','{$hoten}','{$birthday}','{$cmnd}','{$dienthoai}','{$email}','{$diachi}','{$type_user}',{$status})
 						";
                         $result_in = mysqli_query($dbc, $query_in);
                         kt_query($query_in, $result_in);
@@ -102,6 +107,7 @@
                             $_POST['pass'] = "";
                             $_POST['name'] = "";
                             $_POST['cmnd'] = "";
+                            $_POST['type_user'] = "";
                             $_POST['phone'] = "";
                             $_POST['email'] = "";
                             $_POST['address'] = "";
@@ -121,10 +127,10 @@
                     echo $message;
                 }
                 ?>
-                <h2 style="color: red;">Thêm mới User</h2>
+                <h2 style="color: #bd0103;text-align: center;text-transform: uppercase;text-decoration: underline;">Thêm mới User</h2>
                 <div class="form-group">
 
-                    <label>Tài khoản</label>
+                    <label>Tên tài khoản</label>
                     <input type="text" name="account" value="<?php if (isset($_POST['account'])) {
                         echo $_POST['account'];
                     } ?>" class="form-control" placeholder='Tài khoản'/>
@@ -139,7 +145,7 @@
                 </div>
                 <div class="form-group">
                     <label>Mật khẩu</label>
-                    <input type="text" name="pass" maxlength="20" value="<?php if (isset($_POST['pass'])) {
+                    <input type="password" name="pass" maxlength="20" value="<?php if (isset($_POST['pass'])) {
                         echo $_POST['pass'];
                     } ?>" class="form-control" placeholder='Nhập mật khẩu - tối đa 20 ký tự'/>
 
@@ -153,7 +159,7 @@
 
                 <div class="form-group">
                     <label>Xác nhận mật khẩu</label>
-                    <input type="text" name="repass" maxlength="20" value="<?php if (isset($_POST['repass'])) {
+                    <input type="password" name="repass" maxlength="20" value="<?php if (isset($_POST['repass'])) {
                         echo $_POST['repass'];
                     } ?>" class="form-control" placeholder='Xác nhận mật khẩu'/>
 
@@ -168,9 +174,16 @@
                 <div class="form-group">
                     <label>Loại tài khoản : </label>
                     <select name="type_user" style="padding:5px 10px;border-radius:4px;display: block;">
-                        <option value="" style="color: #999">- - - Chưa có loại tài khoản - - -</option>
-
+                        <option value="">- - - Chưa có loại tài khoản - - -</option>
+                        <option value="0" >Admin</option>
+                        <option value="1">Nhân viên</option>
                     </select>
+                    <?php
+                    if (isset($errors) && in_array('type_user', $errors)) {
+                        echo "<p class='results1' >Bạn hãy nhập mật khẩu</p>";
+                    }
+
+                    ?>
                 </div>
 
                 <div class="form-group">

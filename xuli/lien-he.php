@@ -14,13 +14,15 @@
 											email,
 											number_phone, 
 											address,
-											content
+											content,
+											status
 										) VALUES(
 										'{$name}',
 										'{$email}', 
 										'{$sdt}', 
 										'{$address}', 
-										'{$content}'
+										'{$content}',
+										'0'
 									)";
 			$result =  mysqli_query($dbc,$query);
 		}
