@@ -126,7 +126,7 @@ include('includes/header.php');
 include('includes/footer.php');
 ?>
 <script type="text/javascript">
- var day = new Date();
+   var day = new Date();
     // Thong ke cac thang trong nam
     $.get("functions/doanhthu/thongke_nam.php","json",function(dt){  
         var data =dt,
@@ -159,8 +159,8 @@ include('includes/footer.php');
         if (!$(this).hasClass('active')){
              // Thong ke cac thang trong nam
              $.get("functions/thongke_thang.php","json",function(dt){  
-                 var data =dt,
-                 json = JSON.parse(data);
+               var data =dt,
+               json = JSON.parse(data);
             // 
             var buyerData = {
                 type: 'bar',
@@ -193,8 +193,8 @@ include('includes/footer.php');
             $(this).addClass('active');
              // Thong ke cac thang trong nam
              $.get("functions/doanhthu/thongke_nam.php","json",function(dt){  
-                 var data =dt,
-                 json = JSON.parse(data);
+               var data =dt,
+               json = JSON.parse(data);
             // 
             var buyerData = {
                 type: 'bar',
@@ -220,10 +220,22 @@ include('includes/footer.php');
             }); // Ket thuc thong ke theo thang 
          } 
      })
-    //  xu kien click don hon -> thang
+    //  xu kien click don hon -> thang truoc
     $(".statistic-chart .menu .sub-menu .month-ago").click(function(){
-        var date = new Date(day.getFullYear(), day.getMonth()-1, 0).getDate();
+        var month = ""; 
+        console.log(day.getMonth());
+        if(day.getMonth() == 0) {
+            month = 12;
+            year = day.getFullYear() -1;
+        } else {
+            month = day.getMonth();
+            year = day.getFullYear();
+        }
+
+        console.log(month);
+        var date = new Date(year, month , 0).getDate();
         var array_date = new Array();
+        console.log(day.getFullYear()-1);
         for (var i = 1; i <= date; i++) {
             array_date.push(i);
         }
@@ -235,12 +247,65 @@ include('includes/footer.php');
              // Thong ke cac thang trong nam
              $.get("functions/doanhthu/thongke_thangago.php",{date:date},function(dt){  
 
-                 var data =dt,
-                 json = JSON.parse(data);
-                 var data = new Array();
-                 for(key in json) {
-                    data.push(json[key]);
+               var data =dt,
+               json = JSON.parse(data);
+               var data = new Array();
+               for(key in json) {
+                data.push(json[key]);
+            }
+
+            // var a= new Array("1", "2");
+            console.log(data);
+            var buyerData = {
+                type: 'bar',
+                barPercentage: 1.5,
+                labels : array_date,
+                datasets : [
+                {
+                    fillColor : "#87CEEB",
+                    strokeColor : "#3498db",
+                    pointColor : "#fff",
+                    pointStrokeColor : "#9DB86D",
+                    data : data
                 }
+                ],
+
+            }
+
+            // get line chart canvas
+            var buyers = document.getElementById('buyers').getContext('2d');
+
+            // draw line chart
+            new Chart(buyers).Bar(buyerData); 
+            }); // Ket thuc thong ke theo thang truoc
+         } 
+     }) // ket thuc thang truoc
+
+    //  xu kien click don hon -> thang nay
+    $(".statistic-chart .menu .sub-menu .this-month").click(function(){
+        var month = ""; 
+
+        month = day.getMonth();
+        year = day.getFullYear();
+        var date = new Date(year, month , 0).getDate();
+        var array_date = new Array();
+        console.log(day.getFullYear()-1);
+        for (var i = 1; i <= date; i++) {
+            array_date.push(i);
+        }
+
+        console.log(array_date);
+        if (!$(this).hasClass('active')){
+            $(".statistic-chart .menu .sub-menu ul li").removeClass('active');
+            $(this).addClass('active');
+             // Thong ke cac thang trong nam
+             $.get("functions/doanhthu/thongke_thismonth.php",{date:date},function(dt){  
+               var data =dt,
+               json = JSON.parse(data);
+               var data = new Array();
+               for(key in json) {
+                data.push(json[key]);
+            }
 
             // var a= new Array("1", "2");
             console.log(data);
@@ -267,8 +332,70 @@ include('includes/footer.php');
             new Chart(buyers).Bar(buyerData); 
             }); // Ket thuc thong ke theo thang 
          } 
-     })
+     }) // ket thuc thang nay
 
+    /**************************
+    xu kien click don hon -> day(7 ngay) */
+    $(".statistic-chart .menu .sub-menu .day").click(function(){
 
+        var date = day.getDate();
+        var month = day.getMonth();
+        var year = day.getFullYear();
+        var date_now = date;
+        var month_now = month +1;
+        var year_now = year;
+        var array_date = new Array();
+        for (var i = 1; i <=7 ; i++) {
+            if(date_now <= 0){
+                if( month > 0 ){
+                    date_now = new Date(year_now, month -1, 0).getDate();
+                    month_now++;
+                } else {
+                    date_now = new Date(year_now-1, 12, 0).getDate();
+                    month_now=12;
+                    year_now--;
+                } 
+            }
+            array_date.push(year_now+"-"+month_now+"-"+date_now);
+            date_now--; 
+        }
+        // console.log(array_date);
+        if (!$(this).hasClass('active')){
+            $(".statistic-chart .menu .sub-menu ul li").removeClass('active');
+            $(this).addClass('active');
+             // Thong ke cac thang trong nam
+             $.get("functions/doanhthu/thongke_day.php",{date:array_date},function(dt){  
+                 var data =dt,
+                 json = JSON.parse(data);
+                 var data = new Array();
+                 var array_date = new Array();
+                 for(key in json) {
+                    array_date.push(key);
+                    data.push(json[key]);
+                }
+                console.log(array_date);
+                var buyerData = {
+                    type: 'bar',
+                    barPercentage: 1.5,
+                    labels : array_date,
+                    datasets : [
+                    {
+                        fillColor : "#87CEEB",
+                        strokeColor : "#3498db",
+                        pointColor : "#fff",
+                        pointStrokeColor : "#9DB86D",
+                        data : data
+                    }
+                    ],
 
+                }
+
+            // get line chart canvas
+            var buyers = document.getElementById('buyers').getContext('2d');
+
+            // draw line chart
+            new Chart(buyers).Bar(buyerData); 
+            }); // Ket thuc thong ke theo thang 
+         } 
+     }) // ket thuc 7 ngay 
  </script>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2017 at 07:01 PM
+-- Generation Time: Jan 01, 2018 at 06:53 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.1.12
 
@@ -210,8 +210,8 @@ CREATE TABLE `tb_order` (
 --
 
 INSERT INTO `tb_order` (`id_order`, `code_order`, `status_order`, `status_bill`, `id_product`, `size_product`, `quantity_product`, `name_customer`, `phone_customer`, `address_customer`, `email_customer`, `order_day`) VALUES
-(199, '7206800', '0', '0', 4, '27', 1, '\"aa\"', 'asda', '\"so nha\" \"phuong\" \"a\" \"tinh\"', '\"Aa\"', '2017-01-16 00:00:00'),
-(200, '5306837', '0', '0', 4, '27', 1, '\"aa\"', 'asda', '\"so nha\" \"phuong\" \"a\" \"tinh\"', '\"Aa\"', '2017-11-16 10:03:31'),
+(199, '7206800', '0', '0', 4, '27', 1, '\"aa\"', 'asda', '\"so nha\" \"phuong\" \"a\" \"tinh\"', '\"Aa\"', '2018-01-01 00:00:00'),
+(200, '5306837', '0', '0', 4, '27', 1, '\"aa\"', 'asda', '\"so nha\" \"phuong\" \"a\" \"tinh\"', '\"Aa\"', '2018-01-02 10:03:31'),
 (209, '8412926', '0', '0', 1, 'M', 2, 'le thanh tuan', '01272311832', 'asda, asdas, Thành phố Long Xuyên, An Giang', '', '2017-12-31 17:04:47'),
 (210, '8412926', '0', '0', 4, '27', 3, 'le thanh tuan', '01272311832', 'asda, asdas, Thành phố Long Xuyên, An Giang', '', '2017-12-30 17:04:47');
 
