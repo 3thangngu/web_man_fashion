@@ -132,23 +132,15 @@ while ($product = mysqli_fetch_array($result_sp, MYSQLI_ASSOC)) {
                             <div class="col-xs-12 option1">
                                 <div class="row">
                                     <select name="size" class="select select-size" style="text-transform: uppercase;">
-                                        <?php if ($product['id_product'] == 1) {
-                                            ?>
-                                            <option value="m">M</option>
-                                            <option value="l">L</option>
-                                            <option value="xl">Xl</option>
-                                            <?php
-                                        }
+                                        <?php 
+                                             $array_size = (unserialize($product['size_product']));
+                                             foreach ($array_size as $key => $value) {
                                         ?>
-                                        <?php if ($product['id_product']  != 1) {
-                                            ?>
-                                            <option value="27">27</option>
-                                            <option value="28">28</option>
-                                            <option value="29">29</option>
-                                            <option value="30">30</option>
-                                            <option value="31">31</option>
-                                            <?php
-                                        }
+                                            <option value="<?php echo $key ?>"><?php echo strtoupper($key); ?></option>
+                                        <?php
+                                             }
+                                        ?>
+                                        <?php
                                         ?>
                                     </select>
                                 </div>

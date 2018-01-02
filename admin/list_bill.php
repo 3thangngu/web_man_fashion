@@ -32,9 +32,10 @@
                         $query = "SELECT code_order ,name_customer, phone_customer,address_customer,order_day,id_product,status_bill FROM tb_order WHERE status_order = '1'  GROUP BY code_order ORDER BY status_bill";
                         $result = mysqli_query($dbc,$query);
                         kt_query($query, $result);
-                        while ($order = mysqli_fetch_array($result, MYSQLI_NUM)) {
+
+                        while ($order = mysqli_fetch_array($result, MYSQLI_NUM)) {              
                         ?>                    
-                    <tr>
+                    <tr >
                         <td><?php echo $order[0]; ?></td>
                         <td><?php echo $order[1]; ?></td>
                         <td><?php echo $order[2]; ?></td>
@@ -45,6 +46,7 @@
                         <?php 
                             if ( $order[6] == "0" ) {
                          ?>
+
                         <td class="text-center"><a onClick="return confirm('Bạn muốn chuyển đơn hàng này qua bên giao hàng ?');" href="functions/review_bill.php?id_order=<?php echo $order[0]; ?>"><i class="glyphicon glyphicon-ok"></i></a></td>
                         <?php 
                             }

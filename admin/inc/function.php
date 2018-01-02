@@ -1,4 +1,34 @@
 <?php
+// kiểm tra duyệt đơn hàng -> giao hàng
+function check_order($code_order){
+  global $dbc;
+  $query = "SELECT tb_order.size_product size, tb_order.quantity_product quantity, tb_product.size_product array_size FROM tb_order,tb_product WHERE tb_order.id_product = tb_product.id_product && tb_order.code_order = $code_order";
+  $result = mysqli_query($dbc,$query);
+
+  while($rows = mysqli_fetch_array($result)){
+    extract($rows);
+    $array_size = unserialize($array_size);
+    if( array_key_exists($size, $array_size) || array_key_exists(strtolower($size), $array_size) ){
+      if ($array_size[strtolower($size)] < $quantity) {
+       return true;
+     } else {
+      // echo "hihi";
+     } 
+   } 
+ }
+}
+// Kiem tra so luong san pham có đủ de duyet don hang
+function check_product($id_product,$size, $quantity_order){
+    global $dbc;
+    $query = "SELECT size_product FROM tb_product WHERE id_product=$id_product";
+    $result = mysqli_query($dbc,$query);
+    extract(mysqli_fetch_array($result, MYSQLI_ASSOC));
+    $size_product = unserialize($size_product);
+    if ($size_product[strtolower($size)] <  $quantity_order) {
+      return true;
+    }
+}
+
   // tạo code_order ramdom 7 số  bên bill
 function ramdom_code(){
   global $dbc;
@@ -446,41 +476,41 @@ function label_search($text_search) {
       // temlate size 
       // file : edit_product.php
       function temlate_size_text( $arary_size = array() ) {
-          $arary_size_text = array('s', 'm', 'l', 'xl', 'xxl', 'xxxl');
-          foreach ($arary_size_text as  $size) {
-              if( array_key_exists( $size, $arary_size ) ) {
-                ?>
-                <input type="checkbox" id="<?php echo $size; ?>" name="size_<?php echo $size; ?>" value="<?php echo $size; ?>" class="check" checked>
-                <label for="<?php echo $size; ?>" class="title-size"><?php echo strtoupper($size); ?></label>
-                <input type="number" name="sl_<?php echo $size; ?>" value="<?php echo $arary_size[$size]; ?>" class="number">
-                <?php
-              } else {
-                ?>
-                 <input type="checkbox" id="<?php echo $size; ?>" name="size_<?php echo $size; ?>" value="<?php echo $size; ?>" class="check">
-                <label for="<?php echo $size; ?>" class="title-size"><?php echo strtoupper($size); ?></label>
-                <input type="number" name="sl_<?php echo $size; ?>" value="10" class="number" disabled="disabled">
-                <?php 
-              }
-           } 
+        $arary_size_text = array('s', 'm', 'l', 'xl', 'xxl', 'xxxl');
+        foreach ($arary_size_text as  $size) {
+          if( array_key_exists( $size, $arary_size ) ) {
+            ?>
+            <input type="checkbox" id="<?php echo $size; ?>" name="size_<?php echo $size; ?>" value="<?php echo $size; ?>" class="check" checked>
+            <label for="<?php echo $size; ?>" class="title-size"><?php echo strtoupper($size); ?></label>
+            <input type="number" name="sl_<?php echo $size; ?>" value="<?php echo $arary_size[$size]; ?>" class="number">
+            <?php
+          } else {
+            ?>
+            <input type="checkbox" id="<?php echo $size; ?>" name="size_<?php echo $size; ?>" value="<?php echo $size; ?>" class="check">
+            <label for="<?php echo $size; ?>" class="title-size"><?php echo strtoupper($size); ?></label>
+            <input type="number" name="sl_<?php echo $size; ?>" value="10" class="number" disabled="disabled">
+            <?php 
+          }
+        } 
 
       }
-       function temlate_size_number( $arary_size = array() ) {
-          $arary_size_number = array('27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44');
-          foreach ($arary_size_number as  $size) {
-              if( array_key_exists( $size, $arary_size ) ) {
-                ?>
-                <input type="checkbox" id="<?php echo $size; ?>" name="size_<?php echo $size; ?>" value="<?php echo $size; ?>" class="check" checked>
-                <label for="<?php echo $size; ?>" class="title-size"><?php echo strtoupper($size); ?></label>
-                <input type="number" name="sl_<?php echo $size; ?>" value="<?php echo $arary_size[$size]; ?>" class="number">
-                <?php
-              } else {
-                ?>
-                 <input type="checkbox" id="<?php echo $size; ?>" name="size_<?php echo $size; ?>" value="<?php echo $size; ?>" class="check">
-                <label for="<?php echo $size; ?>" class="title-size"><?php echo strtoupper($size); ?></label>
-                <input type="number" name="sl_<?php echo $size; ?>" value="10" class="number" disabled="disabled">
-                <?php 
-              }
-           } 
+      function temlate_size_number( $arary_size = array() ) {
+        $arary_size_number = array('27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44');
+        foreach ($arary_size_number as  $size) {
+          if( array_key_exists( $size, $arary_size ) ) {
+            ?>
+            <input type="checkbox" id="<?php echo $size; ?>" name="size_<?php echo $size; ?>" value="<?php echo $size; ?>" class="check" checked>
+            <label for="<?php echo $size; ?>" class="title-size"><?php echo strtoupper($size); ?></label>
+            <input type="number" name="sl_<?php echo $size; ?>" value="<?php echo $arary_size[$size]; ?>" class="number">
+            <?php
+          } else {
+            ?>
+            <input type="checkbox" id="<?php echo $size; ?>" name="size_<?php echo $size; ?>" value="<?php echo $size; ?>" class="check">
+            <label for="<?php echo $size; ?>" class="title-size"><?php echo strtoupper($size); ?></label>
+            <input type="number" name="sl_<?php echo $size; ?>" value="10" class="number" disabled="disabled">
+            <?php 
+          }
+        } 
 
       }
       // kết thúc temlate size

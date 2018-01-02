@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2018 at 06:57 AM
+-- Generation Time: Jan 02, 2018 at 04:12 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.1.12
 
@@ -33,6 +33,14 @@ CREATE TABLE `tb_bill` (
   `code_bill` char(7) COLLATE utf8_unicode_ci NOT NULL,
   `id_order` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tb_bill`
+--
+
+INSERT INTO `tb_bill` (`id_bill`, `code_bill`, `id_order`) VALUES
+(16, '9505063', 211),
+(17, '9505063', 212);
 
 -- --------------------------------------------------------
 
@@ -210,10 +218,9 @@ CREATE TABLE `tb_order` (
 --
 
 INSERT INTO `tb_order` (`id_order`, `code_order`, `status_order`, `status_bill`, `id_product`, `size_product`, `quantity_product`, `name_customer`, `phone_customer`, `address_customer`, `email_customer`, `order_day`) VALUES
-(199, '7206800', '0', '0', 4, '27', 1, '\"aa\"', 'asda', '\"so nha\" \"phuong\" \"a\" \"tinh\"', '\"Aa\"', '2018-01-01 00:00:00'),
-(200, '5306837', '0', '0', 4, '27', 1, '\"aa\"', 'asda', '\"so nha\" \"phuong\" \"a\" \"tinh\"', '\"Aa\"', '2018-01-01 10:03:31'),
-(209, '8412926', '0', '0', 1, 'M', 2, 'le thanh tuan', '01272311832', 'asda, asdas, Thành phố Long Xuyên, An Giang', '', '2017-12-31 17:04:47'),
-(210, '8412926', '0', '0', 4, '27', 3, 'le thanh tuan', '01272311832', 'asda, asdas, Thành phố Long Xuyên, An Giang', '', '2017-12-30 17:04:47');
+(211, '5829104', '0', '0', 4, 'XL', 5, 'le thanh tuan', '01272311832', '1028 ntt, an hoa, Thành Phố Bà Rịa, Bà Rịa - Vũng Tàu', '', '2018-01-01 16:15:23'),
+(212, '5829104', '0', '0', 5, '29', 5, 'le thanh tuan', '01272311832', '1028 ntt, an hoa, Thành Phố Bà Rịa, Bà Rịa - Vũng Tàu', '', '2018-01-01 16:15:23'),
+(213, '6529165', '1', '0', 4, 'XL', 5, 'le thanh tuan', '01272311832', '1028 ntt, an hoa, Thành Phố Bà Rịa, Bà Rịa - Vũng Tàu', '', '2018-01-01 16:15:23');
 
 -- --------------------------------------------------------
 
@@ -245,9 +252,9 @@ CREATE TABLE `tb_product` (
 
 INSERT INTO `tb_product` (`id_product`, `code_product`, `name_product`, `title_product`, `id_category`, `id_label`, `image`, `image_thump`, `price_product`, `saleprice_product`, `describe_product`, `size_product`, `view_product`, `date_product`, `status_product`) VALUES
 (1, 'ASM880', 'ÁO SƠ MI NGẮN TAY XANH ĐEN', '', 17, 21, 'upload/ao-so-mi-ngan-tay-xanh-den-asm880-8746-slide-products-594b7404cb3a3.jpg upload/ao-so-mi-ngan-tay-xanh-den-asm880-8746-slide-products-594b7404cdf05.jpg upload/ao-so-mi-ngan-tay-xanh-den-asm880-8746-slide-products-594b7404ce598.jpg upload/ao-so-mi-ngan-tay-xanh-den-asm880-8746-slide-products-594b7404de395.jpg upload/ao-so-mi-ngan-tay-xanh-den-asm880-8746-slide-products-594b7404e6309.jpg ', 'upload/resize/ao-so-mi-ngan-tay-xanh-den-asm880-8746-slide-products-594b7404cb3a3_thump.jpg upload/resize/ao-so-mi-ngan-tay-xanh-den-asm880-8746-slide-products-594b7404cdf05_thump.jpg upload/resize/ao-so-mi-ngan-tay-xanh-den-asm880-8746-slide-products-594b7404ce598_thump.jpg upload/resize/ao-so-mi-ngan-tay-xanh-den-asm880-8746-slide-products-594b7404de395_thump.jpg upload/resize/ao-so-mi-ngan-tay-xanh-den-asm880-8746-slide-products-594b7404e6309_thump.jpg ', 150000, 185000, 'Áo Sơ Mi Ngắn Tay Xanh Đen ASM880 thiết kế cổ bẻ ve nhỏ, tay áo ngắn năng động thích hợp cho dân công sở thay đổi diện mạo khô khan thường thấy. Bên cạnh đó, chất cotton cao cấp mang đến cảm giác thoải mái, dễ chịu cho người mặc.', 'a:4:{s:1:\"s\";s:1:\"1\";s:1:\"m\";s:1:\"1\";s:1:\"l\";s:1:\"1\";s:2:\"xl\";s:1:\"1\";}', 177, '2017-08-29', '1'),
-(2, 'ASM922', 'ÁO SƠ MI NGẮN TAY XANH ĐEN', '', 17, 21, 'upload/ao-so-mi-ngan-tay-xanh-den-asm922-8986-slide-products-599569e4c30e6.jpg upload/ao-so-mi-ngan-tay-xanh-den-asm922-8986-slide-products-599569e4c52b4.jpg upload/ao-so-mi-ngan-tay-xanh-den-asm922-8986-slide-products-599569e4cacfc.jpg upload/ao-so-mi-ngan-tay-xanh-den-asm922-8986-slide-products-599569e4cd262.jpg', 'upload/resize/ao-so-mi-ngan-tay-xanh-den-asm922-8986-slide-products-599569e4c30e6_thump.jpg upload/resize/ao-so-mi-ngan-tay-xanh-den-asm922-8986-slide-products-599569e4c52b4_thump.jpg upload/resize/ao-so-mi-ngan-tay-xanh-den-asm922-8986-slide-products-599569e4cacfc_thump.jpg upload/resize/ao-so-mi-ngan-tay-xanh-den-asm922-8986-slide-products-599569e4cd262_thump.jpg', 200000, 245000, '', 'a:5:{s:1:\"s\";s:2:\"10\";s:1:\"m\";s:2:\"10\";s:1:\"l\";s:2:\"10\";s:2:\"xl\";s:2:\"10\";s:3:\"xxl\";s:2:\"10\";}', 101, '2017-08-29', '1'),
-(4, 'ASM921', 'ÁO SƠ MI NGẮN TAY XANH BIỂN', '', 17, 21, 'upload/ao-so-mi-ngan-tay-xanh-bien-asm921-8983-slide-599566e13d8ae.jpg upload/ao-so-mi-ngan-tay-xanh-bien-asm921-8983-slide-599566e152c5b.jpg upload/ao-so-mi-ngan-tay-xanh-bien-asm921-8983-slide-599566e1480a3.jpg upload/ao-so-mi-ngan-tay-xanh-bien-asm921-8983-slide-599566e169911.jpg', 'upload/resize/ao-so-mi-ngan-tay-xanh-bien-asm921-8983-slide-599566e13d8ae_thump.jpg upload/resize/ao-so-mi-ngan-tay-xanh-bien-asm921-8983-slide-599566e152c5b_thump.jpg upload/resize/ao-so-mi-ngan-tay-xanh-bien-asm921-8983-slide-599566e1480a3_thump.jpg upload/resize/ao-so-mi-ngan-tay-xanh-bien-asm921-8983-slide-599566e169911_thump.jpg', 200000, 245000, '', 'a:5:{s:1:\"s\";s:2:\"10\";s:1:\"m\";s:2:\"10\";s:1:\"l\";s:2:\"10\";s:2:\"xl\";s:2:\"10\";s:3:\"xxl\";s:2:\"10\";}', 134, '2017-08-30', '1'),
-(5, 'QJ1364', 'QUẦN JEAN ỐNG ĐỨNG XANH', '', 20, 21, 'upload/quan-jean-skinny-xanh-qj1364-7315-slide-1.jpg upload/quan-jean-skinny-xanh-qj1364-7315-slide-2.jpg upload/quan-jean-skinny-xanh-qj1364-7315-slide-3.jpg upload/quan-jean-skinny-xanh-qj1364-7315-slide-4.jpg', 'upload/resize/quan-jean-skinny-xanh-qj1364-7315-slide-1_thump.jpg upload/resize/quan-jean-skinny-xanh-qj1364-7315-slide-2_thump.jpg upload/resize/quan-jean-skinny-xanh-qj1364-7315-slide-3_thump.jpg upload/resize/quan-jean-skinny-xanh-qj1364-7315-slide-4_thump.jpg', 300000, 400000, 'Quần Jean Ống Đứng Xanh QJ1364 là một trong những mẫu quần jean ống đứng, màu sắc hài hòa được thiết kế và sản xuất độc quyền ở 4MEN. Chất jean cao cấp, chắc chắn mang đến sự khỏe khoắn cho người mặc. Thích hợp cho cả đi học, đi chơi và đi làm.', 'a:6:{i:27;s:1:\"1\";i:28;s:1:\"1\";i:29;s:1:\"1\";i:30;s:1:\"1\";i:31;s:1:\"1\";i:32;s:1:\"1\";}', 18, '2017-08-30', '1'),
+(2, 'ASM922', 'ÁO SƠ MI NGẮN TAY XANH ĐEN', '', 17, 21, 'upload/ao-so-mi-ngan-tay-xanh-den-asm922-8986-slide-products-599569e4c30e6.jpg upload/ao-so-mi-ngan-tay-xanh-den-asm922-8986-slide-products-599569e4c52b4.jpg upload/ao-so-mi-ngan-tay-xanh-den-asm922-8986-slide-products-599569e4cacfc.jpg upload/ao-so-mi-ngan-tay-xanh-den-asm922-8986-slide-products-599569e4cd262.jpg', 'upload/resize/ao-so-mi-ngan-tay-xanh-den-asm922-8986-slide-products-599569e4c30e6_thump.jpg upload/resize/ao-so-mi-ngan-tay-xanh-den-asm922-8986-slide-products-599569e4c52b4_thump.jpg upload/resize/ao-so-mi-ngan-tay-xanh-den-asm922-8986-slide-products-599569e4cacfc_thump.jpg upload/resize/ao-so-mi-ngan-tay-xanh-den-asm922-8986-slide-products-599569e4cd262_thump.jpg', 200000, 245000, '', 'a:5:{s:1:\"s\";s:2:\"10\";s:1:\"m\";s:2:\"10\";s:1:\"l\";s:2:\"10\";s:2:\"xl\";s:2:\"10\";s:3:\"xxl\";s:2:\"10\";}', 102, '2017-08-29', '1'),
+(4, 'ASM921', 'ÁO SƠ MI NGẮN TAY XANH BIỂN', '', 17, 21, 'upload/ao-so-mi-ngan-tay-xanh-bien-asm921-8983-slide-599566e13d8ae.jpg upload/ao-so-mi-ngan-tay-xanh-bien-asm921-8983-slide-599566e152c5b.jpg upload/ao-so-mi-ngan-tay-xanh-bien-asm921-8983-slide-599566e1480a3.jpg upload/ao-so-mi-ngan-tay-xanh-bien-asm921-8983-slide-599566e169911.jpg', 'upload/resize/ao-so-mi-ngan-tay-xanh-bien-asm921-8983-slide-599566e13d8ae_thump.jpg upload/resize/ao-so-mi-ngan-tay-xanh-bien-asm921-8983-slide-599566e152c5b_thump.jpg upload/resize/ao-so-mi-ngan-tay-xanh-bien-asm921-8983-slide-599566e1480a3_thump.jpg upload/resize/ao-so-mi-ngan-tay-xanh-bien-asm921-8983-slide-599566e169911_thump.jpg', 200000, 245000, '', 'a:5:{s:1:\"s\";s:2:\"10\";s:1:\"m\";s:2:\"10\";s:1:\"l\";s:2:\"10\";s:2:\"xl\";i:45;s:3:\"xxl\";s:2:\"10\";}', 143, '2017-08-30', '1'),
+(5, 'QJ1364', 'QUẦN JEAN ỐNG ĐỨNG XANH', '', 20, 21, 'upload/quan-jean-skinny-xanh-qj1364-7315-slide-1.jpg upload/quan-jean-skinny-xanh-qj1364-7315-slide-2.jpg upload/quan-jean-skinny-xanh-qj1364-7315-slide-3.jpg upload/quan-jean-skinny-xanh-qj1364-7315-slide-4.jpg', 'upload/resize/quan-jean-skinny-xanh-qj1364-7315-slide-1_thump.jpg upload/resize/quan-jean-skinny-xanh-qj1364-7315-slide-2_thump.jpg upload/resize/quan-jean-skinny-xanh-qj1364-7315-slide-3_thump.jpg upload/resize/quan-jean-skinny-xanh-qj1364-7315-slide-4_thump.jpg', 300000, 400000, 'Quần Jean Ống Đứng Xanh QJ1364 là một trong những mẫu quần jean ống đứng, màu sắc hài hòa được thiết kế và sản xuất độc quyền ở 4MEN. Chất jean cao cấp, chắc chắn mang đến sự khỏe khoắn cho người mặc. Thích hợp cho cả đi học, đi chơi và đi làm.', 'a:6:{i:27;s:1:\"1\";i:28;s:1:\"1\";i:29;s:1:\"1\";i:30;s:1:\"1\";i:31;s:1:\"1\";i:32;s:1:\"1\";}', 20, '2017-08-30', '1'),
 (8, 'AK211', 'ÁO KHOÁC DA ĐỎ MẬN', '', 22, 21, 'upload/ao-khoac-do-mong-ak209-8447-slide-1.jpg upload/ao-khoac-do-mong-ak209-8447-slide-2.jpg upload/ao-khoac-do-mong-ak209-8447-slide-3.jpg', 'upload/resize/ao-khoac-do-mong-ak209-8447-slide-1_thump.jpg upload/resize/ao-khoac-do-mong-ak209-8447-slide-2_thump.jpg upload/resize/ao-khoac-do-mong-ak209-8447-slide-3_thump.jpg', 500000, 625000, 'Áo Khoác Da Đỏ Mận AK209 không mang quá nhiều điểm nhấn nhưng vẫn cực kỳ thu hút nhờ màu sắc nổi bật, đường nét tinh tế và form dáng đẹp. Khi kết hợp cùng Áo thun và Quần jean sẽ mang đến cho bạn một diện mạo cực kỳ bụi bặm, chất lừ.', 'a:4:{s:1:\"s\";s:2:\"10\";s:1:\"m\";s:2:\"10\";s:1:\"l\";s:2:\"10\";s:2:\"xl\";s:2:\"10\";}', 3, '2017-08-31', '1'),
 (18, 'A4777', 'Áo Sơ Mi Hàn Quốc Xanh Biển', '', 14, 21, 'upload/ao-so-mi-han-quoc-trang-asm937-9142-slide-products-59da4307c4e39.jpg upload/ao-so-mi-han-quoc-trang-asm937-9142-slide-products-59da43071cbad.jpg upload/ao-so-mi-han-quoc-trang-asm937-9142-slide-products-59da43076fadb.jpg upload/ao-so-mi-han-quoc-trang-asm937-9142-slide-products-59da4308898b4.jpg upload/ao-so-mi-han-quoc-trang-asm937-9142-slide-products-59da430834700.jpg', 'upload/resize/ao-so-mi-han-quoc-trang-asm937-9142-slide-products-59da4307c4e39_thump.jpg upload/resize/ao-so-mi-han-quoc-trang-asm937-9142-slide-products-59da43071cbad_thump.jpg upload/resize/ao-so-mi-han-quoc-trang-asm937-9142-slide-products-59da43076fadb_thump.jpg upload/resize/ao-so-mi-han-quoc-trang-asm937-9142-slide-products-59da4308898b4_thump.jpg upload/resize/ao-so-mi-han-quoc-trang-asm937-9142-slide-products-59da430834700_thump.jpg', 150000, 245000, 'Áo Sơ Mi Hàn Quốc Xanh Biển được may từ chất liệu vải mềm mịn, ít nhăn, thấm hút mồ hôi tốt chính là lựa chọn hoàn hảo dành cho nam giới. Màu xanh biển nhẹ nhàng, dễ dàng sử dụng trong bất kỳ trường hợp nào.', 'a:4:{s:1:\"s\";s:2:\"10\";s:1:\"m\";s:2:\"10\";s:1:\"l\";s:2:\"10\";s:3:\"xxl\";s:2:\"10\";}', 0, '2017-12-22', '1'),
 (20, 'A7779', 'Áo Sơ Mi Trắng', '', 16, 21, 'upload/resize/ao-so-mi-trang-asm874-8733-slide-products-594b405f8c0b6_thump.jpg upload/resize/ao-so-mi-trang-asm874-8733-slide-products-594b405f94c55_thump.jpg upload/resize/ao-so-mi-trang-asm874-8733-slide-products-594b405f94d66_thump.jpg upload/resize/ao-so-mi-trang-asm874-8733-slide-products-594b405f946d7_thump.jpg upload/ao-so-mi-trang-asm874-8733-slide-products-594b405f991be.jpg', 'upload/resize/ao-so-mi-trang-asm874-8733-slide-products-594b405f8c0b6_thump.jpg upload/resize/ao-so-mi-trang-asm874-8733-slide-products-594b405f94c55_thump.jpg upload/resize/ao-so-mi-trang-asm874-8733-slide-products-594b405f94d66_thump.jpg upload/resize/ao-so-mi-trang-asm874-8733-slide-products-594b405f946d7_thump.jpg upload/resize/ao-so-mi-trang-asm874-8733-slide-products-594b405f991be_thump.jpg', 150000, 245000, 'F5 phong cách công sở thường ngày của bạn với Áo Sơ Mi Trắng cùng những họa tiết thêu tay, cập nhật theo xu hướng thời trang nam mới nhất. Với item này, bạn sẽ trở thành chàng soái ca lãng tử và vô cùng cuốn hút.', 'a:5:{s:1:\"s\";s:2:\"20\";s:1:\"m\";s:2:\"20\";s:1:\"l\";s:2:\"20\";s:2:\"xl\";s:2:\"20\";s:3:\"xxl\";s:2:\"20\";}', 0, '2017-12-23', '1');
@@ -385,7 +392,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_bill`
 --
 ALTER TABLE `tb_bill`
-  MODIFY `id_bill` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_bill` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tb_category`
@@ -433,7 +440,7 @@ ALTER TABLE `tb_label`
 -- AUTO_INCREMENT for table `tb_order`
 --
 ALTER TABLE `tb_order`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=211;
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=214;
 
 --
 -- AUTO_INCREMENT for table `tb_product`
@@ -451,7 +458,7 @@ ALTER TABLE `tb_ship`
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables

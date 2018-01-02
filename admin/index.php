@@ -89,35 +89,148 @@ include('includes/header.php');
     background: #fff;
 }
 /**/
+/*style header*/
+.wrap-header{
+    margin:15px 0;
+}
+.wrap-header:after{
+    content: " ";
+    display: table;
+    clear: both;
+}
+.wrap-header .left,.wrap-header .right{
+    background: white;
+    border-radius: 4px;
+    padding: 5px 10px;
+    border:1px solid #e1e1e1;
+}
+.wrap-header .left .title-left{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: blue;
+    font-weight: bold;
+    font-size: 16px;
+}
+.link_a{
+    background: #f1f1f1;
+    padding: 8px;
+    border:1px solid #e1e1e1;
+    border-radius: 4px;
+
+}
 </style>
 <div class="row" style="margin-top: -15px;padding-bottom: 55px">
     <div class="row" style="background: #f1f1f1;">
         <div class="col-lg-12">
             <div class="title">
-                <h3 class="title" >Thống kê cửa hàng</h3>
+                <h2 class="title" >Thống kê cửa hàng</h2>
             </div>
-            <div class="statistic-chart">
-                <div class="menu">
-                    <ul>
-                        <li class="active dh">Doanh thu</li>
-                        <li>Đơn Hàng</li>
-                    </ul>
-                    <div class="sub-menu">
-                        <ul>
-                            <li class="active year">Năm</li>
-                            <li class="month-ago">Tháng trước</li>
-                            <li class="this-month">Tháng này</li>
-                            <li class="day">7 ngày qua</li>
-                        </ul>
-                        <canvas id="buyers" width="900" height="500" ></canvas>
+            <div class="wrap-header">
+                <div class="col-xs-10">
+                    <div class="left">
+                        <div class="title-left">Sản phẩm bán chạy</div>
+                        <hr style="margin-top: 0">
+                        <div class="content-product">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr style="color: #bd0103">
+                                        <th>STT</th>
+                                        <th>Mã sp</th>
+                                        <th>Tên sp</th>
+                                     <!--    <th>Loại sp</th>
+                                        <th>Hiệu sp</th> -->
+                                        <th>Hình ảnh</th>
+                                        <th>Giá</th>
+                                        <th>Giá bán</th>
+                                        <!-- <th>Mô tả</th> -->
+                                        <th>Lượt xem</th>
+                                        <!-- <th>Ngày thêm</th> -->
+                                        <th>Trạng thái</th>
+                                        <th>Xem</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <?php 
+                                    $query = "SELECT tb_order.id_product, tb_product.code_product, tb_product.name_product,tb_product.price_product,tb_product.saleprice_product, tb_product.image,tb_product.view_product, tb_product.status_product, SUM(tb_order.quantity_product) quantity_product_order  FROM tb_order, tb_product WHERE tb_order.id_product = tb_product.id_product GROUP BY tb_order.id_product ORDER BY quantity_product_order DESC LIMIT 10";
+                                    $result = mysqli_query($dbc, $query);
+                                    $stt = 0;
+                                    while ($product = mysqli_fetch_array($result, MYSQLI_ASSOC)) { 
+                                        $stt++;
+                                    ?>
+                                    
+                                    <tr>
+                                        <th style="vertical-align: middle;"><?php echo $stt; ?></th>
+                                        <td style="vertical-align: middle;"><?php echo $product['code_product']; ?></td>
+                                        <td style="vertical-align: middle;"><?php echo $product['name_product']; ?></td>
+                                        <td style="vertical-align: middle;"><?php
+
+                                        $img_product = explode(" ",  $product['image']);
+                                        $stt = 0;
+                                        foreach ($img_product as $value) {
+                                            if(isset($value) && !empty($value)){
+                                              ?>
+
+                                              <img  style="width: 50px;" src="../<?php echo $value; ?>"  style="margin: 0 auto">
+
+                                              <?php
+                                              $stt++;
+                                              break;
+                                          }
+                                      }
+                                      ?></td>
+                                      <td style="vertical-align: middle;"><?php echo number_format($product['price_product']) ; ?><br/><strong> VND</strong></td>
+                                      <td style="vertical-align: middle;"><?php echo number_format($product['saleprice_product']) ; ?><br/><strong> VND</strong></td>
+                                      <td style="vertical-align: middle;" class="text-center"><?php echo number_format($product['view_product']) ; ?></td>
+                                      <td style="vertical-align: middle;"><?php
+                                      $status = $product['status_product'];
+                                      if ($status==1)
+                                      {
+                                        echo "Còn hàng";
+                                    }
+                                    else
+                                    {
+                                        echo "Hết hàng";
+                                    }
+                                    ?></td>
+                                    <td style="vertical-align: middle;" align="center"><a class="link_a" href="edit_product.php?id=<?php echo $product['id_product']; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                                    </tr>
+                                    <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-                
-                <div class="clearfix"></div>
-                
+                </div>   
+            </div>
+            <div class="col-xs-5">
+               <!--  <div class="right">
+                    a
+                </div>  -->
             </div>
         </div>
+        <div class="statistic-chart">
+            <div class="menu">
+                <ul>
+                    <li  style="color: blue;font-size: 18px;font-weight: 700"  class="active dh"><i style="margin-right: 5px;" class="fa fa-bar-chart" aria-hidden="true"></i> Doanh thu</li>
+                    <li  style="color: blue;font-size: 18px;font-weight: 700"  class="kho"><i style="margin-right: 5px;" class="glyphicon glyphicon-object-align-bottom" aria-hidden="true"></i>Kho</li>
+                </ul>
+                <div class="sub-menu">
+                    <ul>
+                        <li class="active year">Năm</li>
+                        <li class="month-ago">Tháng trước</li>
+                        <li class="this-month">Tháng này</li>
+                        <li class="day">7 ngày qua</li>
+                    </ul>
+                    <canvas id="buyers" width="900" height="500" ></canvas>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+        </div>
     </div>
+</div>
 </div>
 
 
@@ -125,277 +238,4 @@ include('includes/header.php');
 <?PHP 
 include('includes/footer.php');
 ?>
-<script type="text/javascript">
-   var day = new Date();
-    // Thong ke cac thang trong nam
-    $.get("functions/doanhthu/thongke_nam.php","json",function(dt){  
-        var data =dt,
-        json = JSON.parse(data);
-        // 
-        var buyerData = {
-            type: 'bar',
-            barPercentage: 1.5,
-            labels : ["Tháng 1","Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12"],
-            datasets : [
-            {
-                fillColor : "#87CEEB",
-                strokeColor : "#3498db",
-                pointColor : "#fff",
-                pointStrokeColor : "#9DB86D",
-                data : [json.thang1,json.thang2,json.thang3,json.thang4,json.thang5,json.thang6,json.thang7,json.thang8,json.thang9,json.thang10,json.thang11,json.thang12]
-            }
-            ],
-
-        }
-
-        // get line chart canvas
-        var buyers = document.getElementById('buyers').getContext('2d');
-
-        // draw line chart
-        new Chart(buyers).Bar(buyerData); 
-    }); // Ket thuc thong ke theo thang 
-    // su kien click cho don hang
-    $(".statistic-chart .menu .dh").click(function(){
-        if (!$(this).hasClass('active')){
-             // Thong ke cac thang trong nam
-             $.get("functions/thongke_thang.php","json",function(dt){  
-               var data =dt,
-               json = JSON.parse(data);
-            // 
-            var buyerData = {
-                type: 'bar',
-                barPercentage: 1.5,
-                labels : ["Tháng 1","Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12"],
-                datasets : [
-                {
-                    fillColor : "#87CEEB",
-                    strokeColor : "#3498db",
-                    pointColor : "#fff",
-                    pointStrokeColor : "#9DB86D",
-                    data : [json.thang1,json.thang2,json.thang3,json.thang4,json.thang5,json.thang6,json.thang7,json.thang8,json.thang9,json.thang10,json.thang11,json.thang12]
-                }
-                ],
-
-            }
-
-            // get line chart canvas
-            var buyers = document.getElementById('buyers').getContext('2d');
-
-            // draw line chart
-            new Chart(buyers).Bar(buyerData); 
-            }); // Ket thuc thong ke theo thang 
-         } 
-     })
-    //  xu kien click don hon -> nam
-    $(".statistic-chart .menu .sub-menu .year").click(function(){
-        if (!$(this).hasClass('active')){
-            $(".statistic-chart .menu .sub-menu ul li").removeClass('active');
-            $(this).addClass('active');
-             // Thong ke cac thang trong nam
-             $.get("functions/doanhthu/thongke_nam.php","json",function(dt){  
-               var data =dt,
-               json = JSON.parse(data);
-            // 
-            var buyerData = {
-                type: 'bar',
-                barPercentage: 1.5,
-                labels : ["Tháng 1","Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12"],
-                datasets : [
-                {
-                    fillColor : "#87CEEB",
-                    strokeColor : "#3498db",
-                    pointColor : "#fff",
-                    pointStrokeColor : "#9DB86D",
-                    data : [json.thang1,json.thang2,json.thang3,json.thang4,json.thang5,json.thang6,json.thang7,json.thang8,json.thang9,json.thang10,json.thang11,json.thang12]
-                }
-                ],
-
-            }
-
-            // get line chart canvas
-            var buyers = document.getElementById('buyers').getContext('2d');
-
-            // draw line chart
-            new Chart(buyers).Bar(buyerData); 
-            }); // Ket thuc thong ke theo thang 
-         } 
-     })
-    //  xu kien click don hon -> thang truoc
-    $(".statistic-chart .menu .sub-menu .month-ago").click(function(){
-        var month = ""; 
-        console.log(day.getMonth());
-        if(day.getMonth() == 0) {
-            month = 12;
-            year = day.getFullYear() -1;
-        } else {
-            month = day.getMonth();
-            year = day.getFullYear();
-        }
-
-        console.log(month);
-        var date = new Date(year, month , 0).getDate();
-        var array_date = new Array();
-        console.log(day.getFullYear()-1);
-        for (var i = 1; i <= date; i++) {
-            array_date.push(i);
-        }
-
-        console.log(array_date);
-        if (!$(this).hasClass('active')){
-            $(".statistic-chart .menu .sub-menu ul li").removeClass('active');
-            $(this).addClass('active');
-             // Thong ke cac thang trong nam
-             $.get("functions/doanhthu/thongke_thangago.php",{date:date},function(dt){  
-
-               var data =dt,
-               json = JSON.parse(data);
-               var data = new Array();
-               for(key in json) {
-                data.push(json[key]);
-            }
-
-            // var a= new Array("1", "2");
-            console.log(data);
-            var buyerData = {
-                type: 'bar',
-                barPercentage: 1.5,
-                labels : array_date,
-                datasets : [
-                {
-                    fillColor : "#87CEEB",
-                    strokeColor : "#3498db",
-                    pointColor : "#fff",
-                    pointStrokeColor : "#9DB86D",
-                    data : data
-                }
-                ],
-
-            }
-
-            // get line chart canvas
-            var buyers = document.getElementById('buyers').getContext('2d');
-
-            // draw line chart
-            new Chart(buyers).Bar(buyerData); 
-            }); // Ket thuc thong ke theo thang truoc
-         } 
-     }) // ket thuc thang truoc
-
-    //  xu kien click don hon -> thang nay
-    $(".statistic-chart .menu .sub-menu .this-month").click(function(){
-        var month = ""; 
-
-        month = day.getMonth();
-        year = day.getFullYear();
-        var date = new Date(year, month , 0).getDate();
-        var array_date = new Array();
-        console.log(day.getFullYear()-1);
-        for (var i = 1; i <= date; i++) {
-            array_date.push(i);
-        }
-
-        console.log(array_date);
-        if (!$(this).hasClass('active')){
-            $(".statistic-chart .menu .sub-menu ul li").removeClass('active');
-            $(this).addClass('active');
-             // Thong ke cac thang trong nam
-             $.get("functions/doanhthu/thongke_thismonth.php",{date:date},function(dt){  
-               var data =dt,
-               json = JSON.parse(data);
-               var data = new Array();
-               for(key in json) {
-                data.push(json[key]);
-            }
-
-            // var a= new Array("1", "2");
-            console.log(data);
-            var buyerData = {
-                type: 'bar',
-                barPercentage: 1.5,
-                labels : array_date,
-                datasets : [
-                {
-                    fillColor : "#87CEEB",
-                    strokeColor : "#3498db",
-                    pointColor : "#fff",
-                    pointStrokeColor : "#9DB86D",
-                    data : data
-                }
-                ],
-
-            }
-
-            // get line chart canvas
-            var buyers = document.getElementById('buyers').getContext('2d');
-
-            // draw line chart
-            new Chart(buyers).Bar(buyerData); 
-            }); // Ket thuc thong ke theo thang 
-         } 
-     }) // ket thuc thang nay
-
-    /**************************
-    xu kien click don hon -> day(7 ngay) */
-    $(".statistic-chart .menu .sub-menu .day").click(function(){
-
-        var date = day.getDate();
-        var month = day.getMonth();
-        var year = day.getFullYear();
-        var date_now = date;
-        var month_now = month +1;
-        var year_now = year;
-        var array_date = new Array();
-        for (var i = 1; i <=7 ; i++) {
-            if(date_now <= 0){
-                if( month > 0 ){
-                    date_now = new Date(year_now, month -1, 0).getDate();
-                    month_now++;
-                } else {
-                    date_now = new Date(year_now-1, 12, 0).getDate();
-                    month_now=12;
-                    year_now--;
-                } 
-            }
-            array_date.push(year_now+"-"+month_now+"-"+date_now);
-            date_now--; 
-        }
-        // console.log(array_date);
-        if (!$(this).hasClass('active')){
-            $(".statistic-chart .menu .sub-menu ul li").removeClass('active');
-            $(this).addClass('active');
-             // Thong ke cac thang trong nam
-             $.get("functions/doanhthu/thongke_day.php",{date:array_date},function(dt){  
-                 var data =dt,
-                 json = JSON.parse(data);
-                 var data = new Array();
-                 var array_date = new Array();
-                 for(key in json) {
-                    array_date.push(key);
-                    data.push(json[key]);
-                }
-                console.log(array_date);
-                var buyerData = {
-                    type: 'bar',
-                    barPercentage: 1.5,
-                    labels : array_date,
-                    datasets : [
-                    {
-                        fillColor : "#87CEEB",
-                        strokeColor : "#3498db",
-                        pointColor : "#fff",
-                        pointStrokeColor : "#9DB86D",
-                        data : data
-                    }
-                    ],
-
-                }
-
-            // get line chart canvas
-            var buyers = document.getElementById('buyers').getContext('2d');
-
-            // draw line chart
-            new Chart(buyers).Bar(buyerData); 
-            }); // Ket thuc thong ke theo thang 
-         } 
-     }) // ket thuc 7 ngay 
- </script>
+<script type="text/javascript" src="js/thongke.js"></script>
