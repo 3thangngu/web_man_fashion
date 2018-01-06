@@ -4,7 +4,7 @@ function check_order($code_order){
   global $dbc;
   $query = "SELECT tb_order.size_product size, tb_order.quantity_product quantity, tb_product.size_product array_size FROM tb_order,tb_product WHERE tb_order.id_product = tb_product.id_product && tb_order.code_order = $code_order";
   $result = mysqli_query($dbc,$query);
-
+  
   while($rows = mysqli_fetch_array($result)){
     extract($rows);
     $array_size = unserialize($array_size);
@@ -262,7 +262,143 @@ function list_category() {
   }
 
 }
+// Xứ lí form search file list_city.php
+function city_search($text_search,$page, $limit) {
+  global $dbc;
+   $start = ( $page - 1 ) * $limit ;
+  $lm = $limit;
+  $query = "SELECT * FROM tb_city WHERE name_city LIKE". "'%" .$text_search."%' OR code_city LIKE". "'%" .$text_search."%' LIMIT $start,$lm";
+  $result = mysqli_query($dbc, $query);
+  kt_query($query,$result);
+        // echo 
+  if( mysqli_num_rows($result) <= 0) {
+   echo "<tr>
+   <td colspan='5' class='text-danger text-center'>Không tìm thấy kết quả</td>
+   </tr>";
+ }  else {
+  $stt = 0;
+  while ($rows = mysqli_fetch_array($result, MYSQLI_ASSOC)) { 
+     $stt++;
+    ?>
+   <tr>
+    <th><?php echo $stt; ?></th>
+    <td><?php echo $rows['code_city']; ?></td>
+    <td><?php echo $rows['name_city']; ?></td>
 
+    <td align="center"><a href="edit_city.php?id=<?php echo $rows['id_city']; ?>"><i
+    class="fa fa-fw fa-pencil"
+    style="font-size: 20px; color:#1b926c;"></i> </a></td>
+    <td align="center"><a onClick="return confirm('Bạn thật sự muốn xóa không ?');"
+      href="delete_city.php?id=<?php echo $rows['id_city']; ?>"><i
+      class="fa fa-fw fa-trash"
+      style="font-size: 20px; color:rgba(26,27,23,0.87);"></i></a></td>
+  </tr>
+      <?php
+    }
+
+
+
+  }
+}
+
+// template list_city
+function list_city($page, $limit) { 
+  $start = ( $page - 1 ) * $limit ;
+  $lm = $limit;
+ global $dbc;
+ $query = "SELECT * FROM tb_city ORDER BY code_city LIMIT $start,$lm";
+ $result = mysqli_query($dbc, $query);
+ kt_query($query, $result);
+ $stt = 0;
+ while ($rows = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+  $stt++;
+  ?>
+  <tr>
+    <th><?php echo $stt; ?></th>
+    <td><?php echo $rows['code_city']; ?></td>
+    <td><?php echo $rows['name_city']; ?></td>
+
+    <td align="center"><a href="edit_city.php?id=<?php echo $rows['id_city']; ?>"><i
+    class="fa fa-fw fa-pencil"
+    style="font-size: 20px; color:#1b926c;"></i> </a></td>
+    <td align="center"><a onClick="return confirm('Bạn thật sự muốn xóa không ?');"
+      href="delete_city.php?id=<?php echo $rows['id_city']; ?>"><i
+      class="fa fa-fw fa-trash"
+      style="font-size: 20px; color:rgba(26,27,23,0.87);"></i></a></td>
+  </tr>
+
+    <?php
+  }
+
+}
+// Xứ lí form search file list_district.php
+function district_search($text_search,$page, $limit) {
+  global $dbc;
+  $start = ( $page - 1 ) * $limit ;
+  $lm = $limit;
+  $query = "SELECT * FROM tb_district, tb_city WHERE tb_district.id_city = tb_city.id_city  && name_district LIKE". "'%" .$text_search."%' OR code_district LIKE". "'%" .$text_search."%' LIMIT start,$lm";
+  $result = mysqli_query($dbc, $query);
+  kt_query($query,$result);
+        // echo 
+  if( mysqli_num_rows($result) <= 0) {
+   echo "<tr>
+   <td colspan='5' class='text-danger text-center'>Không tìm thấy kết quả</td>
+   </tr>";
+ }  else {
+  $stt = 0;
+  while ($rows = mysqli_fetch_array($result, MYSQLI_ASSOC)) { 
+     $stt++;
+    ?>
+  <tr>
+    <th><?php echo $stt; ?></th>
+    <td><?php echo $rows['code_district']; ?></td>
+    <td><?php echo $rows['name_district']; ?></td>
+    <td><?php echo $rows['name_city']; ?></td>
+    <td ><a href="edit_district.php?id=<?php echo $rows['id_district']; ?>"><i
+    class="fa fa-fw fa-pencil"
+    style="font-size: 20px; color:#1b926c;"></i> </a></td>
+    <td><a onClick="return confirm('Bạn thật sự muốn xóa không ?');"
+      href="delete_district.php?id=<?php echo $rows['id_district']; ?>"><i
+      class="fa fa-fw fa-trash"
+      style="font-size: 20px; color:rgba(26,27,23,0.87);"></i></a></td>
+  </tr>
+      <?php
+    }
+
+
+
+  }
+}
+// template list_district
+function list_district($page, $limit) { 
+ global $dbc;
+ $start = ( $page - 1 ) * $limit ;
+$lm = $limit;
+ $query = "SELECT * FROM tb_district, tb_city WHERE tb_district.id_city = tb_city.id_city ORDER BY id_district LIMIT $start, $lm";
+ $result = mysqli_query($dbc, $query);
+ kt_query($query, $result);
+ $stt = 0;
+ while ($rows = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+  $stt++;
+  ?>
+  <tr>
+    <th><?php echo $stt; ?></th>
+    <td><?php echo $rows['code_district']; ?></td>
+    <td><?php echo $rows['name_district']; ?></td>
+    <td><?php echo $rows['name_city']; ?></td>
+    <td><a href="edit_district.php?id=<?php echo $rows['id_district']; ?>"><i
+    class="fa fa-fw fa-pencil"
+    style="font-size: 20px; color:#1b926c;"></i> </a></td>
+    <td><a onClick="return confirm('Bạn thật sự muốn xóa không ?');"
+      href="delete_district.php?id=<?php echo $rows['id_district']; ?>"><i
+      class="fa fa-fw fa-trash"
+      style="font-size: 20px; color:rgba(26,27,23,0.87);"></i></a></td>
+  </tr>
+
+    <?php
+  }
+
+}
 // Xứ lí form search file list_label.php
 function label_search($text_search) {
   global $dbc;

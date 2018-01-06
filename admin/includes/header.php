@@ -27,7 +27,9 @@ if (!isset($_SESSION['uid'])) {
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Custom template -->
+    <link rel="stylesheet" type="text/css" href="css/custom_template.css">
 </head>
 
 <body>
@@ -35,7 +37,7 @@ if (!isset($_SESSION['uid'])) {
 <div id="wrapper">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-inverse navbar-fixed-top wrap-header-dasboard" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="index.php">QUẢN TRỊ HỆ THỐNG</a>
@@ -43,7 +45,9 @@ if (!isset($_SESSION['uid'])) {
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-user"></i> Xin
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <!-- <i class="fa fa-fw fa-user"></i> -->
+                     Xin
                     chào: <?php if (isset($_SESSION['taikhoan'])) echo $_SESSION['taikhoan']; ?> <b
                             class="fa fa-fw fa-angle-down"></b></a>
                 <ul class="dropdown-menu">
@@ -63,7 +67,7 @@ if (!isset($_SESSION['uid'])) {
                 </ul>
             </li>
         </ul>
-
+    <!-- </nav> -->
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <?PHP
         include('sidebar.php');

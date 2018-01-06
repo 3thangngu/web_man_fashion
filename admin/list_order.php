@@ -29,7 +29,7 @@ include('inc/function.php');
             </thead>
             <tbody>
                 <?php 
-                $query = "SELECT code_order ,name_customer, phone_customer,address_customer,order_day,id_product FROM tb_order WHERE status_order = '0'  GROUP BY code_order";
+                $query = "SELECT code_order ,name_customer, phone_customer,address_customer,order_day,id_product FROM tb_order WHERE status_order = '0'  GROUP BY code_order ORDER BY order_day DESC";
                 $result = mysqli_query($dbc,$query);
                 kt_query($query, $result);
                 while ($order = mysqli_fetch_array($result, MYSQLI_NUM)) {

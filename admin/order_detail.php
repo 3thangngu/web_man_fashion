@@ -73,7 +73,7 @@ include('inc/function.php');
                  ?>
                </td>
                <td style="font-family: georgia"><?php echo number_format($quantity_product*$saleprice_product, 0, ',', '.') . " đ" ; ?></td>
-               <td><?php echo ($check_product) ? 'Không đủ hàng' : '';  ?></td>
+               <td><?php echo ($check_product) ? 'Không đủ hàng' : 'Còn hàng';  ?></td>
              </tr>
              <?php 
              $stt++;

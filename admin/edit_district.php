@@ -20,37 +20,37 @@
             if (isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT, array('min_range' => 1))) {
                 $id = $_GET['id'];
             } else {
-                header("Location: list_category.php");
+                header("Location: list_district.php");
                 exit();
             }
 
             //bat dau submit
             if (isset($_POST['submit'])) {
                 $errors = array();
-                if (empty($_POST['code_category'])) {
-                    $errors[] = 'code_category';
+                if (empty($_POST['code_district'])) {
+                    $errors[] = 'code_district';
                 } else {
-                    $code = $_POST['code_category'];
+                    $code = $_POST['code_district'];
                 }
 
-                if (empty($_POST['name_category'])) {
-                    $errors[] = 'name_category';
+                if (empty($_POST['name_district'])) {
+                    $errors[] = 'name_district';
                 } else {
-                    $name = $_POST['name_category'];
+                    $name = $_POST['name_district'];
                 }
 
-                $parent_id= $_POST['parent_id'];
-
-
+                $id_city = $_POST['city'];
                 if (empty($errors)) {
-                    $query_in = "UPDATE tb_category SET code_category='$code', name_category='$name',parent_id='$parent_id' where id_category='$id'";
+                    $query_in = "UPDATE tb_district SET code_district='$code', name_district='$name',id_city='$id_city'  where id_district='$id'";
                     $result_in = mysqli_query($dbc, $query_in);
                     kt_query($query_in, $result_in);
 
                     if ($result_in == 1) {
                         echo "<p class='results'>Chỉnh sửa thành công</p>";
-                        $_POST['code_category'] = "";
-                        $_POST['name_category'] = "";
+                        $_POST['code_district'] = "";
+                        $_POST['name_district'] = "";
+                        unset($_POST['code_district']);
+                        unset($_POST['name_district']);
                     } else {
                         echo "<p class='results1'>Chỉnh sửa không thành công</p>";
                     }
@@ -60,7 +60,7 @@
             }
 
             //ket thuc submit
-            $query = "SELECT * FROM tb_category WHERE id_category={$id}";
+            $query = "SELECT * FROM tb_district WHERE id_district={$id}";
             $result = mysqli_query($dbc, $query);
             $dong = mysqli_fetch_array($result,MYSQLI_ASSOC);
             kt_query($query, $result);
@@ -78,39 +78,40 @@
                 }
                 ?>
 
-                <h2 style=" color: red">Danh sách tỉnh thành</h2>
+                <h2 style=" color: red">Chỉnh sửa</h2>
                 <div class="form-group">
                     <label>Mã loại sản phẩm</label>
-                    <input type="text" name="code_category" value="<?php if(isset($_POST['code_category'])) {echo $_POST['code_category'];} echo $dong['code_category']; ?>" class="form-control" placeholder='Mã loại sản phẩm'/>
+                    <input type="text" name="code_district" value="<?php echo $dong['code_district']; ?>" class="form-control" placeholder='Mã thành phố'/>
                 </div>
 
                 <div class="form-group">
                     <label>Tên loại sản phẩm</label>
-                    <input type="text" name="name_category" value="<?php if(isset($_POST['name_category'])) {echo $_POST['name_category'];} echo $dong['name_category']; ?>" class="form-control" id="name_category" current_id="<?php echo $id; ?>" parent_id="<?php echo $dong['parent_id'] ?>" placeholder='Tên loại sản phẩm'/>
+                    <input type="text" name="name_district" value="<?php echo $dong['name_district']; ?>" class="form-control" id="name_category" placeholder='Tên thành phố'/>
                 </div>
+				<div class="form-group">
+                	<label>Thuộc thành phố</label>
+	                <select name="city" class="district" style="padding: 6px 12px;font-size: 14px;line-height: 1.42857143;color: #555;background-color: #fff;background-image: none;border: 1px solid #ccc;border-radius: 4px;">
+	                    <?php 
+	                        $query = "SELECT id_city, name_city FROM tb_city ORDER BY id_city";
+	                        $result = mysqli_query($dbc, $query);
+	                        while ( $rows = mysqli_fetch_array($result, MYSQLI_NUM) ) {
+	                    ?>
+	                    <option value="<?php echo $rows[0]; ?>" <?php echo $rows[0] == $dong['id_city'] ? 'selected="selected"' : ''; ?> > <?php echo $rows[1]; ?> </option>
+	                    <?php    
+	                        }
+	                    ?>
+	                </select>
+	                <?php
+	                if (isset($errors) && in_array('district',$errors))
+	                {
+	                    echo "<p class='results1' >Bạn hãy nhập tên thành phố</p>";
+	                }
 
-                <div class="form-group">
-                    <label>Thuộc loại </label>
-                    <?php ctrSelect('parent_id', 'parent_category'); ?>
-                </div>
+	                ?>
+	            </div>
                 <input type="submit" name="submit" class="btn btn-primary" value="Chỉnh sửa"/>
 
             </form>
         </div>
     </div>
 <?PHP include('includes/footer.php'); ?>
-<script type="text/javascript">
-           var parent_id = $("#name_category").attr("parent_id");
-           var current_id = $("#name_category").attr("current_id");
-           $(".parent_category option").each(function(){
-                if( $(this).attr("value") ==  parent_id){
-                    $(this).attr("selected","selected");
-                }
-
-                if( $(this).attr("value") ==  current_id){
-                    $(this).attr("disabled","disabled");
-                }
-
-           })
-
-</script>

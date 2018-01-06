@@ -405,10 +405,12 @@
 </div>
 <?PHP include('includes/footer.php'); ?>
 <script type="text/javascript">
+    $('.danh-muc .collapse').addClass('in');
+    $('.danh-muc .sanpham').css({'background-color': '#e1e1e1'});
+</script>
+<script type="text/javascript">
     window.onload = function()
     {   
-            // auto open sidebar
-            $(".wrap-sidebar #menu").addClass("in");
             //
             $(".class option").each(function(){
                 if($(this).attr("value") ==  $(".wrap-category").attr("id")) { $(this).attr("selected", "selected")};

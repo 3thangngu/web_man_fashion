@@ -1,6 +1,7 @@
 <?php 
-
-	$value=$_GET['value'];
+	include('../inc/myconnect.php');
+	include('../inc/function.php');
+	$id =$_GET['value'];
 	$tinhthanh=array(
 		"1" => array('Thành phố Long Xuyên','Thành phố Châu Đốc','Thị xã Tân Châu','Huyện Châu Thành','Huyện Châu Phú','Huyện Tịnh Biên','Huyện An Phú','Huyện Phú Tân','Huyện Chợ Mới','Huyện Thoại Sơn','Huyện Tri Tôn'),
 		"2" => array('Thành phố Vũng Tàu','Thành Phố Bà Rịa','Huyện Châu Đức','Huyện Xuyên Mộc','Huyện Tân Thành','Huyện Long Đất','Huyện Côn Đảo','Huyện Long Đất'),
@@ -18,14 +19,14 @@
 		// "14" => array('','','','','','','','','','','','','','',)
 
 	);
-// 
+	$query = "SELECT * FROM tb_district WHERE id_city = $id";
+	$result = mysqli_query($dbc, $query);
 
 	echo "<option value=''>Bạn chưa chọn tỉnh thành</option>";
-	foreach ($tinhthanh[$value] as $key => $data){
-
+	while ($rows = mysqli_fetch_assoc($result)) {
 	?>
 
-	<option value="<?php echo $key ?>"><?php echo $data ?></option>
+	<option value="<?php echo $rows['id_district'] ?>"><?php echo $rows['name_district'] ?></option>
 	<?php
 	}
 ?>

@@ -427,3 +427,7 @@ include('includes/header.php');
         temlate_size_text();
     ?>`;
 </script>
+<script type="text/javascript">
+    $('.danh-muc .collapse').addClass('in');
+    $('.danh-muc .sanpham').css({'background-color': '#e1e1e1'});
+</script>

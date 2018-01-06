@@ -39,14 +39,14 @@ include('inc/function.php');
                      $total_slider = count($array_slider);
                      foreach ($array_slider as  $value) {
                         ?>
-                        <li stt="<?php echo $stt; ?>"><img src="<?php echo $value; ?>"></li>
+                        <li stt="<?php echo $stt; ?>"><img src="<?php echo $value; ?>" style="height: 500px;"></li>
                         <?php
                         $stt++;
                     }
                     ?>
                 </ul>
                 <ul id="icon">
-                    <?php for ($i=0; $i < 5; $i++) { 
+                    <?php for ($i=0; $i < count($array_slider); $i++) { 
                        ?>
 
                        <li class='<?php if( $i == 0 ) echo "active" ?>' stt="<?php echo $i ?>"></li>
@@ -60,27 +60,37 @@ include('inc/function.php');
    </div>
 </div>
 </div>
+<?php 
+  $query = "SELECT * FROM tb_information";
+  $result = mysqli_query($dbc, $query);
+
+  $array_info = array();
+  while( $rows = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+      $array_info[$rows['name']] =  $rows['value']; 
+  }
+  extract($array_info);
+?>
 <div id="wapper-body" style="padding-top: 30px;">
     <div id="gioi-thieu" class=" hidden-xs">
         <div class="container">
             <div class="row">
                 <div class="column-left col-xs-3">
-                    <a href="#">
-                        <img src="image/slide-1-trang-chu-slide-1.jpg" class="img-responsive" alt="">
+                    <a href="sp-category.php?category=<?php echo  isset($category_1) ? $category_1 : ''  ?>">
+                        <img src="<?php echo  isset($image_1) ? $image_1 : ''  ?>" class="img-responsive" alt="" height="100%">
                     </a>
                 </div>
                 <div class="column-center col-xs-6">
-                    <a href="#" class="img-top">
-                        <img src="image/slide-2-trang-chu-slide-2.jpg" class="img-responsive" alt="">
+                    <a href="sp-category.php?category=<?php echo  isset($category_2) ? $category_2 : ''  ?>" class="img-top">
+                        <img src="<?php echo  isset($image_2) ? $image_2 : ''  ?>" class="img-responsive" alt="">
                     </a>
-                    <a href="#" class="img-bottom">
-                        <img src="image/slide-3-trang-chu-slide-3.jpg" class="img-responsive" alt="">
+                    <a href="sp-category.php?category=<?php echo  isset($category_3) ? $category_3 : ''  ?>" class="img-bottom">
+                        <img src="<?php echo  isset($image_3) ? $image_3 : ''  ?>" class="img-responsive" alt="">
                     </a>
                 </div>
 
                 <div class="column-right col-xs-3">
-                    <a href="#">
-                        <img src="image/slide-4-trang-chu-slide-4.jpg" class="img-responsive" alt="">
+                    <a href="sp-category.php?category=<?php echo  isset($category_4) ? $category_4 : ''  ?>">
+                        <img src="<?php echo  isset($image_4) ? $image_4 : ''  ?>" class="img-responsive" alt="">
                     </a>
                 </div>
 

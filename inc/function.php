@@ -147,6 +147,18 @@ function kt_category($id_category,$name_category,$parent_id){
 function updateView($id){
 
 }
+  /* template echo city */
+  function echo_city(){
+      global $dbc;
+      $query = "SELECT * FROM tb_city ORDER BY code_city";
+      $result = mysqli_query($dbc, $query);
+      while ( $rows = mysqli_fetch_assoc($result) ) {
+        ?>
+        <option value="<?php echo $rows['id_city'] ?>"> <?php echo $rows['name_city'] ?> </option>
+        <?php
+      }
+      
+  }
 
 ?>
 

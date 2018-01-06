@@ -131,7 +131,6 @@
                 $(this).addClass('active');
              // Thong ke cac thang trong nam
              $.get("functions/doanhthu/thongke_thangago.php",{date:date},function(dt){  
-
                  var data =dt,
                  json = JSON.parse(data);
                  var data = new Array();
@@ -216,7 +215,6 @@
              } 
          }
      }) // ket thuc thang nay
-
     /**************************
     xu kien click don hon -> day(7 ngay) */
     $(".statistic-chart ").on("click",'.menu .sub-menu .day',function(){
@@ -242,6 +240,7 @@
                 array_date.push(year_now+"-"+month_now+"-"+date_now);
                 date_now--; 
             }
+            console.log(array_date);
         // console.log(array_date);
         if (!$(this).hasClass('active')){
             $(".statistic-chart .menu .sub-menu ul li").removeClass('active');
@@ -250,12 +249,19 @@
              $.get("functions/doanhthu/thongke_day.php",{date:array_date},function(dt){  
                var data =dt,
                json = JSON.parse(data);
+
+               console.log(dt);
                var data = new Array();
                var array_date = new Array();
                for(key in json) {
-                array_date.push(key);
-                data.push(json[key]);
-            }
+                    for(key1 in json[key]) {
+                        array_date.push(key1);
+                        data.push(json[key][key1]);
+                    }
+                }
+                array_date = array_date.reverse();
+                data = data.reverse();
+                
             var buyerData = {   
                 type: 'bar',
                 barPercentage: 1.5,

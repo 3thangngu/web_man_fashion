@@ -11,7 +11,8 @@
             <th>Hình ảnh</th>
             <th>Giá</th>
             <th>Giá bán</th>
-            <th>Mô tả</th>
+             <th>Số lượng</th>
+            <!-- <th>Mô tả</th> -->
             <th>Lượt xem</th>
             <th>Ngày thêm</th>
             <th>Trạng thái</th>
@@ -22,7 +23,7 @@
     <body>
         <?php 
         $array_product = array();
-        $query_product = "SELECT * FROM tb_product";
+        $query_product = "SELECT * FROM tb_product, tb_category WHERE tb_product.id_category = tb_category.id_category";
         $result_product = mysqli_query($dbc, $query_product);
         kt_query($query_product,$result_product);
         while ($product = mysqli_fetch_array($result_product, MYSQLI_ASSOC)) {
@@ -38,7 +39,13 @@
         ?>
         <!-- Lọc sản phẩm -->
         <?php
-        foreach ($array_product as $key => $product) { ?>
+        foreach ($array_product as $key => $product) { 
+          /* Tính số lượng */
+              $sl = 0;
+              foreach (unserialize($product['size_product']) as $key => $value) {
+                 $sl += $value;
+              }
+          ?>
 
       <tr>
         <td><?php echo $product['code_product']; ?></td>
@@ -53,7 +60,7 @@
 
         ?>
       </td>
-      <td><?php echo $product['id_category']; ?></td>
+      <td><?php echo $product['name_category']; ?></td>
       <td><?php echo $product['id_label']; ?></td>
       <td><?php
 
@@ -72,7 +79,8 @@
       ?></td>
       <td><?php echo number_format($product['price_product']) ; ?><br/><strong> VND</strong></td>
       <td><?php echo number_format($product['saleprice_product']) ; ?><br/><strong> VND</strong></td>
-      <td><?php echo $product['describe_product']; ?></td>
+      <td><?php echo $sl; ?></td>
+      <!-- <td><?php echo $product['describe_product']; ?></td> -->
       <td><?php echo $product['view_product']; ?></td>
       <td><?php echo date("d/m/Y",strtotime($product['date_product'])); ?></td>
       <td><?php

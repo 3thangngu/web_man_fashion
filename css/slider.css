@@ -14,6 +14,11 @@
 
 
 		}
+		.slider #img:after{
+			content: " ";
+			display: table;
+			clear: both;
+		}
 		.slider ul{padding:0;}
 		.slider #img li{
 			width: auto;
