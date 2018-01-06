@@ -12,21 +12,21 @@ include('inc/function.php');
 ?>
 <div class="row">
     <div class="col-12">
-        <h2 style="text-transform: uppercase;text-align: center;color: #bd0103;text-decoration: underline;">
+        <h2 style="color: red">
             Danh sách liên hệ
         </h2>
         <table class="table table-striped"> 
             <thead> 
                 <tr>
-                    <th style="color: #bd0103;">STT</th>
-                    <th style="color: #bd0103;">Họ và tên</th>
-                    <th style="color: #bd0103;">Số điện thoại</th>
-                    <th style="color: #bd0103;">Email</th>
-                    <th style="color: #bd0103;">Địa chỉ</th>
+                    <th>STT</th>
+                    <th >Họ và tên</th>
+                    <th>Số điện thoại</th>
+                    <th>Email</th>
+                    <th >Địa chỉ</th>
                     <!-- <th style="color: #bd0103;">Nội dung</th> -->
-                    <th style="color: #bd0103;">Trạng thái</th>
-                    <th style="color: #bd0103;">Xem</th>              
-                    <th style="color: #bd0103;">Xóa</th>
+                    <th>Trạng thái</th>
+                    <th>Xem</th>              
+                    <th>Xóa</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,7 +63,7 @@ include('inc/function.php');
 <?PHP 
 include('includes/footer.php');
 ?>
-
-<script language="JavaScript">
-
+<script type="text/javascript">
+   $('.lien-he .collapse').addClass('in');
+    $('.lien-he .thongtin').addClass('active-hover');
 </script>

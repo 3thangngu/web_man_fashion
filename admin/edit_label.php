@@ -100,3 +100,7 @@
         </div>
     </div>
 <?PHP include('includes/footer.php'); ?>
+<script type="text/javascript">
+    $('.danh-muc .collapse').addClass('in');
+    $('.danh-muc .hieusanpham').css({'background-color': '#e1e1e1'});
+</script>

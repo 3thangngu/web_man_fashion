@@ -24,6 +24,7 @@ include('inc/function.php');
                     <th>Địa chỉ</th>
                     <th>Ngày đặt hàng</th>
                     <th>Xem chi tiết</th>
+                    <th>Chỉnh sửa</th>
                     <th>Duyệt</th>
                 </tr>
             </thead>
@@ -43,6 +44,7 @@ include('inc/function.php');
                     <td><?php $date=date_create($order[4]);
                     echo date_format($date,"H:i - d/m/Y"); ?></td>
                     <td class="text-center"><a href="order_detail.php?code_order=<?php echo $order[0]; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                    <td><a href="edit_order.php?code_order=<?php echo $order[0]; ?>"><i class="fa fa-fw fa-pencil" style="font-size: 20px; color:#1b926c;"></i></a></td>
                     <?php if($check){
                         ?>
                         <td style="color: #bd0103;text-align: center;"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></td>
@@ -75,4 +77,8 @@ include('includes/footer.php');
             }
         }
     }
+</script>
+<script type="text/javascript">
+    $('.kinh-doanh .collapse').addClass('in');
+    $('.kinh-doanh .dathang').css({'background-color': '#e1e1e1'});
 </script>

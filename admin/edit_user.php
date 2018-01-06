@@ -33,16 +33,6 @@
                 } else {
                     $taikhoan = $_POST['account'];
                 }
-
-                if (empty($_POST['pass'])) {
-                    $errors[] = 'pass';
-                } else {
-                    $matkhau = md5($_POST['pass']);
-                }
-                if (trim($_POST['pass']) != trim($_POST['repass'])) {
-                    $errors[] = 'repass';
-                }
-
                 if (empty($_POST['name'])) {
                     $errors[] = 'name';
                 } else {
@@ -82,7 +72,6 @@
 
                 if (empty($errors)) {
                     $query_in = "UPDATE tb_user SET account_user='$taikhoan',
-                                                        pass_user='$matkhau',
                                                         name_user='$hoten',
                                                         birthday_user='$birthday',
                                                         cmnd_user = '$cmnd',
@@ -96,7 +85,6 @@
                     if ($result_in == 1) {
                         echo "<p class='results'>Chỉnh sửa thành công</p>";
                         $_POST['account'] = "";
-                        $_POST['pass'] = "";
                         $_POST['name'] = "";
                         $_POST['cmnd']="";
                         $_POST['phone'] = "";
@@ -142,7 +130,7 @@
                     ?>
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label>Mật khẩu</label>
                     <input type="password" name="pass" maxlength="20" value="<?php echo $hienthi['pass_user']; ?>" class="form-control" placeholder='Nhập mật khẩu - tối đa 20 ký tự'/>
 
@@ -162,7 +150,7 @@
                         echo "<p class='results1' >Mật khẩu không trùng khớp</p>";
                     }
                     ?>
-                </div>
+                </div> -->
 
                 <div class="form-group">
                     <label>Họ tên</label>
@@ -245,3 +233,7 @@
         </div>
     </div>
 <?PHP include('includes/footer.php'); ?>
+<script type="text/javascript">
+    $('.tai-khoan .collapse').addClass('in');
+    $('.tai-khoan .nguoidung').addClass('active-hover');
+</script>

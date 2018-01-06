@@ -300,9 +300,9 @@
                     sonha:sonha_tenduong,
                     phuong:phuong_xa
                 },function(dt){
-                    console.log(dt);
-                    // alert("Gửi đơn hàng thành công");
-                    // window.location.href = "";
+                    // console.log(dt);
+                    alert("Gửi đơn hàng thành công");
+                    window.location.href = "";
                 });
             }
         });

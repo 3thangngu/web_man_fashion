@@ -95,3 +95,7 @@
         </div>
     </div>
 <?PHP include('includes/footer.php'); ?>
+<script type="text/javascript">
+    $('.tinh-thanh .collapse').addClass('in');
+    $('.tinh-thanh .thanhpho').css({'background-color': '#e1e1e1'});
+</script>

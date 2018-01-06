@@ -75,3 +75,7 @@
         }
     }
 </script>
+<script type="text/javascript">
+    $('.kinh-doanh .collapse').addClass('in');
+    $('.kinh-doanh .hoadon').css({'background-color': '#e1e1e1'});
+</script>

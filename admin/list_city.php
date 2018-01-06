@@ -4,7 +4,7 @@
 
 <div class="row product-category">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <h2 style=" color: red">Danh sách tỉnh thành
+        <h2 style=" color: red">Danh sách thành phố
             <a href="add_city.php" style="float: right; color:#1b926c; font-size: 20px;">Thêm<i
                 class="fa fa-fw fa-plus-square-o"
                 style="font-size: 25px; color:#1b926c; float: right; padding-left: 10px; padding-right: 75px;"></i></a>
@@ -127,3 +127,7 @@
   </div>
 
   <?PHP include('includes/footer.php'); ?>
+<script type="text/javascript">
+    $('.tinh-thanh .collapse').addClass('in');
+    $('.tinh-thanh .thanhpho').addClass('active-hover');
+</script>

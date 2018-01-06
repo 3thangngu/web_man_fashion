@@ -391,3 +391,7 @@ include('inc/myconnect.php');
    })
     /**/
 </script>
+<script type="text/javascript">
+    $('.quang-cao .collapse').addClass('in');
+    $('.quang-cao .hinhanh').addClass('active-hover');
+</script>

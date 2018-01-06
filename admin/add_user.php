@@ -278,3 +278,7 @@
         </div>
     </div>
 <?PHP include('includes/footer.php'); ?>
+<script type="text/javascript">
+    $('.tai-khoan .collapse').addClass('in');
+    $('.tai-khoan .nguoidung').addClass('active-hover');
+</script>

@@ -115,3 +115,7 @@
         </div>
     </div>
 <?PHP include('includes/footer.php'); ?>
+<script type="text/javascript">
+    $('.tinh-thanh .collapse').addClass('in');
+    $('.tinh-thanh .quanhuyen').addClass('active-hover');
+</script>

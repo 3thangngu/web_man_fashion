@@ -147,5 +147,8 @@ if(isset($_POST['submit'])) {
 				$(this).parent().remove();
 			})
 		</script>
-
+<script type="text/javascript">
+    $('.quang-cao .collapse').addClass('in');
+    $('.quang-cao .slider').css({'background-color': '#e1e1e1'});
+</script>
 

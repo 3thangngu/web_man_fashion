@@ -8,11 +8,7 @@
         padding: 30px 30px 0;  
     }
     .add-order .title{
-        color: #bd0103;
-        font-weight: bold;
-        /*text-align: center;*/
-        /*text-transform: uppercase;*/
-        text-decoration: underline;
+        color: red;
 
     }
     .add-order .info,.add-order .products{
@@ -320,3 +316,7 @@
 <!-- Kiem tra du lieu -->
 <script type="text/javascript" src="js/add_order.js"></script>
 <!--  -->
+<script type="text/javascript">
+    $('.giao-hang .collapse').addClass('in');
+    $('.giao-hang .themdonhang').css({'background-color': '#e1e1e1'});
+</script>

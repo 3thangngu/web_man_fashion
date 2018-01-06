@@ -27,6 +27,11 @@
     <script src="js/plugins/morris/morris-data.js"></script>
     <script type="text/javascript" src="js/js-modify.js"></script>
     <script type="text/javascript" src="js/chart.min.js"></script>
+    <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="ckfinder/ckfinder.js"></script>
+    <script type="text/javascript">
+        CKEDITOR.replace('noidung-gioithieu');
+    </script>
     <script type="text/javascript" src="js/custom_template.js"></script>
 </body>
 

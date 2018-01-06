@@ -28,7 +28,6 @@ html{
 }
 body{
 	font-family: "Open Sans",sans-serif;
-	font-weight: 700;
 	background: #ffff;
 	color: #333;
 	
@@ -50,6 +49,12 @@ body{
 #wrapper .navbar-inverse .navbar-nav>li>a{
 	color: #333!important;
 }
+.side-nav {
+	font-family: "Open Sans Bold"
+}
 /*#wrapper .navbar-inverse .navbar-nav .li-first:hover  > a{
 	background-color: blue!important;
 }*/
+.active-hover{
+	background-color: #e1e1e1;
+}

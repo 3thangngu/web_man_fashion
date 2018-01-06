@@ -122,8 +122,8 @@ ul.alert-dropdown {
 
 @media(min-width:768px) {
     .side-nav {
-        box-shadow: 2px 2px 5px rgba(0,0,0,.1);
-
+        box-shadow: 5px 2px 5px rgba(0,0,0,.1);
+        font-weight: 700;
         position: fixed;
         /*top: 51px;*/
         top: 0px;

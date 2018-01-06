@@ -17,7 +17,7 @@ if(isset($_GET['id']) && filter_var($_GET['id'],FILTER_VALIDATE_INT,array('min_r
 
 	<div class="row" style="height: 100%">
 		<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">.
-			<h3 style="color: #bd0103;text-align: center;text-transform: uppercase;text-decoration: underline;margin-top: 0">Chi tiết liên hệ</h3>
+			<h3 style="color: red">Chi tiết liên hệ</h3>
 			
 			<div class="row">
 				<div class="name col-xs-4"><label>Họ và tên: </label> <?php echo $name; ?></div>
@@ -27,8 +27,9 @@ if(isset($_GET['id']) && filter_var($_GET['id'],FILTER_VALIDATE_INT,array('min_r
 				<div class="email col-xs-4"><label>Email </label> <?php echo $email; ?></div>
 				<div class="address col-xs-6"><label>Địa chỉ: </label> <?php echo $address; ?></div>
 			</div>
-			<div class="row">
-				<div class="col-xs-12" style="padding:30px 0 0 15px"><?php echo $content; ?></div>
+			<div class="row"  style="padding:30px 0 0 15px">
+				<label class="col-xs-12">Nội dung liên hệ: </label>
+				<div class="col-xs-12"><?php echo $content; ?></div>
 			</div>
 			<div class="" style="padding-top: 25px;">
 				<a href="list_contact.php"><div class="btn btn-primary">Quay về</div></a>
@@ -44,3 +45,7 @@ else{
 	exit();		
 }
 ?>
+<script type="text/javascript">
+    $('.danh-muc .collapse').addClass('in');
+    $('.danh-muc .lienhe').css({'background-color': '#e1e1e1'});
+</script>

@@ -251,3 +251,7 @@
 </form>
 
 <?PHP include('includes/footer.php');?>
+<script type="text/javascript">
+    $('.thong-tin-trang .collapse').addClass('in');
+    $('.thong-tin-trang .thongtintrang').addClass('active-hover');
+</script>
