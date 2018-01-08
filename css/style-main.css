@@ -1,3 +1,22 @@
+@font-face{
+    font-family: "Open Sans";
+    src:url(opensans/OpenSans-Regular.ttf);
+}
+@font-face{
+    font-family: "Open Sans Bold";
+    src:url(opensans/OpenSans-Bold.ttf);
+}
+html{
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    overflow-x: hidden;
+}
+body{
+    font-family: "Open Sans",sans-serif;
+    background: #ffff;
+}
+    
 .top-bar{background: #292929;border-top: 1px solid #2f2e2a;height: 44px }
 .top-bar-left {padding: 0}
 .top-bar-left ul{text-align: right;line-height: 40px;}
@@ -41,7 +60,7 @@
 .menu-header > ul{list-style-type: none;width: 100%;height: 35%;padding: 0;text-align: right;}
 .menu-header > ul li{display: inline-block;margin-top: 45px;position: static;padding-bottom: 12px;transition: all 0.5s}
 .menu-header > ul li:hover .item-menu-header{display: block;}
-.menu-header > ul li> a{text-decoration: none;font-family: Relaway;color: #444; font-weight: 700;margin-left: 0px;cursor: pointer;position: relative;padding: 10px 10px}
+.menu-header > ul li> a{text-decoration: none;font-family: "Open Sans Bold";color: #444; font-weight: 700;margin-left: 0px;cursor: pointer;position: relative;padding: 10px 10px}
 .menu-header > ul li> a:hover{color: #bd0103}
 .menu-header > ul li >a span{text-transform: capitalize;position: absolute;left: 20px;top: -20px;padding: 0 5px;background: #bd0103;color: white;border-radius: 4px}
 .menu-header > ul li >a span:after{content: '';border-style: solid;position: absolute;left: 5px;bottom: -4px;border-width: 4px 4px 0;border-color: #bd0103 transparent}
@@ -229,10 +248,10 @@ footer{background: black;padding-top: 20px}
 #footer-header .wapper2 h3 span{background: #bd0103;padding: 5px 10px 5px 10px;border-radius: 50%}
 #footer-header .wapper2 h3 span i{color: #ccc;font-size: 20px}
 #footer-header .wapper2 ul{padding: 0;list-style-type: none;}
-#footer-header .wapper2 ul li{padding-left: 10px;padding-bottom: 10px;color: #ccc;font-size: 13px;border-bottom: 1px solid #ccc;padding-top: 10px;cursor: pointer;transition: all .5s}
+#footer-header .wapper2 ul li{font-family: "Open Sans Bold";padding-left: 10px;padding-bottom: 10px;color: #ccc;font-size: 13px;border-bottom: 1px solid #ccc;padding-top: 10px;cursor: pointer;transition: all .5s}
 /*#footer-header .wapper2 ul li > a{color: #ccc;text-decoration: none;text-transform: capitalize;}*/
 #footer-header .wapper2 ul li:hover{background: #696969}
-#footer-header .wapper2 ul li span{margin-right:10px;background: #ccc;padding:0px 2px;border-radius: 50px}
+#footer-header .wapper2 ul li span{margin-right:10px;background: #ccc;height: 18px;width: 18px;border-radius: 50px;display: inline-block;text-align: center;line-height: 18px}
 #footer-header .wapper2 ul li span i{font-size: 10px;color: #444}
 #footer-header .wapper3:hover{background: #333}
 #footer-header .wapper3 h3{color: #999;text-transform: uppercase;margin-bottom: 15px}

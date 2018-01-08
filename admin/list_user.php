@@ -19,6 +19,7 @@
                     <th>Tài khoản</th>
                     <!--<th>Mật khẩu</th>-->
                     <th>Họ tên</th>
+                    <th>Loại tài khoản</th>
                     <th>Ngày sinh</th>
                     <th>CMND</th>
                     <th>Địa chỉ</th>
@@ -32,7 +33,7 @@
                 </thead>
                 <tbody>
                 <?php
-                $query = 'SELECT* FROM tb_user ORDER BY id_user';
+                $query = 'SELECT* FROM tb_user ORDER BY type_user ASC';
                 $result = mysqli_query($dbc, $query);
                 kt_query($query, $result);
                 while ($user = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -41,6 +42,7 @@
                         <td><?php echo $user['account_user']; ?></td>
                         <!--<td><?php echo $user['pass_user']; ?></td>-->
                         <td><?php echo $user['name_user']; ?></td>
+                        <td><?php echo $user['type_user']== 0 ? 'Admin' : 'Nhân viên' ?></td>
                         <td><?php echo date("d/m/Y",strtotime($user['birthday_user'])); ?></td>
                         <td><?php echo $user['cmnd_user']; ?></td>
                         <td><?php echo $user['address_user']; ?></td>

@@ -285,8 +285,8 @@
                 var name =$("input[name='name']").val();
                 var email =$("input[name='email']").val();
                 var sdt = $("input[name='phone_number']").val();
-                var tinh_thanh = $(".tinhthanh").find(":selected").text();
-                var quan_huyen =$('select[name="quanhuyen"]').find(":selected").text();
+                var tinh_thanh = $(".tinhthanh").find(":selected").val();
+                var quan_huyen =$('select[name="quanhuyen"]').find(":selected").val();
                 var sonha_tenduong=$("input[name='sonha-tenduong']").val();
                 var phuong_xa =$("input[name='phuong-xa']").val();
                 $.get("functions/tao_don_hang.php",{
@@ -300,7 +300,6 @@
                     sonha:sonha_tenduong,
                     phuong:phuong_xa
                 },function(dt){
-                    // console.log(dt);
                     alert("Gửi đơn hàng thành công");
                     window.location.href = "";
                 });

@@ -37,6 +37,23 @@
 				echo 1;
 			}
 			break;
+		case 'fb':
+			$value = $_POST['value'];
+			$query_kt = "SELECT * FROM tb_information WHERE name='fb'";
+			$result_kt = mysqli_query($dbc, $query_kt);
+			if (mysqli_num_rows($result_kt) > 0) {
+				$query_kt = "UPDATE tb_information SET  
+				value = '{$value}'
+				WHERE name='fb'";
+				$result_kt = mysqli_query($dbc, $query_kt);
+				echo 1;
+			} else {
+				$query_kt = "INSERT INTO  tb_information(name,value)
+				VALUES('fb','{$value}')";
+				$result_kt = mysqli_query($dbc, $query_kt);
+				echo 1;
+			}
+			break;	
 		case 'logo-header':
 			$img = str_replace(" ","",$_FILES['file']['name']);
             $link_img = 'image/' . $img;

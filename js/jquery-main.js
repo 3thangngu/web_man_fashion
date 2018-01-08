@@ -177,10 +177,8 @@ $(function(){
             return false;
         }
         else{
-
             $.get("xuli-tinhthanh/xuli-quanhuyen.php",{value:a},function(data){
                 $('.select-districts').html(data);
-
             });
         }
     });

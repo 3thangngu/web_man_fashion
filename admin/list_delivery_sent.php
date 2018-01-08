@@ -6,15 +6,13 @@
  * Time: 4:40 PM
  */
 ?>
-<style type="text/css">
-</style>
 <?PHP 
     include('includes/header.php');
     include('inc/function.php');
 ?>
     <div class="row">
         <div class="col-xs-12">
-            <h2 style=" color: red;">Danh Sách Giao hàng  <a href="list_delivery_sent.php" class="btn btn-primary" style="float: right;">Các các đơn hàng đã gửi </a></h2> 
+            <h3 style=" color: red;">Danh sách giao hàng đã gửi</h3> 
             <table class="table table-striped"> 
                 <thead> 
                     <tr>
@@ -25,38 +23,26 @@
                         <th>Địa chỉ</th>
                         <th>Ngày đặt hàng</th>
                         <th class="text-center">Xem chi tiết</th>
-                        <th class="text-center">Đã gữi</th>
+                        <th class="text-center">Đã nhận</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php 
-                        $query = "SELECT code_ship, name_customer, phone_customer,address_customer,order_day,code_bill,status_ship FROM tb_order,tb_bill,tb_ship WHERE tb_order.id_order = tb_bill.id_order && tb_bill.id_bill = tb_ship.id_bill &&  status_ship = '0' || status_ship = '2'  GROUP BY code_ship";
+                        $query = "SELECT code_ship, name_customer, phone_customer,address_customer,order_day,code_bill FROM tb_order,tb_bill,tb_ship WHERE tb_order.id_order = tb_bill.id_order && tb_bill.id_bill = tb_ship.id_bill &&  status_ship = '1'  GROUP BY code_ship";
                         $result = mysqli_query($dbc,$query);
                         kt_query($query, $result);
                         while ($order = mysqli_fetch_array($result, MYSQLI_NUM)) {
                         ?>                    
-                    <tr style="<?php echo $order[6]==2 ?  'pointer-events:none;background: #e1e1e1' : ''; ?>">
-                         <td ><?php echo $order[5]; ?></td>
+                    <tr>
+                         <td><?php echo $order[5]; ?></td>
                         <td><?php echo $order[0]; ?></td>
                         <td><?php echo $order[1]; ?></td>
                         <td><?php echo $order[2]; ?></td>
                         <td><?php echo $order[3]; ?></td>
                         <td><?php $date=date_create($order[4]);
                             echo date_format($date,"H:i - d/m/Y"); ?></td>
-                        <?php 
-                            if ( $order[6] == 0 ) {
-                           ?>
-                        <td class="text-center"><a  href="delivery_detail.php?code_ship=<?php echo $order[0]; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-
-                        <td class="text-center"><a onClick="return confirm('Hóa đơn đã được gửi');" href="functions/review_ship.php?code_ship=<?php echo $order[0]; ?>"><i class="glyphicon glyphicon-ok"></i></a></td>
-                        <?php
-                            } else {
-                                ?>
-                                <td></td>
-                                <td></td>
-                                <?php
-                            }
-                        ?>
+                        <td class="text-center"><a href="delivery_detail.php?code_ship=<?php echo $order[0]; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                        <td class="text-center"><a onClick="return confirm('Hóa đơn đã được gửi');" href="functions/review_ship_sent.php?code_ship=<?php echo $order[0]; ?>"><i class="glyphicon glyphicon-ok"></i></a></td>
                     </tr>
                     <?php
                         }
@@ -72,7 +58,6 @@
 ?>
 
 <script language="JavaScript">
-    $("tr").attr("disabled", "disabled").off('click');
     function chkallClick(o) {
         var form = document.frmForm;
         for (var i = 0; i < form.elements.length; i++) {

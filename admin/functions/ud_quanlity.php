@@ -15,5 +15,6 @@
 	} else {
 		unset($_SESSION['order'][$id_product]);
 		print_r($_SESSION['order']);
+		echo "khong co array_quanlity (fileL:ud_quanlity.php)";
 	}
 ?>

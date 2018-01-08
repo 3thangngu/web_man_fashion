@@ -74,6 +74,30 @@
 </td>
 </tr>
 <!--  -->
+   <tr class="wrap-fb">
+        <td>
+            <label class="text-label">Link facebook: </label>
+        </td>
+         <td>
+            <table class="table wrap-value">
+                 <tbody>
+                     <tr>
+                         <td>
+                             <div class="text-value"><?php if ( array_key_exists("fb", $array_information) ) {
+                                echo $array_information['fb'];
+                            } ?></div>   
+                        </td>
+                        <td>
+                         <div class="edit text-right"><i class="glyphicon glyphicon-pencil"></i>Chỉnh sửa</div>
+                     </td>
+                 </tr>
+
+             </tbody>
+            </table> 
+            <div class="text-success notifi">Lưu Thành Công</div>
+     </td>
+     </tr>
+<!--  -->
 <tr class="wrap-logo-header">
     <td>
      <label class="text-label">Logo Header: </label>

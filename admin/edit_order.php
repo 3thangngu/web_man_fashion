@@ -66,7 +66,7 @@
     include('../inc/function.php'); 
     if( isset($_GET['code_order']) ) {
         $code_order = $_GET['code_order'];
-        $query = "SELECT * FROM tb_order, tb_product WHERE tb_product.id_product = tb_order.id_product && code_order='{$code_order}'";
+        $query = "SELECT * FROM tb_order, tb_product,tb_district,tb_city WHERE tb_city.id_city = tb_district.id_city && tb_order.id_district = tb_district.id_district && tb_product.id_product = tb_order.id_product && code_order='{$code_order}'";
         $result = mysqli_query($dbc, $query); 
          extract(mysqli_fetch_assoc($result)); 
     } else {
@@ -121,13 +121,36 @@
                     </div>
                     <div class="col-xs-6 right">
                         <div class="title-left">Thông tin thanh toán</div>
+                        <div class="form-group wrapper-tinhthanh">
+                            <label>Chọn tỉnh thành</label>
+                            <select name="tinhthanh" class="select tinhthanh form-control">
+                                <option value="">--- Chọn tỉnh thành ---</option> 
+                                <?php 
+                                    $query_tt = "SELECT * FROM tb_city ORDER BY code_city";
+                                      $result_tt = mysqli_query($dbc, $query_tt);
+                                      while ( $rows = mysqli_fetch_assoc($result_tt) ) {
+                                        ?>
+                                        <option <?php echo $id_city == $rows['id_city'] ? 'selected="selected"' : '' ?> value="<?php echo $rows['id_city'] ?>"> <?php echo $rows['name_city'] ?> </option>
+                                        <?php
+                                      }
+                                ?>
+                                
+                            </select>
+                            <div class="errors"></div>
+                        </div>
+                        <div class="form-group wrapper-quanhuyen">
+                            <label>Chọn quận huyện</label>
+                            <select name="quanhuyen" class="select select-districts form-control">
+                                <option value="">Bạn chưa chọn tỉnh thành</option> 
+                            </select>
+                            <div class="errors"></div>
+                        </div> 
                         <div class="form-group wrapper-sonha-tenduong">
                             <label class="name">Địa chỉ</label>
-                            <textarea type="text" class="sonha-tenduong form-control"> <?php echo $address_customer; ?> </textarea>
+                            <input type="text" name="sonha-tenduong" class="form-control" value=" <?php echo $address_customer; ?>">
                             <div class="errors"></div>
                             <span class='icon-notify' style='right: 10px'></span>
-                        </div>
-                        
+                        </div> 
                     </div>
                 </div>
             </div>
@@ -376,7 +399,8 @@
     /* 2,500,000 */
 </script>
 <script type="text/javascript">
-        $("input[name='name']").focusout(function(){
+    window.onload = function(){
+                $("input[name='name']").focusout(function(){
         if($(this).val()){
             // nếu chiều dài giá trị < 3 || > 20
             if ( $(this).val().length < 3 ||  $(this).val().length > 20 ) {
@@ -461,9 +485,9 @@
             $(".wrapper-phone_number .icon-notify").addClass("glyphicon glyphicon-remove form-control-feedback");
         }
     });
-    /* kiểm tra ten duong */
-    $(".sonha-tenduong").focusout(function(){
-        if($(this).text()){
+        /* kiểm tra ten duong */
+    $("input[name='sonha-tenduong']").focusout(function(){
+        if($(this).val()){
             $(this).parent().removeClass("has-error has-feedback");
             $(this).parent().addClass("has-success has-feedback");
             $(this).next(".errors").html("");
@@ -476,12 +500,45 @@
             $(".wrapper-sonha-tenduong .icon-notify").removeClass("glyphicon glyphicon-ok form-control-feedback");
             $(".wrapper-sonha-tenduong .icon-notify").addClass("glyphicon glyphicon-remove form-control-feedback");
         }
-        console.log($(this).text());
+    });
+    /* rang gia tri */
+    var a = $('.tinhthanh').val();
+        if($('.tinhthanh').val()){
+             $.get("../xuli-tinhthanh/xuli-quanhuyen.php",{value:a,id_district: <?php echo $id_district ?>},function(data){
+                $('.select-districts').html(data);
+            });
+        }
+    /* tinh thanh*/
+    $('.tinhthanh').click(function(){
+        var id_district = "<?php echo $id_district ?>";
+        var a = $('.tinhthanh').val();
+        if(a ==""){
+            return false;
+        }
+        else{
+
+            $.get("../xuli-tinhthanh/xuli-quanhuyen.php",{value:a,id_district: <?php echo $id_district ?> },function(data){
+                $('.select-districts').html(data);
+            });
+        }
     });
 
     /* Tạo đơn hàng */
     $(".guidonhang").click(function(){
-            var errors = [];
+            var errors = new Array();
+            //kiem tra tinh thanh 
+            if($('select[name="tinhthanh"]').find(":selected").val()==""){
+                errors.push("error");
+                $(".wrapper-tinhthanh .errors").html("Tỉnh thành không được bỏ trống !!");
+            }else{
+                $(".wrapper-tinhthanh .errors").html("");
+            }
+            if($('select[name="quanhuyen"]').find(":selected").val()==""){
+                errors.push("error");
+                $(".wrapper-quanhuyen .errors").html("Quận huyện không được bỏ trống !!");
+            }else{
+                $(".wrapper-quanhuyen .errors").html("");
+            }
             //kiem tra ten
             if($("input[name='name']").val()){
                   // kiem tra do dai
@@ -566,21 +623,22 @@
                 $(".wrapper-phone_number .icon-notify").removeClass("glyphicon glyphicon-ok form-control-feedback");
                 $(".wrapper-phone_number .icon-notify").addClass("glyphicon glyphicon-remove form-control-feedback");
             }
-            //kiem tra so nha && ten duong
-            if($(".sonha-tenduong").val()){
-                $("input[name='sonha-tenduong']").parent().removeClass("has-error has-feedback");
-                $("input[name='sonha-tenduong']").parent().addClass("has-success has-feedback");
-                $("input[name='sonha-tenduong']").next(".errors").html("");
-                $(".wrapper-sonha-tenduong .icon-notify").removeClass("glyphicon glyphicon-remove form-control-feedback");
-                $(".wrapper-sonha-tenduong .icon-notify").addClass("glyphicon glyphicon-ok form-control-feedback");     
-            }else{
-                errors.push("error");
-                $("input[name='sonha-tenduong']").parent().removeClass("has-success has-feedback");
-                $("input[name='sonha-tenduong']").parent().addClass("has-error has-feedback");
-                $("input[name='sonha-tenduong']").next(".errors").html("Không được bỏ trống !!");
-                $(".wrapper-sonha-tenduong .icon-notify").removeClass("glyphicon glyphicon-ok form-control-feedback");
-                $(".wrapper-sonha-tenduong .icon-notify").addClass("glyphicon glyphicon-remove form-control-feedback");
-            }
+           /* kiểm tra ten duong */
+            $("input[name='sonha-tenduong']").focusout(function(){
+                if($(this).val()){
+                    $(this).parent().removeClass("has-error has-feedback");
+                    $(this).parent().addClass("has-success has-feedback");
+                    $(this).next(".errors").html("");
+                    $(".wrapper-sonha-tenduong .icon-notify").removeClass("glyphicon glyphicon-remove form-control-feedback");
+                    $(".wrapper-sonha-tenduong .icon-notify").addClass("glyphicon glyphicon-ok form-control-feedback");     
+                }else{
+                    $(this).parent().removeClass("has-success has-feedback");
+                    $(this).parent().addClass("has-error has-feedback");
+                    $(this).next(".errors").html("Không được bỏ trống !!");
+                    $(".wrapper-sonha-tenduong .icon-notify").removeClass("glyphicon glyphicon-ok form-control-feedback");
+                    $(".wrapper-sonha-tenduong .icon-notify").addClass("glyphicon glyphicon-remove form-control-feedback");
+                }
+            });
         
              // kiem tra date
             if( $("input[name='munute']").val() && $("input[name='hour']").val() && $("input[name='munute']").val()){
@@ -607,8 +665,10 @@
                 var code_order = $('.code_order').text();
                 var name =$("input[name='name']").val();
                 var email =$("input[name='email']").val();
+                var tinh_thanh = $(".tinhthanh").find(":selected").val();
+                var quan_huyen =$('select[name="quanhuyen"]').find(":selected").val();
                 var sdt = $("input[name='phone_number']").val();
-                var sonha_tenduong= $(".sonha-tenduong").text();
+                var sonha_tenduong=$("input[name='sonha-tenduong']").val();
                 $.get("functions/edit_don_hang.php",{
                     date: date,
                     code_order:code_order,
@@ -616,11 +676,14 @@
                     email:email,
                     sdt:sdt,
                     sonha:sonha_tenduong,
+                    quan_huyen: quan_huyen
+
                 },function(dt){
-                    // console.log(dt);
+                    console.log(dt);
                     alert("Lưu đơn hàng thành công");
                     window.location.href = "";
                 });
             }
         });
+    };
 </script>

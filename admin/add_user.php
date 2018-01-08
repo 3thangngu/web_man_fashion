@@ -66,7 +66,8 @@
                 } else {
                     $diachi = $_POST['address'];
                 }
-                if (empty($_POST['type_user'])) {
+                /* */
+                if ( !isset($_POST['type_user']) || $_POST['type_user'] == '' ) {
                     $errors[] = 'type_user';
                 } else {
                     $type_user = $_POST['type_user'];
@@ -82,18 +83,18 @@
                     $result2 = mysqli_query($dbc, $query2);
                     kt_query($query2, $result2);
 
-                    $query3="SELECT birthday_user FROM tb_user WHERE birthday_user='{$birthday}'";
-                    $result3=mysqli_query($dbc,$query3);
-                    kt_query($query3,$result3);
+                    // $query3="SELECT birthday_user FROM tb_user WHERE birthday_user='{$birthday}'";
+                    // $result3=mysqli_query($dbc,$query3);
+                    // kt_query($query3,$result3);
 
                     if (mysqli_num_rows($result) == 1) {
                         $message = "<p class='results1'>Tài khoản đã tồn tại</p>";
                     } elseif (mysqli_num_rows($result2) == 1) {
                         $message = "<p class='results1'>Email đã tồn tại</p>";
                     }
-                    elseif (mysqli_num_rows($result3)==1){
-                        $message="<p class='results1'>Số chứng minh nhân dân đã tồn tại</p>";
-                    }
+                    // elseif (mysqli_num_rows($result3)==1){
+                    //     $message="<p class='results1'>Số chứng minh nhân dân đã tồn tại</p>";
+                    // }
                     else {
                         $query_in = "INSERT INTO tb_user(account_user,pass_user,name_user,birthday_user,cmnd_user,phonenumber_user,email_user,address_user,type_user,status_user)
 									VALUES('{$taikhoan}','{$matkhau}','{$hoten}','{$birthday}','{$cmnd}','{$dienthoai}','{$email}','{$diachi}','{$type_user}',{$status})
@@ -127,7 +128,7 @@
                     echo $message;
                 }
                 ?>
-                <h2 style="color: #bd0103;text-align: center;text-transform: uppercase;text-decoration: underline;">Thêm mới User</h2>
+                <h3 style="color: red">Thêm mới User</h3>
                 <div class="form-group">
 
                     <label>Tên tài khoản</label>
@@ -180,7 +181,7 @@
                     </select>
                     <?php
                     if (isset($errors) && in_array('type_user', $errors)) {
-                        echo "<p class='results1' >Bạn hãy nhập mật khẩu</p>";
+                        echo "<p class='results1' >Bạn hãy loại người dùng</p>";
                     }
 
                     ?>

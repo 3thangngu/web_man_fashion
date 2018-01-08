@@ -1,7 +1,6 @@
 <?PHP include('includes/header.php'); ?>
 <?php include('inc/myconnect.php'); ?>
 <?php include('inc/function.php'); ?>
-
 <div class="row product-category">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <h2 style=" color: red">Loại sản phẩm
@@ -21,9 +20,14 @@
                         <th>Mã loại sản phẩm</th>
                         <th>Tên loại sản phẩm</th>
                         <th>Thuộc loại</th>
-
+                    <?php 
+                    if ( $_SESSION['type_user'] == 0 ) {
+                     ?>
                         <th>Sửa</th>
                         <th>Xóa</th>
+                    <?php 
+                        }
+                    ?>
                     </tr>
                 </thead>
                 <tbody>

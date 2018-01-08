@@ -73,7 +73,6 @@ include('includes/header.php');
             else
             {
                 $message = "<p class='results1'> Bạn hãy nhập đầy đủ thông tin </p>";
-                header("Location: list_category.php");
             }
         }
         ?>

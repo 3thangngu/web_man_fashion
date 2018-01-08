@@ -220,7 +220,7 @@ while ($product = mysqli_fetch_array($result_sp, MYSQLI_ASSOC)) {
                         <div class="row  cam-ket">
                             <span class="info"><i class="glyphicon glyphicon-info-sign"></i>Cam kết:</span>
                             Hình ảnh sản phẩm thời trang được chụp từ mẫu thực. Chất lượng sản phẩm được sản xuất và
-                            thiết kế theo xu hướng thời trang 2017 của thương hiệu  <?php
+                            thiết kế theo xu hướng thời trang 2018 của thương hiệu  <?php
                             $query_description = 'SELECT value FROM tb_information WHERE name = "name"';
                             $result_description = mysqli_query($dbc, $query_description);
                             if( mysqli_num_rows($result_description) > 0 ) {

@@ -3,7 +3,7 @@
 	include('../inc/myconnect.php');
 	include('../inc/function.php');
 	
-	if(isset($_SESSION['cart']) or !empty($_SESSION['cart']) && isset($_GET['name']) && isset($_GET['email']) && isset($_GET['name']) && isset($_GET['sdt']) && isset($_GET['tinh']) && isset( $_GET['quan']) && isset($_GET['sonha']) && isset($_GET['phuong'])){
+	if(isset($_SESSION['cart']) or !empty($_SESSION['cart']) && isset($_GET['name']) && isset($_GET['email']) && isset($_GET['sdt']) && isset($_GET['tinh']) && isset( $_GET['quan']) && isset($_GET['sonha']) && isset($_GET['phuong'])){
 		$name = $_GET['name'];
 		$email = $_GET['email'];
 		$sdt = $_GET['sdt'];
@@ -12,7 +12,7 @@
 		$sonha = $_GET['sonha'];
 		$phuong = $_GET['phuong'];
 		$code_order = ramdom_code();
-		$address_customer = $sonha . ", ". $phuong . ", " . $quan . ", ".$tinh;
+		$address_customer = $sonha . ", ". $phuong;
 		date_default_timezone_set("Asia/HO_CHI_MINH");
 		$order_day =date("Y-m-d  H:i:s");
 			foreach ($_SESSION['cart'] as $value) {
@@ -23,7 +23,6 @@
 					$query= "INSERT INTO tb_order(
 											code_order,
 											status_order,
-											status_bill,
 											id_product,
 											size_product,
 											quantity_product,
@@ -31,10 +30,10 @@
 											phone_customer,
 											address_customer,
 											email_customer,
-											order_day
+											order_day,
+											id_district
 										) VALUES(
 										'{$code_order}',
-										'0',
 										'0',
 										'{$id_product}', 
 										'{$size_product}', 
@@ -43,13 +42,15 @@
 										'{$sdt}', 
 										'{$address_customer}', 
 										'{$email}',
-										'{$order_day}'
+										'{$order_day}',
+										{$quan}
+
 									)";
 				$result =  mysqli_query($dbc,$query);
 				}
-				// header('location:../gui-hang-thanh-cong.php');
-				unset($_SESSION['cart']);
 			}	
 		// header('location:../gui-hang-thanh-cong.php');
+		unset($_SESSION['cart']);
 	}
+
 ?>

@@ -98,7 +98,7 @@
                         $query_category_c = "SELECT * FROM tb_category WHERE parent_id={$category['id_category']}";
                         $result_category_c = mysqli_query($dbc, $query_category_c);
                         kt_query($query_category_c, $result_category_c);
-                        if (mysqli_num_rows($result_category_c) > 1) {
+                        if (mysqli_num_rows($result_category_c) > 0) {
                             ?>
                             <div class="item-menu-header">
                                 <div class="container">
@@ -132,7 +132,8 @@
                                 </div>
                             </div>
                             <?php
-                        } elseif (mysqli_num_rows($result_category_c) == 1) {
+                        } 
+                        elseif (mysqli_num_rows($result_category_c) == 1) {
                             ?>
                             <ul class="item-product-sp">
                                 <?php

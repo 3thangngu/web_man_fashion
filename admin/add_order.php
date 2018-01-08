@@ -229,7 +229,7 @@
                         </tr>
                         `);
                     $(".add-order .products .search").val('');
-                    update_quanlity(dt['id_product'], default_size, 1);
+                    update_quanlity(dt['id_product']);
 
                 }
             });
@@ -261,7 +261,7 @@
             data: {id_product: id_product, array_quanlity: json_quanlity},
             dataType:"text",
             success: function(dt){
-                // console.log(dt);
+                console.log(dt);
             }
         });
     }

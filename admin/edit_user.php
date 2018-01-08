@@ -130,7 +130,7 @@
                     ?>
                 </div>
 
-                <!-- <div class="form-group">
+       <!--          <div class="form-group">
                     <label>Mật khẩu</label>
                     <input type="password" name="pass" maxlength="20" value="<?php echo $hienthi['pass_user']; ?>" class="form-control" placeholder='Nhập mật khẩu - tối đa 20 ký tự'/>
 
@@ -165,8 +165,7 @@
 
                 <div class="form-group">
                     <label>Ngày sinh</label>
-                    <input type="date" name="birthday" value="<?php  $date=date_create($hienthi['cmnd_user']);
-                            echo date_format($date,'d/m/Y'); ?>" class="form-control" placeholder='Ngày sinh'/>
+                    <input type="date" name="birthday" value="<?php echo  $date=$hienthi['birthday_user']; ?>" class="form-control" placeholder='Ngày sinh'/>
                     <?php
                     if (isset($errors) && in_array('birthday', $errors)) {
                         echo "<p class='results1' >Bạn hãy nhập ngày sinh</p>";

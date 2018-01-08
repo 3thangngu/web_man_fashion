@@ -64,7 +64,7 @@
 							$array_email = explode(' ', trim($value));
 							foreach ($array_email as $value) {
 								?>
-								<li><span><i class="glyphicon glyphicon-envelope"></i></span>Email: <?php echo $value; ?></li>
+								<li><span><i class="glyphicon glyphicon-envelope"></i></span><span style="font-family: 'Open Sans Bold';background: none">Email:</span> <?php echo $value; ?></li>
 								<?php 
 							}
 						}

@@ -1,4 +1,17 @@
 <?php include('inc/myconnect.php'); ?>
+<style>
+  .thongbao{
+    background: #d54e21;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    color: white;
+    display: inline-block;
+    border-radius: 50%;
+    font-size: 11px;
+    line-height: 20px;
+  }
+</style>
 <div class="collapse navbar-collapse navbar-ex1-collapse wrap-sidebar">
     <ul class="nav navbar-nav side-nav">
         <li style="background:#1b926c;color:#fff;">
@@ -42,11 +55,11 @@
 
     <li class="li-first kinh-doanh">
         <a href="javascript:;" data-toggle="collapse" data-target="#sales"><i class="fa fa-fw fa-line-chart"></i>
-            Kinh doanh <i class="fa fa-fw fa-angle-double-down"></i>
+            Kinh doanh <i class="fa fa-fw fa-angle-double-down"></i><!-- <span class="thongbao">5</span> -->
         </a>
         <ul id="sales" class="collapse">
             <li class="dathang">
-                <a href="list_order.php"><i class="fa fa-fw fa-list"></i> Đặt hàng</a>
+                <a href="list_order.php"><i class="fa fa-fw fa-list"></i> Đặt hàng</a> <span></span>
             </li>
             <li class="hoadon">
                 <a href="list_bill.php"><i class="fa fa-fw fa-list"></i> Hóa đơn</a>

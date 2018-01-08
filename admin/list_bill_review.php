@@ -13,7 +13,6 @@
     <div class="row">
         <div class="col-12">
             <h3 style=" color: red">Danh hóa đơn</h3>
-            <a href="list_bill_review.php" class="btn btn-primary" style="float: right;">Các hóa đơn đã duyệt</a>
             <table class="table table-striped"> 
                 <thead> 
                     <tr>
@@ -22,13 +21,13 @@
                         <th>Số điện thoại</th>
                         <th>Địa chỉ</th>
                         <th>Ngày đặt hàng</th>
-                        <th>Xem chi tiết</th>
-                        <th>Duyệt</th>
+                        <th class="text-center">Xem chi tiết</th>
+                        <!-- <th>Duyệt</th> -->
                     </tr>
                 </thead>
                 <tbody>
                     <?php 
-                        $query = "SELECT code_bill, name_customer, phone_customer,address_customer, order_day, id_product, tb_bill.status_bill FROM tb_order,tb_bill WHERE tb_bill.id_order = tb_order.id_order && tb_bill.status_bill = '0'  GROUP BY code_bill ORDER BY status_bill";
+                        $query = "SELECT code_bill, name_customer, phone_customer,address_customer, order_day, id_product, tb_bill.status_bill FROM tb_order,tb_bill WHERE tb_bill.id_order = tb_order.id_order && tb_bill.status_bill = '1'  GROUP BY code_bill ORDER BY status_bill";
                         $result = mysqli_query($dbc,$query);
                         kt_query($query, $result);
 
@@ -46,7 +45,7 @@
                             if ( $bill[6] == "0" ) {
                          ?>
 
-                       <td class="text-center"><a onClick="return confirm('Bạn muốn chuyển đơn hàng này qua bên giao hàng ?');" href="functions/review_bill.php?code_bill=<?php echo $bill[0]; ?>"><i class="glyphicon glyphicon-ok"></i></a></td>
+                      <!--  <td class="text-center"><a onClick="return confirm('Bạn muốn chuyển đơn hàng này qua bên giao hàng ?');" href="functions/review_bill.php?code_bill=<?php echo $bill[0]; ?>"><i class="glyphicon glyphicon-ok"></i></a></td> -->
                         <?php 
                             }
                         ?>

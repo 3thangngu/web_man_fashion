@@ -3,7 +3,7 @@
 	include('../inc/myconnect.php');
 	include('../inc/function.php');
 	
-	if(isset($_SESSION['order']) or !empty($_SESSION['order']) && isset($_GET['name']) && isset($_GET['email']) && isset($_GET['name']) && isset($_GET['sdt']) && isset($_GET['tinh']) && isset( $_GET['quan']) && isset($_GET['sonha']) && isset($_GET['phuong']) && isset($_GET['code_order'])){
+	if(isset($_SESSION['order']) or !empty($_SESSION['order']) && isset($_GET['name']) && isset($_GET['email']) && isset($_GET['sdt']) && isset($_GET['tinh']) && isset( $_GET['quan']) && isset($_GET['sonha']) && isset($_GET['phuong']) && isset($_GET['code_order'])){
 		$code_order = $_GET['code_order'];
 		$name = $_GET['name'];
 		$email = $_GET['email'];
@@ -13,7 +13,8 @@
 		$sonha = $_GET['sonha'];
 		$phuong = $_GET['phuong'];
 		$code_order = $_GET['code_order'];
-		$address_customer = $sonha . ", ". $phuong . ", " . $quan . ", ".$tinh;
+		$id_district = $_GET['quan'];
+		$address_customer = $sonha . ", ". $phuong;
 		// date_default_timezone_set("Asia/HO_CHI_MINH");
 		$order_day = $_GET['date'];
 			foreach ($_SESSION['order'] as $value) {
@@ -25,7 +26,6 @@
 					$query= "INSERT INTO tb_order(
 											code_order,
 											status_order,
-											status_bill,
 											id_product,
 											size_product,
 											quantity_product,
@@ -33,10 +33,10 @@
 											phone_customer,
 											address_customer,
 											email_customer,
-											order_day
+											order_day,
+											id_district
 										) VALUES(
 										'{$code_order}',
-										'0',
 										'0',
 										'{$id_product}', 
 										'{$size_product}', 
@@ -45,16 +45,15 @@
 										'{$sdt}', 
 										'{$address_customer}', 
 										'{$email}',
-										'{$order_day}'
+										'{$order_day}',
+										'{$id_district}'
 									)";
+									echo $query;
 
 				$result =  mysqli_query($dbc,$query);
 				}
 				
-
-				// header('location:../gui-hang-thanh-cong.php');
 			}	
 			unset($_SESSION['order']);
-		// header('location:../gui-hang-thanh-cong.php');
-	}
+	} 
 ?>

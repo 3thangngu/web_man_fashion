@@ -64,7 +64,37 @@
 	 		
 	 	});
 // kêt thúc mo ta 
-
+// *------- Xu li fb
+	// edit
+	$("#ifm-website .wrap-fb").on("click",".wrap-value .edit",function(){
+		var value = $(this).parents(".wrap-value").find(".text-value").text();
+		$(this).parents(".wrap-value").find(".text-value").before(`
+			<input type="text" name="" class="form-text text-input text-name" placeholder="Link facebook" value="`+ value +`">
+			`);
+		$(this).parents(".wrap-value").find(".text-value").remove();
+		$(this).before(`
+			<div class="save text-right"><i class="glyphicon glyphicon-floppy-save"></i>Lưu</div>
+			`);
+		$(this).remove();
+	});
+ 	// save  
+ 	$("#ifm-website .wrap-fb").on("click",".wrap-value .save",function(){
+ 		var seclect = $(this);
+ 		seclect.parents(".wrap-fb").find(".notifi").removeClass("active");
+ 		var value = seclect.parents(".wrap-value").find(".text-name").val();
+ 		$.post("functions/xuli-information.php", {field: "fb", value: value}, function(data){
+ 			
+ 			seclect.parents(".wrap-fb").find(".notifi").addClass("active");
+ 			// 
+ 			seclect.parents(".wrap-fb").find(".text-input").before(' <div class="text-value">'+ value +'</div> ');
+ 			seclect.parents(".wrap-fb").find(".text-input").remove();
+ 			//
+ 			//
+ 			seclect.before('<div class="edit text-right"><i class="glyphicon glyphicon-pencil"></i>Chỉnh sửa</div>');
+ 			seclect.remove();
+ 		})
+ 	});
+ 	// Ket thuc xu li name
 // *----- Xu li anh logo_header
 	// var value_logo_header;
 	$("#ifm-website .wrap-logo-header").on("change",".wrap-value .file",function(){

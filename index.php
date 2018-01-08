@@ -198,7 +198,7 @@ include('inc/function.php');
            </div>
        </div>
    </div>  <!-- kết thúc body -->
-   <div class="news-letter hidden-sm hidden-xs">
+<!--    <div class="news-letter hidden-sm hidden-xs">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 text-center">
@@ -218,7 +218,7 @@ include('inc/function.php');
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="container">
     <div class="row">

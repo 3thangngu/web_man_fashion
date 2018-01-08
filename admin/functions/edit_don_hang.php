@@ -3,9 +3,8 @@
 	include('../inc/myconnect.php');
 	include('../inc/function.php');
 	
-	if(isset($_SESSION['order']) or !empty($_SESSION['order']) && isset($_GET['name']) && isset($_GET['email']) && isset($_GET['name']) && isset($_GET['sdt']) && isset($_GET['sonha']) &&  isset($_GET['code_order'])){
+	if(isset($_SESSION['order']) or !empty($_SESSION['order']) && isset($_GET['name']) && isset($_GET['email'])  && isset($_GET['sdt']) && isset($_GET['sonha']) &&  isset($_GET['code_order']) && isset($_GET['quan_huyen']) ){
 		$code_order = $_GET['code_order'];
-
     	/* Xoa don hang cu */
     	$query = "DELETE FROM tb_order WHERE code_order={$code_order}";
     	$result = mysqli_query($dbc, $query);
@@ -14,12 +13,9 @@
 		$name = $_GET['name'];
 		$email = $_GET['email'];
 		$sdt = $_GET['sdt'];
-		$tinh = $_GET['tinh'];
-		$quan = $_GET['quan'];
-		$sonha = $_GET['sonha'];
-		$phuong = $_GET['phuong'];
 		$code_order = $_GET['code_order'];
-		$address_customer = $sonha;
+		$address_customer =  $_GET['sonha'];
+		$id_district = $_GET['quan_huyen'];
 		// date_default_timezone_set("Asia/HO_CHI_MINH");
 		$order_day = $_GET['date'];
 			foreach ($_SESSION['order'] as $value) {
@@ -31,7 +27,6 @@
 					$query= "INSERT INTO tb_order(
 											code_order,
 											status_order,
-											status_bill,
 											id_product,
 											size_product,
 											quantity_product,
@@ -39,10 +34,10 @@
 											phone_customer,
 											address_customer,
 											email_customer,
-											order_day
+											order_day,
+											id_district
 										) VALUES(
 										'{$code_order}',
-										'0',
 										'0',
 										'{$id_product}', 
 										'{$size_product}', 
@@ -51,9 +46,10 @@
 										'{$sdt}', 
 										'{$address_customer}', 
 										'{$email}',
-										'{$order_day}'
+										'{$order_day}',
+										'{$id_district}'
 									)";
-
+									echo $query;
 				$result =  mysqli_query($dbc,$query);
 				}
 				

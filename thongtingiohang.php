@@ -76,69 +76,7 @@ if(!isset($_SESSION['cart']) or empty($_SESSION['cart'])){
 								<div class="col-xs-12 col-lg-8 wrapper-tinhthanh">
 									<select name="tinhthanh" class="select tinhthanh">
 										 	<option value="">--- Chọn tỉnh thành ---</option> 
-										 	<option value="1">An Giang</option>
-										 	<option value="2">Bà Rịa - Vũng Tàu</option> 
-										 	<option value="7">Bắc Giang</option> 
-										 	<option value="8">Bắc Kạn</option>							 	
-										 	<option value="61">Bạc Liêu</option>
-										 	<option value="9">Bắc Ninh</option>
-										 	<option value="10">Bến Tre</option>
-										 	<option value="3">Bình Dương</option> 
-										 	<option value="4">Bình Phước</option> 
-										 	<option value="5">Bình Thuận</option> 
-										 	<option value="6">Bình Định</option> 
-										 	<option value="12">Cà Mau</option> 
-										 	<option value="13">Cần Thơ</option> 
-										 	<option value="11">Cao Bằng</option> 
-										 	<option value="14">Gia Lai</option> 
-										 	<option value="15">Hà Giang</option> 
-										 	<option value="16">Hà Nam</option> 
-										 	<option value="17">Hà Nội</option> 
-										 	<option value="19">Hà Tĩnh</option>
-										 	<option value="22">Hải Dương</option> 					 	
-										 	<option value="23">Hải Phòng</option> 
-										 	<option value="63">Hậu Giang</option> 
-										 	<option value="20">Hòa Bình</option> 
-										 	<option value="21">Hưng Yên</option> 
-										 	<option value="25">Khánh Hòa</option> 
-										 	<option value="27">Kiên Giang</option> 
-										 	<option value="28">Kon Tum</option> 
-										 	<option value="29">Lai Châu</option>
-										 	<option value="32">Lâm Đồng</option> 
-										 	<option value="33">Lạng Sơn</option> 
-										 	<option value="31">Lào Cai</option> 
-										 	<option value="30">Long An</option> 
-										 	<option value="34">Nam Định</option> 
-										 	<option value="35">Nghệ An</option> 
-										 	<option value="36">Ninh Bình</option> 
-										 	<option value="37">Ninh Thuận</option> 
-										 	<option value="38">Phú Thọ</option> 
-										 	<option value="39">Phú Yên</option> 
-										 	<option value="40">Quảng Bình</option> 
-										 	<option value="41">Quảng Nam</option> 
-										 	<option value="42">Quảng Ngãi</option> 
-										 	<option value="43">Quảng Ninh</option> 
-										 	<option value="44">Quảng Trị</option> 
-										 	<option value="62">Sóc Trăng</option> 
-										 	<option value="45">Sơn La</option> 
-										 	<option value="53">Tây Ninh</option> 
-										 	<option value="47">Thái Bình</option> 
-										 	<option value="48">Thái Nguyên</option> 
-										 	<option value="46">Thanh Hóa</option> 
-										 	<option value="49">Thừa Thiên - Huế</option> 
-										 	<option value="50">Tiền Giang</option> 
-										 	<option value="24">Tp. HCM</option> 
-										 	<option value="51">Trà Vinh</option> 
-										 	<option value="52">Tuyên Quang</option> 
-										 	<option value="54">Vĩnh Long</option> 
-										 	<option value="55">Vĩnh Phúc</option> 
-										 	<option value="56">Yên Bái</option> 
-										 	<option value="57">Đà Nẵng</option> 
-										 	<option value="58">Đắk Lắk</option> 
-										 	<option value="64">Đắk Nông</option> 
-										 	<option value="69">Điện Biên</option> 
-										 	<option value="59">Đồng Nai</option> 
-										 	<option value="60">Đồng Tháp</option> 
+										 	<?php echo_city(); ?>
 										 	
 									</select>
 									<div class="errors"></div>
@@ -552,8 +490,8 @@ if(!isset($_SESSION['cart']) or empty($_SESSION['cart'])){
 				var name =$("input[name='name']").val();
 				var email =$("input[name='email']").val();
 				var sdt = $("input[name='phone_number']").val();
-				var tinh_thanh = $(".tinhthanh").find(":selected").text();
-				var quan_huyen =$('select[name="quanhuyen"]').find(":selected").text();
+				var tinh_thanh = $(".tinhthanh").find(":selected").val();
+				var quan_huyen =$('select[name="quanhuyen"]').find(":selected").val();
 				var sonha_tenduong=$("input[name='sonha-tenduong']").val();
 				var phuong_xa =$("input[name='phuong-xa']").val();
 				$.get("xuli/gui-don-hang.php",{
@@ -564,7 +502,7 @@ if(!isset($_SESSION['cart']) or empty($_SESSION['cart'])){
 					quan:quan_huyen,
 					sonha:sonha_tenduong,
 					phuong:phuong_xa
-				},function(){
+				},function(dt){
 					window.location.href = "gui-hang-thanh-cong.php";
 				});
 			}

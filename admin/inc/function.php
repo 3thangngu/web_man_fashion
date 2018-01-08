@@ -1,4 +1,11 @@
 <?php
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+?>
+
+<?php
 // kiểm tra duyệt đơn hàng -> giao hàng
 function check_order($code_order){
   global $dbc;
@@ -41,6 +48,23 @@ function ramdom_code(){
   }
   if (in_array($rd, $list_code_bill)) {
     ramdom_code();
+  }
+  else{
+    return $rd;
+  }
+}
+ // tạo code_order ramdom 7 số  bên bill
+function ramdom_code_ship(){
+  global $dbc;
+  $rd = rand(0000000,9999999);
+  $query = "SELECT code_ship FROM tb_ship";
+  $result = mysqli_query($dbc,$query);
+  $list_code_ship = array();
+  while ($array_code = mysqli_fetch_array($result,MYSQLI_NUM) ) {
+    array_push($list_code_ship, $array_code[0]);
+  }
+  if (in_array($rd, $list_code_ship)) {
+    ramdom_code_ship();
   }
   else{
     return $rd;
@@ -181,7 +205,7 @@ function category_search($text_search) {
   global $dbc;
 
          // 
-  $query = "SELECT * FROM tb_category WHERE name_category LIKE". "'%".$text_search."%'";
+  $query = "SELECT * FROM tb_category WHERE name_category LIKE". "'%".$text_search."%' || code_category LIKE". "'%".$text_search."%'";
   $result = mysqli_query($dbc, $query);
   kt_query($query,$result);
         // echo 
@@ -248,7 +272,9 @@ function list_category() {
     ?>
   </td>
 
-
+  <?php 
+      if ( $_SESSION['type_user'] == 0 ) {
+  ?>
   <td align="center"><a href="edit_category.php?id=<?php echo $category['id_category']; ?>"><i
     class="fa fa-fw fa-pencil"
     style="font-size: 20px; color:#1b926c;"></i> </a></td>
@@ -257,7 +283,9 @@ function list_category() {
       class="fa fa-fw fa-trash"
       style="font-size: 20px; color:rgba(26,27,23,0.87);"></i></a></td>
     </tr>
-
+  <?php 
+    }
+  ?>
     <?php
   }
 
@@ -403,7 +431,7 @@ $lm = $limit;
 function label_search($text_search) {
   global $dbc;
     // 
-  $query = "SELECT * FROM tb_label WHERE name_label LIKE". "'%".$text_search."%'";
+  $query = "SELECT * FROM tb_label WHERE name_label LIKE". "'%".$text_search."%' || code_label LIKE" . "'%".$text_search."%'";
   $result = mysqli_query($dbc, $query);
   kt_query($query,$result);
         // echo 
@@ -465,7 +493,7 @@ function label_search($text_search) {
      global $dbc;
      $start = ( $page - 1 ) * $limit ;
      $lm = $limit;
-     $query = "SELECT * FROM tb_product WHERE name_product LIKE ". "'%".$text_search."%'" . " LIMIT $start, $lm";
+     $query = "SELECT * FROM tb_product WHERE name_product LIKE ". "'%".$text_search."%'" . " || code_product LIKE " . "'%".$text_search."%'" . " LIMIT $start, $lm";
      $result = mysqli_query($dbc, $query);
      kt_query($query,$result);
      if( mysqli_num_rows($result) <= 0) {

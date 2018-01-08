@@ -39,7 +39,7 @@ function ramdom_code(){
 }
 
 
-    //kiếm tra xem kết quả trả về có đúng hay không.
+/* bỏ dấu tiếng việt và khoảng trắng */
 function stripUnicode($str){
     if(!$str) return false;
     $unicode = array(
