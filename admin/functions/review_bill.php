@@ -20,7 +20,7 @@
 			$query_is_ship = "INSERT INTO `tb_ship`(`code_ship` , `id_bill`,`id_order`, `status_ship`) VALUES ('{$code_ship}','{$id_bill}','{$id_order}', 0)";
 			$result_is_ship = mysqli_query($dbc, $query_is_ship);
 		}
-	
+		
 
 		header('location: ../list_bill.php');
 	} 

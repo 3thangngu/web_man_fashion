@@ -26,6 +26,7 @@ include('inc/function.php');
                     <th>Xem chi tiết</th>
                     <th>Chỉnh sửa</th>
                     <th>Duyệt</th>
+                    <th>Xóa</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,6 +54,11 @@ include('inc/function.php');
 
                         ?>
                         <td class="text-center"><a onClick="return confirm('Bạn muốn chuyển đơn hàng này qua bên hóa đơn?');" href="functions/review_order.php?id_order=<?php echo $order[0]; ?>"><i class="glyphicon glyphicon-ok"></i></a></td>
+                        <td align="center"><a onClick="return confirm('Bạn thật sự muốn xóa không ?');"
+                            href="delete_order.php?code_order=<?php echo $order[0]; ?>"><i
+                            class="fa fa-fw fa-trash"
+                            style="font-size: 20px; color:rgba(26,27,23,0.87);"></i></a>
+                        </td>
                     </tr>
                     <?php
                 }

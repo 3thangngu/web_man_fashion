@@ -39,7 +39,7 @@ include('inc/function.php');
                      $total_slider = count($array_slider);
                      foreach ($array_slider as  $value) {
                         ?>
-                        <li stt="<?php echo $stt; ?>"><img src="<?php echo $value; ?>" style="height: 500px;"></li>
+                        <li stt="<?php echo $stt; ?>"><img src="<?php echo $value; ?>" style="height: 500px; width: 100%"></li>
                         <?php
                         $stt++;
                     }

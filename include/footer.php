@@ -23,7 +23,7 @@
 					}
 					?> 
 				</p>
-				<span><a href="https://www.facebook.com/"><img src="image/icon/fb.svg" alt="" style="width:40px"></a></span>
+				<span><a href="<?php echo  isset($fb) ? $fb : '' ?>"><img src="image/icon/fb.svg" alt="" style="width:40px"></a></span>
 			</div>
 
 			<div class="col-xs-12 col-sm-offset-1 col-sm-3 wapper2">
@@ -104,7 +104,7 @@
 					<li><a href="">Chính sách cookie</a></li>
 
 				</ul> -->
-				<div class="div-footer">Copyright 2015 · by <span>3T</span> All rights reserved</div>
+				<div class="div-footer">Copyright 2018 · by <span>3T</span> All rights reserved</div>
 			</div>
 		</div>
 	</footer>

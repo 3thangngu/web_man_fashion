@@ -236,11 +236,18 @@ function category_search($text_search) {
   <td align="center"><a href="edit_category.php?id=<?php echo $category['id_category']; ?>"><i
     class="fa fa-fw fa-pencil"
     style="font-size: 20px; color:#1b926c;"></i> </a></td>
+      <?php 
+          if ( $_SESSION['type_user'] == 0 ) {
+      ?>
     <td align="center"><a onClick="return confirm('Bạn thật sự muốn xóa không ?');"
       href="delete_category.php?id=<?php echo $category['id_category']; ?>"><i
       class="fa fa-fw fa-trash"
       style="font-size: 20px; color:rgba(26,27,23,0.87);"></i></a></td>
-      </tr> <?php
+      </tr> 
+    <?php 
+      }
+    ?>
+      <?php
     }
 
 
@@ -271,13 +278,12 @@ function list_category() {
     }
     ?>
   </td>
-
+    <td align="center"><a href="edit_category.php?id=<?php echo $category['id_category']; ?>"><i
+    class="fa fa-fw fa-pencil"
+    style="font-size: 20px; color:#1b926c;"></i> </a></td>
   <?php 
       if ( $_SESSION['type_user'] == 0 ) {
   ?>
-  <td align="center"><a href="edit_category.php?id=<?php echo $category['id_category']; ?>"><i
-    class="fa fa-fw fa-pencil"
-    style="font-size: 20px; color:#1b926c;"></i> </a></td>
     <td align="center"><a onClick="return confirm('Bạn thật sự muốn xóa không ?');"
       href="delete_category.php?id=<?php echo $category['id_category']; ?>"><i
       class="fa fa-fw fa-trash"
@@ -449,10 +455,16 @@ function label_search($text_search) {
     <td align="center"><a href="edit_label.php?id=<?php echo $label['id_label']; ?>"><i
       class="fa fa-fw fa-pencil"
       style="font-size: 20px; color:#1b926c;"></i></a></td>
+     <?php 
+         if ( $_SESSION['type_user'] == 0 ) {
+      ?>
       <td align="center"><a onClick="return confirm('Bạn thật sự muốn xóa không ?');"
         href="delete_label.php?id=<?php echo $label['id_label']; ?>"><i
         class="fa fa-fw fa-trash"
         style="font-size: 20px; color:rgba(26,27,23,0.87);"></i></a></td>
+    <?php 
+      }
+    ?>
 
         </tr> <?php
       }
@@ -477,10 +489,16 @@ function label_search($text_search) {
       <td align="center"><a href="edit_label.php?id=<?php echo $label['id_label']; ?>"><i
         class="fa fa-fw fa-pencil"
         style="font-size: 20px; color:#1b926c;"></i></a></td>
+        <?php 
+            if ( $_SESSION['type_user'] == 0 ) {
+        ?>
         <td align="center"><a onClick="return confirm('Bạn thật sự muốn xóa không ?');"
           href="delete_label.php?id=<?php echo $label['id_label']; ?>"><i
           class="fa fa-fw fa-trash"
           style="font-size: 20px; color:rgba(26,27,23,0.87);"></i></a></td>
+          <?php 
+            }
+          ?>
         </tr>
 
         <?php
@@ -552,10 +570,16 @@ function label_search($text_search) {
       <td align="center"><a href="edit_product.php?id=<?php echo $product['id_product']; ?>"><i
         class="fa fa-fw fa-pencil"
         style="font-size: 20px; color:#1b926c;"></i></a></td>
+          <?php 
+              if ( $_SESSION['type_user'] == 0 ) {
+          ?>
         <td align="center"><a onClick="return confirm('Bạn thật sự muốn xóa không ?');"
           href="delete_product.php?id=<?php echo $product['id_product']; ?>"><i
           class="fa fa-fw fa-trash"
           style="font-size: 20px; color:rgba(26,27,23,0.87);"></i></a></td>
+          <?php 
+            }
+          ?>
         </tr>
 
         <?php
@@ -627,10 +651,16 @@ function label_search($text_search) {
         <td align="center"><a href="edit_product.php?id=<?php echo $product['id_product']; ?>"><i
           class="fa fa-fw fa-pencil"
           style="font-size: 20px; color:#1b926c;"></i></a></td>
+            <?php 
+                if ( $_SESSION['type_user'] == 0 ) {
+            ?>
           <td align="center"><a onClick="return confirm('Bạn thật sự muốn xóa không ?');"
             href="delete_product.php?id=<?php echo $product['id_product']; ?>"><i
             class="fa fa-fw fa-trash"
             style="font-size: 20px; color:rgba(26,27,23,0.87);"></i></a></td>
+            <?php 
+              }
+            ?>
           </tr>
 
           <?php

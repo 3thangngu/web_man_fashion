@@ -52,26 +52,74 @@
             </li>
         </ul>
     </li>
+    
 
+          <!-- dem so don hang chua duyet -->
+          <?php
+             $query_count_order =  "SELECT count(code_order) sodon_dathang FROM tb_order WHERE status_order = '0' && status_order != '1'    GROUP BY code_order ORDER BY order_day DESC";
+             $result_count_order = mysqli_query($dbc,$query_count_order);
+              $sodon_dathang =  mysqli_num_rows($result_count_order);
+           ?>
+           <!-- dem so hoa don chua duyet -->
+           <?php 
+              $query_count_bill = "SELECT code_bill, name_customer, phone_customer,address_customer, order_day, id_product, tb_bill.status_bill FROM tb_order,tb_bill WHERE tb_bill.id_order = tb_order.id_order && tb_bill.status_bill = '0'  GROUP BY code_bill ORDER BY status_bill";
+              $result_count_bill = mysqli_query($dbc,$query_count_bill);
+              $sodon_hoadon =  mysqli_num_rows($result_count_bill);
+
+
+           ?>
     <li class="li-first kinh-doanh">
         <a href="javascript:;" data-toggle="collapse" data-target="#sales"><i class="fa fa-fw fa-line-chart"></i>
-            Kinh doanh <i class="fa fa-fw fa-angle-double-down"></i><!-- <span class="thongbao">5</span> -->
+            Kinh doanh <i class="fa fa-fw fa-angle-double-down"></i>
+            <?php if ( !empty($sodon_dathang) && $sodon_dathang > 0 ){
+                ?>
+                <span class="thongbao"><?php echo $sodon_dathang+$sodon_hoadon;  ?></span>
+                <?php
+              }
+            ?>
         </a>
         <ul id="sales" class="collapse">
             <li class="dathang">
-                <a href="list_order.php"><i class="fa fa-fw fa-list"></i> Đặt hàng</a> <span></span>
+                <a href="list_order.php"><i class="fa fa-fw fa-list"></i> Đặt hàng
+                <?php if ( !empty($sodon_dathang) && $sodon_dathang > 0 ){
+                    ?>
+                    <span class="thongbao"><?php echo $sodon_dathang;  ?></span>
+                    <?php
+                  }
+                ?>
+                </a>
             </li>
             <li class="hoadon">
-                <a href="list_bill.php"><i class="fa fa-fw fa-list"></i> Hóa đơn</a>
+                <a href="list_bill.php"><i class="fa fa-fw fa-list"></i> Hóa đơn
+                  <?php if ( !empty($sodon_hoadon) && $sodon_hoadon > 0 ){
+                    ?>
+                    <span class="thongbao"><?php echo $sodon_hoadon;  ?></span>
+                    <?php
+                  }
+                ?>
+                </a>
             </li>
          <!--    <li class="giaohang">
                 <a href="list_delivery.php"><i class="fa fa-fw fa-list"></i> Giao hàng</a>
             </li> -->
         </ul>
     </li>
+      
 
+           <!-- dem so ship chua duyet -->
+          <?php
+            $query_count_ship = "SELECT count(code_ship)  FROM tb_order,tb_bill,tb_ship WHERE tb_order.id_order = tb_bill.id_order && tb_bill.id_bill = tb_ship.id_bill &&  status_ship = '0'  GROUP BY code_ship";
+             $result_count_ship = mysqli_query($dbc,$query_count_ship);
+              $sodon_ship =  mysqli_num_rows($result_count_ship);
+           ?>
     <li class="li-first giao-hang">
        <a href="javascript:;" data-toggle="collapse" data-target="#demo_ship"><i class="fa fa-fw fa-truck"></i> Giao hàng
+        <?php if ( !empty($sodon_ship) && $sodon_ship > 0 ){
+                    ?>
+                    <span class="thongbao"><?php echo $sodon_ship;  ?></span>
+                    <?php
+                  }
+                ?>
           <i class="fa fa-fw fa-angle-double-down"></i>
       </a>
       <ul id="demo_ship" class="collapse">
@@ -79,7 +127,15 @@
            <a href="add_order.php"><i class="fa fa-fw fa-plus"></i> Thêm mới</a>
        </li>
        <li class="giaohang">
-           <a href="list_delivery.php"><i class="fa fa-fw fa-list"></i> Danh sách</a>
+           <a href="list_delivery.php"><i class="fa fa-fw fa-list"></i> Danh sách
+            <?php if ( !empty($sodon_ship) && $sodon_ship > 0 ){
+                    ?>
+                    <span class="thongbao"><?php echo $sodon_ship;  ?></span>
+                    <?php
+                  }
+                ?>
+           </a>
+
        </li>
     </ul>
   </li>
@@ -102,15 +158,15 @@
 </li>
 
 <li class="li-first tinh-thanh">
-    <a href="javascript:;" data-toggle="collapse" data-target="#tinhthanh"><i class="fa fa-fw fa-upload"></i>
+    <a href="javascript:;" data-toggle="collapse" data-target="#tinhthanh"><i class="fa fa-fort-awesome" aria-hidden="true"></i>
       Tỉnh thành<i class="fa fa-fw fa-angle-double-down"></i>
     </a>
     <ul id="tinhthanh" class="collapse">
         <li class="thanhpho">
-            <a href="list_city.php"><i class="fa fa-fw fa-sliders"></i>Thành phố</a>
+            <a href="list_city.php"><i class="fa fa-font-awesome" aria-hidden="true"></i> Thành phố</a>
         </li>
         <li class="quanhuyen">
-            <a href="list_district.php"><i class="fa fa-fw fa-camera-retro"></i>Quận huyện</a>
+            <a href="list_district.php"><i class="fa fa-rebel" aria-hidden="true"></i> Quận huyện</a>
         </li>
        
     </ul>

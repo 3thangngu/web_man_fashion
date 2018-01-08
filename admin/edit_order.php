@@ -679,7 +679,6 @@
                     quan_huyen: quan_huyen
 
                 },function(dt){
-                    console.log(dt);
                     alert("Lưu đơn hàng thành công");
                     window.location.href = "";
                 });
