@@ -200,7 +200,7 @@
                 <div class="col-md-3 col-sm-4 col-xs-12 sibar-right">
                     <h4 class="hidden-xs">TÌM KIẾM SẢN PHẨM</h4>
                     <form class="form-search hidden-xs" action="tim-kiem.php">
-                        <input class="form-control" type="text" name="search" placeholder="Từ khóa tìm kiếm">
+                        <input class="form-control" type="text" name="search_header" placeholder="Từ khóa tìm kiếm">
                         <button type="submit"><i class="glyphicon glyphicon-search"></i></button>
                     </form>
                     <h5>SẢN PHẨM HOT</h5>

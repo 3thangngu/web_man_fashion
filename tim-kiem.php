@@ -47,6 +47,7 @@ include('include/header.php');
     <div class="row">
         <div class="col-xs-12" style="box-sizing: border-box;">
             <h3 class="title">Tìm kiếm</h3>
+            <div class="row">
            <?php 
            // || b.unaccentname_category LIKE "%$text_search%" || b.name_category LIKE "%$text_search%" ||  a.name_label LIKE "%$text_search%" 
                 $text_search = $_GET['search_header'];
@@ -58,7 +59,7 @@ include('include/header.php');
                     ?>
 
 
-                        <div class="col-xs-12  col-sm-4">
+                        <div class="col-xs-12  col-sm-3">
                             <div class="khunghinh">
                                 <div class="wapper-img">
                                     <?php
@@ -102,6 +103,7 @@ include('include/header.php');
                 echo "<div style=''>Không tìm thấy</div>";
             }
            ?>
+            </div>
         </div>
     </div>
 </div>
