@@ -20,12 +20,13 @@
                             <th>Mã sp</th>
                             <th>Tên sp</th>
                             <th>Size</th>
+                            <th>Số lượng</th>
                             <th>Loại sp</th>
                             <th>Hiệu sp</th>
                             <th>Hình ảnh</th>
                             <th>Giá</th>
                             <th>Giá bán</th>
-                            <th>Mô tả</th>
+                            <th style="max-width: 150px">Mô tả</th>
                             <th>Lượt xem</th>
                             <th>Ngày thêm</th>
                             <th>Trạng thái</th>

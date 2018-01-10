@@ -168,8 +168,8 @@ include('inc/function.php');
                                                     ?>
 
                                                 </div>
-                                                <div class="text-center name"><a
-                                                    href=""><?php echo $product['name_product']; ?></a>
+                                                <div class="text-center name">
+                                                  <a href="product.php?id=<?php echo $product['id_product']; ?>" ><?php echo $product['name_product']; ?></a>
                                                 </div>
                                                 <div class="text-center price"><?php echo number_format($product['saleprice_product'], 0, ',', '.'); ?></div>
                                                 <div class="button-product">

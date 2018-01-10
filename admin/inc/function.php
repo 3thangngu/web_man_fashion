@@ -519,7 +519,13 @@ function label_search($text_search) {
        <td colspan='14' class='text-danger text-center'>Không tìm thấy kết quả</td>
        </tr>";
      }  else {
-      while ($product = mysqli_fetch_array($result, MYSQLI_ASSOC)) { ?>
+      while ($product = mysqli_fetch_array($result, MYSQLI_ASSOC)) { 
+           /* Tính số lượng */
+          $sl = 0;
+          foreach (unserialize($product['size_product']) as $key => $value) {
+             $sl += $value;
+          }
+        ?>
       <tr>
         <td><?php echo $product['code_product']; ?></td>
         <td><?php echo $product['name_product']; ?></td>
@@ -533,6 +539,7 @@ function label_search($text_search) {
 
         ?>
       </td>
+      <td><?php echo $sl; ?></td>
       <td><?php echo $product['id_category']; ?></td>
       <td><?php echo $product['id_label']; ?></td>
       <td><?php
@@ -598,6 +605,11 @@ function label_search($text_search) {
     $result = mysqli_query($dbc, $query);
     kt_query($query, $result);
     while ($product = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                 /* Tính số lượng */
+          $sl = 0;
+          foreach (unserialize($product['size_product']) as $key => $value) {
+             $sl += $value;
+          }
       ?>
       <tr>
         <td><?php echo $product['code_product']; ?></td>
@@ -614,6 +626,7 @@ function label_search($text_search) {
 
 
         </td>
+         <td><?php echo $sl; ?></td>
         <td><?php echo $product['name_category']; ?></td>
         <td><?php echo $product['name_label']; ?></td>
         <td><?php

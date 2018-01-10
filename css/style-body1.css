@@ -20,7 +20,7 @@
 .body .width{overflow: hidden;}
 .body .wapper{width: 9000000px;}
 .body .wapper .item{float: left;padding: 0 15px;box-sizing: border-box;}
-.body .wapper .item .khung-img{padding: 7px;box-sizing: border-box;border: 1px solid white;white-space: nowrap;}
+.body .wapper .item .khung-img{padding: 7px;box-sizing: border-box;border: 1px solid white;}
 .body .wapper .item .khung-img:hover{border: 1px solid #ededed}
 .body .wapper .item .name{margin-top: 10px}
 .body .wapper .item .name a{color: #333;text-transform: uppercase;text-decoration: none;cursor: pointer;font-size: 16px;font-family:"Open Sans Bold";font-weight: 700}
