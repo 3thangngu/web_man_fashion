@@ -79,6 +79,10 @@
             ?>
         </a>
         <ul id="sales" class="collapse">
+          
+           <li class="themdonhang">
+               <a href="add_order.php"><i class="fa fa-fw fa-plus"></i> Thêm mới</a>
+           </li>
             <li class="dathang">
                 <a href="list_order.php"><i class="fa fa-fw fa-list"></i> Đặt hàng
                 <?php if ( !empty($sodon_dathang) && $sodon_dathang > 0 ){
@@ -123,9 +127,6 @@
           <i class="fa fa-fw fa-angle-double-down"></i>
       </a>
       <ul id="demo_ship" class="collapse">
-          <li class="themdonhang">
-           <a href="add_order.php"><i class="fa fa-fw fa-plus"></i> Thêm mới</a>
-       </li>
        <li class="giaohang">
            <a href="list_delivery.php"><i class="fa fa-fw fa-list"></i> Danh sách
             <?php if ( !empty($sodon_ship) && $sodon_ship > 0 ){

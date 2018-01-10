@@ -261,9 +261,7 @@
     unset($_SESSION['order']);
     $query="SELECT * FROM tb_product ORDER BY id_product";
     $result = mysqli_query($dbc, $query);
-
     ?>
-
     var availableTags = [
     <?php foreach ($result as $value) { 
         echo "{". 'value: '. "'" .$value['code_product']."-".$value['name_product']. "'" .",".'data: '. "'" . $value['id_product'] . "'" ."}".",";

@@ -74,7 +74,7 @@
 ?>
 <div class="add-order">
     <form name="frmadd-shiper" method="post" action="">
-        <h3 class="title">Thêm đơn hàng mới</h3>
+        <h3 class="title">Thêm hóa đơn</h3>
         <div class="row">
             <div class="col-xs-12">
                 <div  class="info">
@@ -317,6 +317,6 @@
 <script type="text/javascript" src="js/add_order.js"></script>
 <!--  -->
 <script type="text/javascript">
-    $('.giao-hang .collapse').addClass('in');
-    $('.giao-hang .themdonhang').css({'background-color': '#e1e1e1'});
+    $('.kinh-doanh .collapse').addClass('in');
+    $('.kinh-doanh .themdonhang').css({'background-color': '#e1e1e1'});
 </script>

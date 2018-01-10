@@ -52,17 +52,17 @@ if (!isset($_SESSION['uid'])) {
                             class="fa fa-fw fa-angle-down"></b></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        <a href="profile.php"><i class="fa fa-fw fa-user"></i>Thông tin</a>
                     </li>
                     <li>
                         <a href="change_pass.php"><i class="fa fa-fw fa-gear"></i> Đổi mật khẩu</a>
                     </li>
                     <li>
-                        <a href="http://localhost/web_man_fashion" target="_blank"><i class="fa fa-fw fa-shopping-cart"></i> Your store</a>
+                        <a href="http://localhost/web_man_fashion" target="_blank"><i class="fa fa-fw fa-shopping-cart"></i>Trang cửa hàng</a>
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="logout.php"><i class="fa fa-fw fa-sign-out"></i> Log Out</a>
+                        <a href="logout.php"><i class="fa fa-fw fa-sign-out"></i> Đăng xuất</a>
                     </li>
                 </ul>
             </li>

@@ -46,13 +46,12 @@ include('includes/header.php');
             }
             if(empty($errors))
             {
-                $query ="SELECT code_city FROM tb_city WHERE code_city='{$code}'";
+                $query ="SELECT * FROM tb_district WHERE code_district='{$code}' && id_city = '{$city}' ";
                 $result = mysqli_query($dbc,$query);
                 kt_query($query,$result);
-
-                if(mysqli_num_rows($result)==1)
+                if(mysqli_num_rows($result) ==1 )
                 {
-                    $message = "<p class='results1'>Mã thành phố này đã tồn tại</p>";
+                    $message = "<p class='results1'>Mã quận này đã có trong thành phố này</p>";
                 }
                 else
                 {
@@ -65,12 +64,12 @@ include('includes/header.php');
                     if($result_in==1)
                     {
                         echo "<p class='results'>Thêm mới thành công</p>";
-                        $_POST['code_district'] ="";
-                        $_POST['name_district'] ="";
+                        $_POST['code'] ="";
+                        $_POST['name'] ="";
                         $code=null;
                         $name=null;
-                        unset($_POST['code_district']);
-                        unset($_POST['name_district']);
+                        unset($_POST['code']);
+                        unset($_POST['code']);
                     }
                     else
                     {

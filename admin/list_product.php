@@ -37,7 +37,6 @@
                     <body class="wrap-list-product">
                         <?php 
                         $limit = 15;
-
                         if (isset($_GET['btn-search']) && isset($_GET['text_search'])) {
                             if( isset($_GET['p']) ) {
                                 $per_page = $_GET['p'];
