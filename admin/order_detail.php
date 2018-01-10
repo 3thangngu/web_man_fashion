@@ -48,7 +48,7 @@ include('inc/function.php');
             $query = "SELECT tb_order.id_product, tb_order.size_product, tb_order.quantity_product, tb_product.name_product,tb_product.saleprice_product, tb_product.code_product FROM tb_product, tb_order WHERE tb_product.id_product=tb_order.id_product && code_order=$code_order  GROUP BY tb_order.id_product ORDER BY tb_order.id_product ASC";
             $result = mysqli_query($dbc, $query);
             $stt =1;
-            $tongsotien = 1;
+            $tongsotien = 0;
             while ($order = mysqli_fetch_array($result, MYSQLI_NUM)) {
 
               $check_product = check_product($order[0],$order[1] , $order[2]);

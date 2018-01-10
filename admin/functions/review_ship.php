@@ -23,7 +23,7 @@
 				echo $query_product;
 	$result_product = mysqli_query($dbc, $query_product);
 
-		// header('location: ../list_delivery.php');
+		header('location: ../list_delivery.php');
 	} 
 	else {
 		header('location: ../list_delivery.php');

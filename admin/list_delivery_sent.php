@@ -28,7 +28,7 @@
                 </thead>
                 <tbody>
                     <?php 
-                        $query = "SELECT code_ship, name_customer, phone_customer,address_customer,order_day,code_bill FROM tb_order,tb_bill,tb_ship WHERE tb_order.id_order = tb_bill.id_order && tb_bill.id_bill = tb_ship.id_bill &&  status_ship = '1'  GROUP BY code_ship";
+                        $query = "SELECT code_ship, name_customer, phone_customer,address_customer,order_day,code_bill, tb_district.name_district, tb_city.name_city FROM tb_order,tb_bill,tb_ship, tb_district, tb_city  WHERE tb_district.id_city = tb_city.id_city && tb_district.id_district = tb_order.id_district && tb_order.id_order = tb_bill.id_order && tb_bill.id_bill = tb_ship.id_bill &&  status_ship = '1'  GROUP BY code_ship";
                         $result = mysqli_query($dbc,$query);
                         kt_query($query, $result);
                         while ($order = mysqli_fetch_array($result, MYSQLI_NUM)) {
@@ -38,7 +38,7 @@
                         <td><?php echo $order[0]; ?></td>
                         <td><?php echo $order[1]; ?></td>
                         <td><?php echo $order[2]; ?></td>
-                        <td><?php echo $order[3]; ?></td>
+                        <td><?php echo $order[3]. ", " . $order[6]. ", " . $order[7]; ?></td>
                         <td><?php $date=date_create($order[4]);
                             echo date_format($date,"H:i - d/m/Y"); ?></td>
                         <td class="text-center"><a href="delivery_detail.php?code_ship=<?php echo $order[0]; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a></td>

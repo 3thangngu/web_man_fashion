@@ -28,7 +28,7 @@
                 </thead>
                 <tbody>
                     <?php 
-                        $query = "SELECT code_bill, name_customer, phone_customer,address_customer, order_day, id_product, tb_bill.status_bill FROM tb_order,tb_bill WHERE tb_bill.id_order = tb_order.id_order && tb_bill.status_bill = '0'  GROUP BY code_bill ORDER BY status_bill";
+                        $query = "SELECT code_bill, name_customer, phone_customer,address_customer, order_day, id_product, tb_bill.status_bill, tb_district.name_district, tb_city.name_city FROM tb_order,tb_bill, tb_district, tb_city WHERE tb_district.id_city = tb_city.id_city && tb_district.id_district = tb_order.id_district && tb_bill.id_order = tb_order.id_order && tb_bill.status_bill = '0'  GROUP BY code_bill ORDER BY status_bill";
                         $result = mysqli_query($dbc,$query);
                         kt_query($query, $result);
 
@@ -38,7 +38,7 @@
                         <td><?php echo $bill[0]; ?></td>
                         <td><?php echo $bill[1]; ?></td>
                         <td><?php echo $bill[2]; ?></td>
-                        <td><?php echo $bill[3]; ?></td>
+                        <td><?php echo $bill[3]. ", " . $bill[7]. ", " . $bill[8]; ?></td>
                         <td><?php $date=date_create($bill[4]);
                             echo date_format($date,"H:i - d/m/Y"); ?></td>
                         <td class="text-center"><a href="bill_detail.php?code_bill=<?php echo $bill[0]; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a></td>

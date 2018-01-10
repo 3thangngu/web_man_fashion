@@ -31,7 +31,7 @@ include('inc/function.php');
             </thead>
             <tbody>
                 <?php 
-                $query = "SELECT code_order ,name_customer, phone_customer,address_customer,order_day,id_product FROM tb_order WHERE status_order = '0' && status_order != '1'    GROUP BY code_order ORDER BY order_day DESC";
+                $query = "SELECT code_order ,name_customer, phone_customer,address_customer,order_day,id_product, tb_district.name_district, tb_city.name_city FROM tb_order, tb_district, tb_city WHERE tb_district.id_city = tb_city.id_city && tb_district.id_district = tb_order.id_district && status_order = '0' && status_order != '1'    GROUP BY code_order ORDER BY order_day DESC";
                 $result = mysqli_query($dbc,$query);
                 kt_query($query, $result);
                 while ($order = mysqli_fetch_array($result, MYSQLI_NUM)) {
@@ -41,7 +41,7 @@ include('inc/function.php');
                     <td><?php echo $order[0]; ?></td>
                     <td><?php echo $order[1]; ?></td>
                     <td><?php echo $order[2]; ?></td>
-                    <td><?php echo $order[3]; ?></td>
+                    <td><?php echo $order[3]. ", " . $order[6]. ", " . $order[7]; ?></td>
                     <td><?php $date=date_create($order[4]);
                     echo date_format($date,"H:i - d/m/Y"); ?></td>
                     <td class="text-center"><a href="order_detail.php?code_order=<?php echo $order[0]; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
