@@ -48,7 +48,7 @@ include('inc/function.php');
                         <td style="font-weight: 700;"><?php echo $rows['status'] == 1 ? 'Đã xem' : 'Chưa xem' ?></td>
                         <td><a href="contact_detail.php?id=<?php echo $rows['id']; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
                         
-                        <td class=""><a href="delete_contact.php?id=<?php echo $rows['id']; ?>"><i class="fa fa-fw fa-trash"></i></a></td>
+                        <td class=""><a onClick="return confirm('Bạn thật sự muốn xóa không ?');" href="delete_contact.php?id=<?php echo $rows['id']; ?>"><i class="fa fa-fw fa-trash"></i></a></td>
 
                     </tr>
                     <?php

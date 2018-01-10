@@ -24,80 +24,106 @@
             //bat dau submit
         if (isset($_POST['submit'])) {
             $errors = array();
+            $array_size = array();
+            $quantity_product = 0;
             if( $_POST['category'] == 't' ) {
                 if ( isset($_POST['size_s']) ) {
                     $array_size[$_POST['size_s']] = $_POST['sl_s'];
+                    $quantity_product += $_POST['sl_s'];
                 }
                 if ( isset($_POST['size_m']) ) {
                     $array_size[$_POST['size_m']] = $_POST['sl_m'];
+                    $quantity_product += $_POST['sl_m'];
                 }
                 if ( isset($_POST['size_l']) ) {
                     $array_size[$_POST['size_l']] = $_POST['sl_l'];
+                    $quantity_product += $_POST['sl_l'];
                 }
                 if ( isset($_POST['size_xl']) ) {
                     $array_size[$_POST['size_xl']] = $_POST['sl_xl'];
+                    $quantity_product += $_POST['sl_xl'];
                 }
                 if ( isset($_POST['size_xxl']) ) {
                     $array_size[$_POST['size_xxl']] = $_POST['sl_xxl'];
+                    $quantity_product += $_POST['sl_xxl'];
                 }
                 if ( isset($_POST['size_xxl']) ) {
                     $array_size[$_POST['size_xxl']] = $_POST['sl_xxl'];
+                    $quantity_product += $_POST['sl_xxl'];
                 }
 
             } else {
                 if ( isset($_POST['size_27']) ) {
                     $array_size[$_POST['size_27']] = $_POST['sl_27'];
+                     $quantity_product += $_POST['sl_27'];
                 }
                 if ( isset($_POST['size_28']) ) {
                     $array_size[$_POST['size_28']] = $_POST['sl_28'];
+                     $quantity_product += $_POST['sl_28'];
                 }
                 if ( isset($_POST['size_29']) ) {
                     $array_size[$_POST['size_29']] = $_POST['sl_29'];
+                     $quantity_product += $_POST['sl_29'];
                 }
                 if ( isset($_POST['size_30']) ) {
                     $array_size[$_POST['size_30']] = $_POST['sl_30'];
+                     $quantity_product += $_POST['sl_30'];
                 }
                 if ( isset($_POST['size_31']) ) {
                     $array_size[$_POST['size_31']] = $_POST['sl_31'];
+                     $quantity_product += $_POST['sl_31'];
                 }
                 if ( isset($_POST['size_32']) ) {
                     $array_size[$_POST['size_32']] = $_POST['sl_32'];
+                     $quantity_product += $_POST['sl_32'];
                 }
                 if ( isset($_POST['size_33']) ) {
                     $array_size[$_POST['size_33']] = $_POST['sl_33'];
+                     $quantity_product += $_POST['sl_33'];
                 }
                 if ( isset($_POST['size_34']) ) {
                     $array_size[$_POST['size_34']] = $_POST['sl_34'];
+                     $quantity_product += $_POST['sl_34'];
                 }
                 if ( isset($_POST['size_35']) ) {
                     $array_size[$_POST['size_35']] = $_POST['sl_35'];
+                     $quantity_product += $_POST['sl_35'];
                 }
                 if ( isset($_POST['size_36']) ) {
                     $array_size[$_POST['size_36']] = $_POST['sl_36'];
+                     $quantity_product += $_POST['sl_36'];
                 }
                 if ( isset($_POST['size_37']) ) {
                     $array_size[$_POST['size_37']] = $_POST['sl_37'];
+                     $quantity_product += $_POST['sl_37'];
                 }
                 if ( isset($_POST['size_38']) ) {
                     $array_size[$_POST['size_38']] = $_POST['sl_38'];
+                     $quantity_product += $_POST['sl_38'];
                 }
                 if ( isset($_POST['size_39']) ) {
                     $array_size[$_POST['size_39']] = $_POST['sl_39'];
+                     $quantity_product += $_POST['sl_39'];
                 }
                 if ( isset($_POST['size_40']) ) {
                     $array_size[$_POST['size_40']] = $_POST['sl_40'];
+                     $quantity_product += $_POST['sl_40'];
                 }
                 if ( isset($_POST['size_41']) ) {
                     $array_size[$_POST['size_41']] = $_POST['sl_41'];
+                     $quantity_product += $_POST['sl_41'];
                 }
                 if ( isset($_POST['size_42']) ) {
                     $array_size[$_POST['size_42']] = $_POST['sl_42'];
+                     $quantity_product += $_POST['sl_42'];
                 }
                 if ( isset($_POST['size_43']) ) {
                     $array_size[$_POST['size_43']] = $_POST['sl_43'];
+                     $quantity_product += $_POST['sl_43'];
                 }
                 if ( isset($_POST['size_44']) ) {
                     $array_size[$_POST['size_44']] = $_POST['sl_44'];
+                     $quantity_product += $_POST['sl_44'];
                 }
 
             }
@@ -148,7 +174,10 @@
                 $describe = $_POST['describe_product'];
             }
             $status = $_POST['status'];
-            if (empty($errors)) {
+            if ( $status == 0 && $quantity_product > 0 ) {
+                  $errors[] = 'status';
+            } 
+            if ( empty($errors) ) {
                 $link_image ="";
                 $link_image_thump ="";
                 $link_image = implode(" ", $_POST['anh_hi']);
@@ -212,6 +241,8 @@
                     } else {
                         echo "<p class='results1'>Chỉnh sửa không thành công</p>";
                     }
+                } elseif( in_array('status', $errors) ){
+                    $message = "<p class='results1'> Số lượng sản phẩm lớn hơn 0, không thể hết hàng </p>";
                 } else {
                     $message = "<p class='results1'> Bạn hãy nhập đầy đủ thông tin </p>";
                 }
@@ -349,9 +380,7 @@
            </div>
            <div class="form-group">
             <label>Giá sản phẩm</label>
-            <input type="text" name="price_product" value="<?php if (isset($_POST['price_product'])) {
-                echo $_POST['price_product'];
-            }
+            <input type="text" name="price_product" value="<?php
             echo number_format($dong['price_product']); ?>" class="form-control"
             placeholder='Nhập giá sản phẩm'/>
             <?php
@@ -362,9 +391,7 @@
         </div>
         <div class="form-group">
             <label>Giá bán sản phẩm</label>
-            <input type="text" name="saleprice_product" value="<?php if (isset($_POST['saleprice_product'])) {
-                echo $_POST['saleprice_product'];
-            }
+            <input type="text" name="saleprice_product" value="<?php 
             echo number_format($dong['saleprice_product']); ?>" class="form-control"
             placeholder='Nhập giá bán sản phẩm'/>
             <?php
@@ -375,9 +402,7 @@
         </div>
         <div class="form-group">
             <label>Mô tả sản phẩm</label>
-            <textarea rows="7"  name="describe_product" value="" class="form-control"><?php if (isset($_POST['describe_product'])) {
-                echo $_POST['describe_product'];
-            }
+            <textarea rows="7"  name="describe_product" value="" class="form-control"><?php 
             echo $dong['describe_product']; ?></textarea>
             <?php
             if (isset($errors) && in_array('describe_product', $errors)) {

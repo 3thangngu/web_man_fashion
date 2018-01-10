@@ -67,7 +67,7 @@ include('inc/function.php');
                    $quantity_product += $order_quantity[1];
                    $tongsotien += ($quantity_product*$saleprice_product);
                    ?>                         
-                   <div><?php echo "Size " . $order_quantity[0] . " : " . $order_quantity[1]; ?></div>
+                   <div><?php echo "Size " . strtoupper($order_quantity[0]) . " : " . $order_quantity[1]; ?></div>
                    <?php 
                  } 
                  ?>
