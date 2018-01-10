@@ -55,7 +55,7 @@
 	.width{overflow: hidden;}
 	.wapper{width: 9000000px;}
 	.wapper .item{float: left;padding: 0 15px;box-sizing: border-box;}
-	.wapper .item .khung-img{padding: 7px;box-sizing: border-box;border: 1px solid white;white-space: nowrap;}
+	.wapper .item .khung-img{padding: 7px;box-sizing: border-box;border: 1px solid white;}
 	.wapper .item .khung-img:hover{border: 1px solid #ededed}
 	.wapper .item .name{margin-top: 10px}
 	.wapper .item .name a{color: #333;text-transform: uppercase;text-decoration: none;cursor: pointer;font-size: 16px;font-family:Raleway;font-weight: 700}

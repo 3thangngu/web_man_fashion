@@ -220,7 +220,7 @@
                             <th style="vertical-align: middle;" class="stt_product">` + stt_product +`</th>
                             <td style="vertical-align: middle;">` + dt['code_product'] + `</td>
                             <td style="vertical-align: middle;">` + dt['name_product'] + `</td>
-                            <td style="vertical-align: middle;"> <img width=50 src='` + dt['image'].split(" ", 1) + `' /></td>
+                            <td style="vertical-align: middle;"> <img width=50 src='../` + dt['image'].split(" ", 1) + `' /></td>
                             <td style="vertical-align: middle;" class="wrap_size"> <select name="size" class="size_product">` + str_size + `</select></td>
                             <td style="vertical-align: middle;font-family: georgia" class="gia">` + dt['saleprice_product'] + `</td>
                             <td style="vertical-align: middle;">` + `<input type="number" class="soluong" name="soluong" value="1" min="1" style="width: 60px;text-align: center;" class="form-control" >` + `</td>
