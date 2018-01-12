@@ -17,13 +17,13 @@
                 <thead>
                 <tr>
                     <th>Tài khoản</th>
-                    <!--<th>Mật khẩu</th>-->
+                    <!-- <th>Mật khẩu</th> -->
                     <th>Họ tên</th>
                     <th>Loại tài khoản</th>
                     <th>Ngày sinh</th>
                     <th>CMND</th>
                     <th>Địa chỉ</th>
-                    <th>Điện thoại</th>
+                    <th>Điện thoại</th> 
                     <th>Email</th>
                     <th>Trạng thái</th>
 
@@ -40,7 +40,7 @@
                     ?>
                     <tr>
                         <td><?php echo $user['account_user']; ?></td>
-                        <!--<td><?php echo $user['pass_user']; ?></td>-->
+                        <!-- <td><?php echo $user['pass_user']; ?></td> -->
                         <td><?php echo $user['name_user']; ?></td>
                         <td><?php echo $user['type_user']== 0 ? 'Admin' : 'Nhân viên' ?></td>
                         <td><?php echo date("d/m/Y",strtotime($user['birthday_user'])); ?></td>

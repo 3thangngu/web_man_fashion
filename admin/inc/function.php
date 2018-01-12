@@ -370,7 +370,7 @@ function district_search($text_search,$page, $limit) {
   global $dbc;
   $start = ( $page - 1 ) * $limit ;
   $lm = $limit;
-  $query = "SELECT * FROM tb_district, tb_city WHERE tb_district.id_city = tb_city.id_city  && name_district LIKE". "'%" .$text_search."%' OR code_district LIKE". "'%" .$text_search."%' LIMIT start,$lm";
+  $query = "SELECT * FROM tb_district, tb_city WHERE tb_district.id_city = tb_city.id_city  && (name_district LIKE". "'%" .$text_search."%' OR code_district LIKE". "'%" .$text_search."%') LIMIT $start,$lm";
   $result = mysqli_query($dbc, $query);
   kt_query($query,$result);
         // echo 

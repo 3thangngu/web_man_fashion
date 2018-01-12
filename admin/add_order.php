@@ -74,14 +74,14 @@
 ?>
 <div class="add-order">
     <form name="frmadd-shiper" method="post" action="">
-        <h3 class="title">Thêm hóa đơn</h3>
+        <h2 class="title">Thêm hóa đơn</h2>
         <div class="row">
             <div class="col-xs-12">
                 <div  class="info">
-                    <h4 class="text-order">Đặt hàng #<span class="code_order"><?php echo ramdom_code(); ?></span></h4>
+                    <h4 class="text-order"><strong>Đặt hàng #<span class="code_order" style="color: red"><?php echo ramdom_code(); ?></span></strong></h4>
                     <div class="row">
                         <div class="col-xs-6 left">
-                            <div class="title-left">Chi tiết chung</div>
+                            <div class="title-left"><strong>Chi tiết chung</strong></div>
                             <div class="form-group wrapper-name">
                                 <label>Họ và tên</label>
                                 <input type="text" name="name" class="form-control" placeholder="Họ và tên">
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                     <div class="col-xs-6 right">
-                        <div class="title-left">Thông tin thanh toán</div>
+                        <div class="title-left"><strong>Thông tin thanh toán</strong></div>
                         <div class="form-group wrapper-tinhthanh">
                             <label>Chọn tỉnh thành</label>
                             <select name="tinhthanh" class="select tinhthanh form-control">

@@ -91,8 +91,9 @@
                 <div class="col-md-9 col-sm-8">
                     <h1><?php echo $name_category; ?></h1>
                     <div class="clearfix"></div>
+                    <div class="row">
                     <?php
-                    $limit=3;
+                    $limit=6;
                     //xac dinh vi trí bắt đầu là trang thứ mấy
                     if(isset($_GET['s']) && filter_var($_GET['s'],FILTER_VALIDATE_INT,array('min_range' =>1))){
                         $start = $_GET['s'];
@@ -165,7 +166,9 @@
                     <?php
                     }
                     ?>
-                    <div class="page col-xs-12 text-right" style="padding-right: 25px">
+                    </div>
+                    <div class="row">
+                        <div class="page col-xs-12 text-right" style="padding-right: 25px">
                     <?php
                     echo "<ul class='pagination'>";
                     if($per_page>1){
@@ -195,6 +198,7 @@
 
                     echo "</ul>";
                     ?>
+                    </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-4 col-xs-12 sibar-right">

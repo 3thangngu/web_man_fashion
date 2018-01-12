@@ -26,7 +26,7 @@
                             <th>Hình ảnh</th>
                             <th>Giá</th>
                             <th>Giá bán</th>
-                            <th style="max-width: 150px">Mô tả</th>
+                            <th style="max-width: 130px">Mô tả</th>
                             <th>Lượt xem</th>
                             <th>Ngày thêm</th>
                             <th>Trạng thái</th>
@@ -37,7 +37,7 @@
                     </thead>
                     <body class="wrap-list-product">
                         <?php 
-                        $limit = 15;
+                        $limit = 10;
                         if (isset($_GET['btn-search']) && isset($_GET['text_search'])) {
                             if( isset($_GET['p']) ) {
                                 $per_page = $_GET['p'];

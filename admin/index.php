@@ -3,8 +3,7 @@ include('includes/header.php');
 ?>
 <style type="text/css">
     .title{
-        color: #bd0103;
-        text-decoration: underline;
+        color: red;
         text-align: center;
         text-transform: uppercase;
         margin-top: 35px;
@@ -133,7 +132,7 @@ include('includes/header.php');
                         <div class="content-product">
                             <table class="table table-hover">
                                 <thead>
-                                    <tr style="color: #bd0103">
+                                    <tr style="color: red">
                                         <th>STT</th>
                                         <th>Mã sp</th>
                                         <th>Tên sp</th>
