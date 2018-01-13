@@ -12,7 +12,7 @@
                 </h2>
                 <form class="form-search" method="get" action="">
                     <input type="text" name="text_search" class="form-control text_search" placeholder="search">
-                    <input type="submit" name="btn-search" class="btn btn-primary btn-search" value="tìm kiếm">
+                    <input type="submit" name="btn-search" class="btn btn-primary btn-search" value="Tìm kiếm">
                 </form>
                 <table class="table table-hover">
                     <thead>

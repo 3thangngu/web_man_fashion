@@ -21,21 +21,24 @@ include('includes/header.php');
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $present_password = $_POST['present_password'];
                 $new_password =$_POST['new_password'];
-                $query = "SELECT id_user,pass_user FROM tb_user WHERE pass_user=md5({$present_password}) AND id_user={$_SESSION['uid']}";
+                $pass_user = md5($present_password);
+                $query = "SELECT id_user,pass_user FROM tb_user WHERE pass_user='{$pass_user}' AND id_user={$_SESSION['uid']}";
                 $results = mysqli_query($dbc, $query);
                 kt_query($results, $query);
                 if (mysqli_num_rows($results) == 1) {
                     if (trim($_POST['new_password']) != trim($_POST['confirm_password'])) {
                         $message = "<p class='results1'>Mật khẩu mới không giống nhau</p>";
                     } else {
-                        $query_update = "UPDATE tb_user SET pass_user=md5($new_password) WHERE id_user={$_SESSION['uid']}";
-                        $results_update = mysqli_query($dbc, $query_update);
+                    	$password = md5($new_password);
+
+                        $query_update = "UPDATE tb_user SET pass_user= '$password' WHERE id_user={$_SESSION['uid']}";
+                        $results_update = mysqli_query( $dbc, $query_update);
                         kt_query($results_update, $query_update);
-                        if (mysqli_num_rows($dbc) == 1) {
+                        // if (mysqli_num_rows( $results_update ) > 0) {
                             $message = "<p class='results'>Đổi mật khẩu thành công</p>";
-                        } else {
+                        /*} else {
                             $message = "<p class='results1'>Đổi mật khẩu không thành công</p>";
-                        }
+                        }*/
                     }
                 } else {
                     $message = "<p class='results1'>Mật khẩu cũ không đúng</p>";
@@ -48,16 +51,16 @@ include('includes/header.php');
                     echo $message;
                 }
                 ?>
-                <h3>Change Password</h3>
+                <h3>Thay đổi mật khẩu</h3>
                 <div class="form-group">
 
-                    <label>Account User</label>
+                    <label>Tài khoản</label>
                     <input readonly type="text" name="account" value="<?php echo $_SESSION['taikhoan'] ?>" class="form-control"
                            placeholder='Nhập tên tài khoản'/>
                 </div>
 
                 <div class="form-group">
-                    <label>Present Password</label>
+                    <label>Mật khẩu hiện tại</label>
                     <input type="text" name="present_password" value="" class="form-control"
                            placeholder='Nhập mật khẩu hiện tại'/>
                     <?php
@@ -68,9 +71,9 @@ include('includes/header.php');
                 </div>
 
                 <div class="form-group">
-                    <label>New Password</label>
+                    <label>Mật khẩu mới</label>
                     <input type="text" name="new_password" value="" class="form-control"
-                           placeholder='Nhập mật khẩu mớ
+                           placeholder='Nhập mật khẩu mới
                            i'/>
                     <?php
                     if (isset($errors) && in_array('name_category', $errors)) {
@@ -80,7 +83,7 @@ include('includes/header.php');
                 </div>
 
                 <div class="form-group">
-                    <label>Confirm Password</label>
+                    <label>Xác nhận mật khẩu</label>
                     <input type="text" name="confirm_password"  value="" class="form-control"
                            placeholder='Xác nhận mật khẩu'/>
                     <?php
@@ -90,7 +93,7 @@ include('includes/header.php');
                     ?>
                 </div>
 
-                <input type="submit" name="submit" class="btn btn-primary" value="Change"/>
+                <input type="submit" name="submit" class="btn btn-primary" value="Đổi mật khẩu"/>
 
             </form>
         </div>

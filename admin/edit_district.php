@@ -78,14 +78,14 @@
                 }
                 ?>
 
-                <h2 style=" color: red">Chỉnh sửa</h2>
+                <h2 style=" color: red">Chỉnh sửa - quận "<?php echo $dong['name_district']?>"</h2>
                 <div class="form-group">
-                    <label>Mã loại sản phẩm</label>
+                    <label>Mã quận, huyện</label>
                     <input type="text" name="code_district" value="<?php echo $dong['code_district']; ?>" class="form-control" placeholder='Mã thành phố'/>
                 </div>
 
                 <div class="form-group">
-                    <label>Tên loại sản phẩm</label>
+                    <label>Tên quận, huyện</label>
                     <input type="text" name="name_district" value="<?php echo $dong['name_district']; ?>" class="form-control" id="name_category" placeholder='Tên thành phố'/>
                 </div>
 				<div class="form-group">

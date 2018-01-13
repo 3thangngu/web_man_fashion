@@ -76,7 +76,7 @@ if( isset( $_POST['login'] ))
         <h2>Đăng nhập</h2>
         <input type="text" name="username" id="username" placeholder="Nhập tài khoản . . ." required="required" />
         <input type="password" name="password" id="password" maxlength="20" placeholder="Nhập mật khẩu . . ." required="required" />
-        <input style=" margin: auto; margin-top: 13px; " type="submit" name="login" id="button" value="Sign in"/>
+        <input style=" margin: auto; margin-top: 13px; " type="submit" name="login" id="button" value="Đăng nhập"/>
     </form>
 
 </div>

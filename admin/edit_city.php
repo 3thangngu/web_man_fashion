@@ -78,7 +78,7 @@
                 }
                 ?>
 
-                <h2 style=" color: red">Chỉnh sửa</h2>
+                <h2 style=" color: red">Chỉnh sửa - thành phố "<?php echo $dong['name_city'] ?>"</h2>
                 <div class="form-group">
                     <label>Mã loại sản phẩm</label>
                     <input type="text" name="code_city" value="<?php echo $dong['code_city']; ?>" class="form-control" placeholder='Mã thành phố'/>

@@ -39,7 +39,7 @@ include('includes/header.php');
         }
         ?>
 
-        <h3>Profiles User</h3>
+        <h3>Thông tin tài khoản</h3>
         <div class="form-group">
             <label>Tài khoản</label>
             <input readonly type="text" name="account" value="<?php if (isset($_POST['account'])) {
