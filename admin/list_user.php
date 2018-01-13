@@ -9,10 +9,7 @@
                             class="fa fa-fw fa-plus-square-o"
                             style="font-size: 25px; color:#1b926c; float: right; padding-left: 10px; padding-right: 75px;"></i></a>
             </h2>
-            <div style="float: right">
-                <input style="margin-left: 300px;" type="search" name="search" value="" placeholder=" Search">
-                <input type="submit" name="submit" value="Tìm">
-            </div>
+            
             <table class="table table-hover">
                 <thead>
                 <tr>

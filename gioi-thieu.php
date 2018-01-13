@@ -45,7 +45,7 @@
     <div class="container" id="gioithieu-ch">
         <div class="row">
             <div class="col-xs-12">
-                <h3 class="title">Giới thiệu 4MEN</h3>
+                <h3 class="title">Giới thiệu 3T-SHOP</h3>
                 <?php
                 $query = "SELECT * FROM tb_information WHERE name ='gioithieu'";
                 $result = mysqli_query($dbc, $query);

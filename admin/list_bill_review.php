@@ -12,7 +12,7 @@
 ?>
     <div class="row">
         <div class="col-12">
-            <h3 style=" color: red">Danh hóa đơn</h3>
+            <h3 style=" color: red">Danh sách hóa đơn đã duyệt</h3>
             <table class="table table-striped"> 
                 <thead> 
                     <tr>

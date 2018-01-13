@@ -76,7 +76,7 @@
 ?>
 <div class="add-order">
     <form name="frmadd-shiper" method="post" action="">
-        <h3 class="title">Chỉnh sửa đơn hàng</h3>
+        <h3 class="title">Chỉnh sửa Đơn Đặt hàng</h3>
         <div class="row">
             <div class="col-xs-12">
                 <div  class="info">

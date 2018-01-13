@@ -12,7 +12,7 @@ include('inc/function.php');
 ?>
 <div class="row">
     <div class="col-12">
-        <h2 style=" color: red">Danh Sách Đơn Hàng
+        <h2 style=" color: red">Danh sách đơn đặt hàng
         <a href="list_order_review.php" class="btn btn-primary" style="float: right;">Các đơn hàng đã duyệt</a>
         </h2>
         <table class="table table-striped"> 

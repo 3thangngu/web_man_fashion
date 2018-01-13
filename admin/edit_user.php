@@ -118,7 +118,7 @@
                     echo $message;
                 }
                 ?>
-                <h3>Chỉnh sửa User</h3>
+                <h3 style="color: red">Chỉnh sửa User</h3>
                 <div class="form-group">
                     <label>Tài khoản</label>
                     <input type="text" name="account" value="<?php echo $hienthi['account_user']; ?>" class="form-control" placeholder='Tài khoản'/>

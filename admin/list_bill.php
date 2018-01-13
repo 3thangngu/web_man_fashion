@@ -12,7 +12,7 @@
 ?>
     <div class="row">
         <div class="col-12">
-            <h3 style=" color: red">Danh hóa đơn</h3>
+            <h3 style=" color: red">Danh sách hóa đơn</h3>
             <a href="list_bill_review.php" class="btn btn-primary" style="float: right;">Các hóa đơn đã duyệt</a>
             <table class="table table-striped"> 
                 <thead> 

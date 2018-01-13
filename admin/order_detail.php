@@ -12,9 +12,7 @@ include('inc/function.php');
 ?>
 <div class="row">
   <div class="col-12">
-    <h2 style=" color: red">Chi Tiết Hóa Đơn
-
-    </h2>
+    <h2 style=" color: red">Chi Tiết Đơn Đặt Hàng</h2>
     <div class="customer-infomation">
 
        <!--   <div class="titile">
